@@ -29,11 +29,17 @@ $app = new Slim\App();
 //    });
 //});
 
+
+// PRODUCE ROUTES
+$app->group('/produce', function() use ($app) {
+    $app->get('/', 'getProduce');
+});
+
+// TEST ROUTES
 $app->get('/', function ($request, $response, $args) {
     $response->write("Welcome to Slim!");
     return $response;
 });
-
 $app->get('/hello[/{name}]', function ($request, $response, $args) {
     $response->write("Hello, " . $args['name']);
     return $response;
