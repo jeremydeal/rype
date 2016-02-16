@@ -31,16 +31,16 @@ $app = new Slim\App();
 
 
 // PRODUCE ROUTES
-$app->group('/produce', function() use ($app) {
-    $app->get('/', 'getProduce');
-    $app->get('/byId/:produceId', 'getProduceById');
+$app->group('/produce/', function() use ($app) {
+    $app->get('', 'getProduce');
+    $app->get('byId/:produceId', 'getProduceById');
 });
 
 
 // PRODUCE TYPE ROUTES
-$app->group('/produceType', function() use ($app) {
-    $app->get('/', 'getProduceType');
-    $app->get('/byId/:produceTypeId', 'getProduceTypeById');
+$app->group('/produceType/', function() use ($app) {
+    $app->get('', 'getProduceType');
+    $app->get('byId/:produceTypeId', 'getProduceTypeById');
 });
 
 
