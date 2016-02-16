@@ -55,14 +55,3 @@ $app->get('/hello[/{name}]', function ($request, $response, $args) {
 })->setArgument('name', 'World!');
 
 $app->run();
-
-?>
-
-
-<h1>Hello Jeremy!</h1>
-
-<h2>Hello Kameron</h2>
-
-<h3>Kamerino el bambino el muchaho mas fino!</h3>
-
-<h4>Hello Annie!</h4>

@@ -17,7 +17,7 @@ function getProduceType()
 }
 
 // GET /api/produceType/byId/1
-function getProduceById($produceTypeId)
+function getProduceTypeById($produceTypeId)
 {
     $sql = "SELECT *
               FROM produceType
