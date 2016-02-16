@@ -1,7 +1,7 @@
 <?php
 
 // GET /api/produceType/
-function getProduceType()
+function getProduceType($request, $response, $args)
 {
     $sql = "SELECT *
               FROM produceType";
@@ -10,14 +10,14 @@ function getProduceType()
         $stmt = $db->query($sql);
         $types = $stmt->fetchAll(PDO::FETCH_OBJ);
         $db = null;
-        echo '{"products": ' . json_encode($types) . '}';
+        return $response->write('{"products": ' . json_encode($types) . '}');
     } catch(PDOException $e) {
-        echo '{"error": { "text": ' . $e->getMessage() . '} }';
+        return $response->write('{"error": { "text": ' . $e->getMessage() . '} }');
     }
 }
 
 // GET /api/produceType/byId/1
-function getProduceTypeById($produceTypeId)
+function getProduceTypeById($request, $response, $args)
 {
     $sql = "SELECT *
               FROM produceType
@@ -25,12 +25,12 @@ function getProduceTypeById($produceTypeId)
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
-        $stmt->bindParam("produceTypeId", $produceTypeId);
+        $stmt->bindParam("produceTypeId", $args['produceTypeId']);
         $stmt->execute();
         $type = $stmt->fetch(PDO::FETCH_OBJ);
         $db = null;
-        echo '{"product": ' . json_encode($type) . '}';
+        return $response->write('{"product": ' . json_encode($type) . '}');
     } catch (PDOException $e) {
-        echo '{"error: { "text": ' . $e->getMessage() . '} }';
+        return $response->write('{"error: { "text": ' . $e->getMessage() . '} }');
     }
 }
