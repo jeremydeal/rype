@@ -21,7 +21,7 @@ function getProduceById($produceId)
     $sql = "SELECT p.*, pt.*
               FROM produce AS p
                 JOIN produceType AS pt ON p.produceTypeID = pt.produceTypeID
-                WHERE produceId = :produceId";
+                WHERE p.produceId = :produceId";
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
