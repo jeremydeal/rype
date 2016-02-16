@@ -33,7 +33,9 @@ $app = new Slim\App();
 // PRODUCE ROUTES
 $app->group('/produce', function() use ($app) {
     $app->get('/', 'getProduce');
+    $app->get('/byId/:produceId', 'getProduceById');
 });
+
 
 // TEST ROUTES
 $app->get('/', function ($request, $response, $args) {

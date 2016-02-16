@@ -3,34 +3,34 @@
 function getProduce()
 {
     $sql = "SELECT p.*, pt.*
-              FROM Produce AS p
-                JOIN ProduceType AS pt ON p.ProduceTypeID = pt.ProduceTypeID";
+              FROM produce AS p
+                JOIN produceType AS pt ON p.produceTypeID = pt.produceTypeID";
     try {
         $db = getDB();
         $stmt = $db->query($sql);
-        $districts = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $products = $stmt->fetchAll(PDO::FETCH_OBJ);
         $db = null;
-        echo '{"produce": ' . json_encode($districts) . '}';
+        echo '{"products": ' . json_encode($products) . '}';
     } catch(PDOException $e) {
         echo '{"error": { "text": ' . $e->getMessage() . '} }';
     }
 }
 
-
-// SAMPLE POST -- DO NOT DELETE
-//
-//function getDistrictById($districtId)
-//{
-//    $sql = "SELECT districtId, name FROM district WHERE districtId = :districtId";
-//    try {
-//        $db = getDB();
-//        $stmt = $db->prepare($sql);
-//        $stmt->bindParam("districtId", $districtId);
-//        $stmt->execute();
-//        $district = $stmt->fetch(PDO::FETCH_OBJ);
-//        $db = null;
-//        echo '{"district": ' . json_encode($district) . '}';
-//    } catch (PDOException $e) {
-//        echo '{"error: { "text": ' . $e->getMessage() . '} }';
-//    }
-//}
+function getProduceById($produceId)
+{
+    $sql = "SELECT p.*, pt.*
+              FROM produce AS p
+                JOIN produceType AS pt ON p.produceTypeID = pt.produceTypeID
+                WHERE produceId = :produceId";
+    try {
+        $db = getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("produceId", $produceId);
+        $stmt->execute();
+        $product = $stmt->fetch(PDO::FETCH_OBJ);
+        $db = null;
+        echo '{"product": ' . json_encode($product) . '}';
+    } catch (PDOException $e) {
+        echo '{"error: { "text": ' . $e->getMessage() . '} }';
+    }
+}
