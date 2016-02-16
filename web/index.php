@@ -37,6 +37,13 @@ $app->group('/produce', function() use ($app) {
 });
 
 
+// PRODUCE TYPE ROUTES
+$app->group('/produceType', function() use ($app) {
+    $app->get('/', 'getProduceType');
+    $app->get('/byId/:produceTypeId', 'getProduceTypeById');
+});
+
+
 // TEST ROUTES
 $app->get('/', function ($request, $response, $args) {
     $response->write("Welcome to Slim!");
