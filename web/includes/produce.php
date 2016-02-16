@@ -1,8 +1,9 @@
 <?php
 
+// GET /api/produce/
 function getProduce()
 {
-    $sql = "SELECT p.*, pt.*
+    $sql = "SELECT p.produceId, p.*, pt.*
               FROM produce AS p
                 JOIN produceType AS pt ON p.produceTypeID = pt.produceTypeID";
     try {
@@ -16,6 +17,7 @@ function getProduce()
     }
 }
 
+// GET /api/produce/byId/1
 function getProduceById($produceId)
 {
     $sql = "SELECT p.*, pt.*
