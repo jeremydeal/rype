@@ -5,8 +5,9 @@ echo '
 <head>
     <meta charset="utf-8">
     <title>My AngularJS App</title>
-    <meta name="description" content="">
-    <link rel="stylesheet" href="app.css">
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="../vendor/twitter/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="app.css" />
 </head>
 <body class="container-fluid">
 
@@ -20,10 +21,11 @@ echo '
 
     <div ng-view></div>
 
-    <!-- ANGULAR SCRIPTS CALLS -->
+    <!-- APPLICATION DEPENDENCY SCRIPTS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
     <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-ui/ui-bootstrap-tpls-0.14.3.min.js"></script>-->
+    <script src="../vendor/twitter/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="app.js"></script>
 
     <!-- CONTROLLERS -->
