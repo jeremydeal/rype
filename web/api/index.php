@@ -1,6 +1,6 @@
 <?php
 
-require '../vendor/autoload.php';
+require '../../vendor/autoload.php';
 require 'includes/init.php';
 
 $app = new Slim\App();
