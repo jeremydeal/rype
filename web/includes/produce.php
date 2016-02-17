@@ -36,3 +36,23 @@ function getProduceById($request, $response, $args)
         return $response->write('{"error: { "text": ' . $e->getMessage() . '} }');
     }
 }
+
+// GET /api/produce/byType/1
+function getProduceByType($request, $response, $args)
+{
+    $sql = "SELECT p.*, pt.*
+              FROM produce AS p
+                JOIN produceType AS pt ON p.produceTypeID = pt.produceTypeID
+                WHERE p.produceTypeId = :produceTypeId";
+    try {
+        $db = getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("produceTypeId", $args['produceTypeId']);
+        $stmt->execute();
+        $products = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $db = null;
+        return $response->write('{"products": ' . json_encode($products) . '}');
+    } catch (PDOException $e) {
+        return $response->write('{"error: { "text": ' . $e->getMessage() . '} }');
+    }
+}
