@@ -27,7 +27,8 @@ echo '
     <script src="app.js"></script>
 
     <!-- CONTROLLERS -->
-    <!--<script src="personal/personal.js"></script>-->
+    <script src="produce/produce.js"></script>
+    <script src="test/test1.js"></script>
 
     <!-- FILTERS -->
     <!--<script src="payroll/payrollFilters.js"></script>-->

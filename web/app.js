@@ -11,5 +11,9 @@ app.config(['$routeProvider', function($routeProvider) {
         templateUrl: 'produce/produce.html',
         controller: 'produceController'
     });
+    $routeProvider.when('/test1', {
+        templateUrl: "test/test1.html",
+        controller: 'testController'
+    });
     $routeProvider.otherwise({redirectTo: '/produce'});
 }]);
