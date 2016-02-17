@@ -7,7 +7,7 @@ var app = angular.module('myApp', [
 
 // ROUTING
 app.config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/personal', {
+    $routeProvider.when('/produce', {
         templateUrl: 'produce/produce.html',
         controller: 'produceController'
     });

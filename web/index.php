@@ -1,3 +1,5 @@
+<?php
+echo '
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp" class="no-js">
 <head>
@@ -35,3 +37,4 @@
 
 </body>
 </html>
+';
