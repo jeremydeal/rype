@@ -14,7 +14,7 @@ app.controller('produceController',
             ///////////////////////////////////// DATA INIT /////////////////////////////////////////////
             function dataInit() {
                 getProducts();
-                getProductById(1);
+                getProductById(2);
             }
 
 
