@@ -14,7 +14,7 @@ app.controller('produceController',
             ///////////////////////////////////// DATA INIT /////////////////////////////////////////////
             function dataInit() {
                 getProducts();
-                getProduct(1);
+                getProductById(1);
             }
 
 
@@ -41,8 +41,8 @@ app.controller('produceController',
                         $scope.products = data.products;
                     })
             }
-            function getProduct(id) {
-                produceService.getProduct(id)
+            function getProductById(id) {
+                produceService.getProductById(id)
                     .success(function(data) {
                         $scope.product = data.product;
                     })
