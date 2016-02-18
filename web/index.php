@@ -47,7 +47,7 @@ echo '
     <!--<script src="payroll/payrollFilters.js"></script>-->
 
     <!-- APP-WIDE SERVICES -->
-    <!--<script src="../services/usersService.js"></script>-->
+    <script src="services/produceService.js"></script>
 
 </body>
 </html>

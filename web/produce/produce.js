@@ -1,17 +1,20 @@
 'use strict';
 
 app.controller('produceController',
-    ['$scope',
-        function($scope) {
+    ['$scope', 'produceService',
+        function($scope, produceService) {
 
             // CONTROLLER GLOBALS
             $scope.products = {};
+            $scope.product = {};
 
             // DATA INIT
             dataInit();
 
             ///////////////////////////////////// DATA INIT /////////////////////////////////////////////
             function dataInit() {
+                getProducts();
+                getProduct(1);
             }
 
 
@@ -32,14 +35,18 @@ app.controller('produceController',
 
 
             ///////////////////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////
-            //function getTimeCards(year, userId) {
-            //    timeCardsService.getTimeCardsAndPaymentsByYearAndUser(year, userId)
-            //        .success(function(data) {
-            //            $scope.timeCards = data.timeCards;
-            //            helperService.fixAllBeginAndEndDates($scope.timeCards);
-            //            fixPayDates($scope.timeCards);
-            //        })
-            //}
+            function getProducts() {
+                produceService.getProducts()
+                    .success(function(data) {
+                        $scope.products = data.products;
+                    })
+            }
+            function getProduct(id) {
+                produceService.getProduct(id)
+                    .success(function(data) {
+                        $scope.product = data.product;
+                    })
+            }
             //function fixPayDates(timeCards) {
             //    for (var i = 0; i < timeCards.length; i++) {
             //        timeCards[i].payDate = new Date(timeCards[i].payDate);
