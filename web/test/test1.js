@@ -4,6 +4,7 @@ app.controller('test1Controller',
     ['$scope',
         function($scope) {
 
+
             /////////////////////////////////////// HELPER FUNCTIONS /////////////////////////////////////////////
             // PRETTY PRINT
             //$scope.printDate = function(date) {
