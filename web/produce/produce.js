@@ -19,7 +19,7 @@ app.controller('produceController',
             ///////////////////////////////////// DATA INIT /////////////////////////////////////////////
             function dataInit() {
                 getProducts();
-                getProductById(2);
+                $scope.product = products[0];
             }
 
 
