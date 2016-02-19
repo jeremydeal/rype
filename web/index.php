@@ -13,6 +13,10 @@ echo '
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
+    <!-- NG-SCROLLBAR -->
+    <link rel="stylesheet" href="bower_components\ng-scrollbar\dist\ng-scrollbar.min.css" />
+    <script src="bower_components\ng-scrollbar\dist\ng-scrollbar.min.js"></script>
+
     <link rel="stylesheet" href="app.css" />
 </head>
 
