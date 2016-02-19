@@ -53,7 +53,7 @@ app.controller('produceController',
             function getProductsTypes() {
                 produceService.getProductsTypes()
                     .success(function(data) {
-                        $scope.productTypes = data.productTypes;
+                        $scope.productTypes = data.types;
                     })
             }
 

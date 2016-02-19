@@ -51,21 +51,18 @@
                     <label>Produce Type</label>
                 </td>
                 <td>
-                    <select name="filterType" ng-model="search.type" ng-options="t.ProduceTypeId as t.name for t in userTypes">
+                    <select name="filterType" ng-model="search.type" ng-options="t.ProduceTypeId as t.CommonName for t in productTypes">
                         <option value="" selected>----</option>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <label>Filter Categories</label>
+                    <label>In Season</label>
                 </td>
                 <td>
                     <label class="checkbox-inline">
-                        <input type="checkbox" ng-model="search.isActive" /> Active
-                    </label>
-                    <label class="checkbox-inline">
-                        <input type="checkbox" ng-model="search.isAmericorps" /> Americorps
+                        <input type="checkbox" ng-model="search.inSeason" />
                     </label>
                 </td>
             </tr>
@@ -73,7 +70,9 @@
 
 
         <table class="table">
-            <tr ng-repeat="p in products | filter:search.query ">
+            <tr ng-repeat="p in products | filter:search.query |
+                                            filterProduceByWhetherInSeason:search.InSeason |
+                                            filterProduceByType:search.type ">
                 <td>
                     <p><strong>{{ p.CommonName + " (" + p.Variety + ")" }}</strong></p>
                     <img style="width: 100px" ng-src="../images/{{ p.ImgGood }}" ng-click="getProduct(p.ProduceId)" />
