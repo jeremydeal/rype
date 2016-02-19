@@ -10,7 +10,7 @@ function getProduceType($request, $response, $args)
         $stmt = $db->query($sql);
         $types = $stmt->fetchAll(PDO::FETCH_OBJ);
         $db = null;
-        return $response->write('{"products": ' . json_encode($types) . '}');
+        return $response->write('{"types": ' . json_encode($types) . '}');
     } catch(PDOException $e) {
         return $response->write('{"error": { "text": ' . $e->getMessage() . '} }');
     }
@@ -29,7 +29,7 @@ function getProduceTypeById($request, $response, $args)
         $stmt->execute();
         $type = $stmt->fetch(PDO::FETCH_OBJ);
         $db = null;
-        return $response->write('{"product": ' . json_encode($type) . '}');
+        return $response->write('{"type": ' . json_encode($type) . '}');
     } catch (PDOException $e) {
         return $response->write('{"error: { "text": ' . $e->getMessage() . '} }');
     }
