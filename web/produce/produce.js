@@ -22,7 +22,7 @@ app.controller('produceController',
             ///////////////////////////////////// DATA INIT /////////////////////////////////////////////////////
             function dataInit() {
                 getProducts();
-                $scope.product = products[0];
+                $scope.product = $scope.products[0];
                 getProductsTypes();
             }
 
