@@ -7,6 +7,7 @@ app.controller('produceController',
             // CONTROLLER GLOBALS
             $scope.products = {};
             $scope.product = {};
+            $scope.productTypes = {};
 
             // SORT AND FILTER VARS
             $scope.search = {};
@@ -51,6 +52,17 @@ app.controller('produceController',
                         $scope.product = data.product;
                     })
             }
+            function getProductsTypes() {
+                produceService.getProductsTypes()
+                    .success(function(data) {
+                        $scope.productTypes = data.productTypes;
+                    })
+            }
+
+
+            ///////////////////////////////////////////// USER DATA CALLS /////////////////////////////////////////////
+            $scope.getProduct = function(id) { getProductById(id); };
+
             //function fixPayDates(timeCards) {
             //    for (var i = 0; i < timeCards.length; i++) {
             //        timeCards[i].payDate = new Date(timeCards[i].payDate);

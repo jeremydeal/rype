@@ -46,7 +46,7 @@
             <tr ng-repeat="p in products | filter:search.query ">
                 <td>
                     <p><strong>{{ p.CommonName + " (" + p.Variety + ")" }}</strong></p>
-                    <img style="width: 100px" ng-src="../images/{{ p.ImgGood }}" />
+                    <img style="width: 100px" ng-src="../images/{{ p.ImgGood }}" ng-click="getProduct(p.ProduceId)" />
                 </td>
             </tr>
         </table>
