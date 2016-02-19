@@ -1,7 +1,7 @@
 app.filter('filterProduceByWhetherInSeason', function () {
     return function (products, inSeason) {
         // if inSeason is false, don't filter
-        if (inSeason == false || inSeason.isEmpty()) {
+        if (inSeason == null || inseason == false || inSeason.isEmpty()) {
             return products;
         }
 
@@ -43,7 +43,7 @@ app.filter('filterProduceByWhetherInSeason', function () {
 
 app.filter('filterProduceByType', function () {
     return function (products, typeId) {
-        if (typeId.isEmpty()) {
+        if (typeId == null || typeId == "") {
             return products;
         }
 
