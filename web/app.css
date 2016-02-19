@@ -1,3 +1,4 @@
+/* NAVBAR */
 ul {
     list-style-type: none;
     margin: 0;
@@ -20,4 +21,11 @@ li a {
 
 li a:hover {
     background-color: #ff9933;
+}
+
+
+/* SCROLLBAR */
+.scrollbar-dynamic {
+    max-height: 500px;
+    overflow: auto;
 }
