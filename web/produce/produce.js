@@ -23,6 +23,7 @@ app.controller('produceController',
             function dataInit() {
                 getProducts();
                 $scope.product = products[0];
+                getProductsTypes();
             }
 
 
