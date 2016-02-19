@@ -1,25 +1,48 @@
-<div class="container">
-    <div class="jumbotron">
-        <h1>{{ product.CommonName }} ({{ product.Variety }})</h1>
-        <img ng-src="../images/{{ product.ImgGood }}" />
+<div class="container row">
+
+    <!-- produce list, plus search and filter functionality -->
+    <div class="col-sm-4">
+
+        <table class="table">
+            <tr ng-repeat="p in products">
+                <td>
+                    <p><strong>{{ p.CommonName + "(" + p.Variety + ")" }}</strong></p>
+                    <img ng-src="../images/{{ p.ImgGood }}" />
+                </td>
+            </tr>
+        </table>
+
     </div>
-    <div class="row">
-        <p>{{ product.DescGeneral ? product.DescGeneral : "No data available" }}</p>
-    </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <h3>Is it Ripe?</h3>
-            <p><strong>By Look</strong></p>
-            <p>{{ product.DescLook ? product.DescLook : "No data available" }}</p>
-            <p><strong>By Feel</strong></p>
-            <p>{{ product.DescFeel ? product.DescFeel : "No data available" }}</p>
-            <p><strong>By Smell</strong></p>
-            <p>{{ product.DescSmell ? product.DescSmell : "No data available" }}</p>
+
+    <!-- viewport for selected product -->
+    <div class="col-sm-8">
+
+        <div class="jumbotron">
+            <h1>{{ product.CommonName }} ({{ product.Variety }})</h1>
+            <img ng-src="../images/{{ product.ImgGood }}" />
         </div>
-        <div class="col-sm-6">
-            <h3>Other Info</h3>
-            <p><strong>Season</strong></p>
-            <p>{{ (product.SeasonStart && product.SeasonEnd) ? (product.SeasonStart + " to " + product.SeasonEnd) : "" }}</p>
+
+        <div class="row">
+            <p>{{ product.DescGeneral ? product.DescGeneral : "No data available" }}</p>
         </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Is it Ripe?</h3>
+                <p><strong>By Look</strong></p>
+                <p>{{ product.DescLook ? product.DescLook : "No data available" }}</p>
+                <p><strong>By Feel</strong></p>
+                <p>{{ product.DescFeel ? product.DescFeel : "No data available" }}</p>
+                <p><strong>By Smell</strong></p>
+                <p>{{ product.DescSmell ? product.DescSmell : "No data available" }}</p>
+            </div>
+            <div class="col-sm-6">
+                <h3>Other Info</h3>
+                <p><strong>Season</strong></p>
+                <p>{{ (product.SeasonStart && product.SeasonEnd) ? (product.SeasonStart + " to " + product.SeasonEnd) : "" }}</p>
+            </div>
+        </div>
+
     </div>
+
 </div>
