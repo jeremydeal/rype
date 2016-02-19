@@ -74,7 +74,7 @@
                                             filterProduceByWhetherInSeason:search.InSeason |
                                             filterProduceByType:search.type ">
                 <td>
-                    <p><strong>{{ p.CommonName + " (" + p.Variety + ")" }}</strong></p>
+                    <p><strong>{{ p.Variety + " (" + p.CommonName + ")" }}</strong></p>
                     <img style="width: 100px" ng-src="../images/{{ p.ImgGood }}" ng-click="getProduct(p.ProduceId)" />
                 </td>
             </tr>
