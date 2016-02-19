@@ -36,11 +36,41 @@
     <div class="col-sm-4">
 
         <!-- FILTER SEARCH -->
-        <form class="" role="search">
-            <div class="form-group">
-                <input ng-model="search.query" type="text" class="form-control" placeholder="Search Produce">
-            </div>
-        </form>
+        <table class="table">
+            <tr>
+                <td colspan="2">
+                    <form class="" role="search">
+                        <div class="form-group">
+                            <input ng-model="search.query" type="text" class="form-control" placeholder="Search Produce">
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Filter By User Type</label>
+                </td>
+                <td>
+                    <select name="filterType" ng-model="search.type" ng-options="t.userTypeId as t.name for t in userTypes">
+                        <option value="" selected>----</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Filter Categories</label>
+                </td>
+                <td>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="search.isActive" /> Active
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="search.isAmericorps" /> Americorps
+                    </label>
+                </td>
+            </tr>
+        </table>
+
 
         <table class="table">
             <tr ng-repeat="p in products | filter:search.query ">

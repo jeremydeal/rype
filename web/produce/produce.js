@@ -12,11 +12,14 @@ app.controller('produceController',
             // SORT AND FILTER VARS
             $scope.search = {};
             $scope.search.query = "";
+            $scope.search.typeId = "";
+            $scope.search.inSeason = false;
+
 
             // DATA INIT
             dataInit();
 
-            ///////////////////////////////////// DATA INIT /////////////////////////////////////////////
+            ///////////////////////////////////// DATA INIT /////////////////////////////////////////////////////
             function dataInit() {
                 getProducts();
                 $scope.product = products[0];

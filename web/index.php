@@ -38,7 +38,7 @@ echo '
     <script src="test/test1.js"></script>
 
     <!-- FILTERS -->
-    <!--<script src="payroll/payrollFilters.js"></script>-->
+    <script src="produce/produceFilters.js"></script>
 
     <!-- APP-WIDE SERVICES -->
     <script src="services/produceService.js"></script>
