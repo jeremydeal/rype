@@ -25,7 +25,7 @@ li a:hover {
 
 
 /* SCROLLBAR */
-.scrollbar-dynamic {
+.scrollbar-area {
     max-height: 500px;
     overflow: auto;
 }
