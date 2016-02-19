@@ -1,20 +1,6 @@
 <div class="container row">
 
-    <!-- produce list, plus search and filter functionality -->
-    <div class="col-sm-4">
-
-        <table class="table">
-            <tr ng-repeat="p in products">
-                <td>
-                    <p><strong>{{ p.CommonName + "(" + p.Variety + ")" }}</strong></p>
-                    <img ng-src="../images/{{ p.ImgGood }}" />
-                </td>
-            </tr>
-        </table>
-
-    </div>
-
-    <!-- viewport for selected product -->
+    <!-- SELECTED PRODUCT -->
     <div class="col-sm-8">
 
         <div class="jumbotron">
@@ -42,6 +28,21 @@
                 <p>{{ (product.SeasonStart && product.SeasonEnd) ? (product.SeasonStart + " to " + product.SeasonEnd) : "" }}</p>
             </div>
         </div>
+
+    </div>
+
+
+    <!-- PRODUCE LIST -->
+    <div class="col-sm-4">
+
+        <table class="table">
+            <tr ng-repeat="p in products">
+                <td>
+                    <p><strong>{{ p.CommonName + "(" + p.Variety + ")" }}</strong></p>
+                    <img ng-src="../images/{{ p.ImgGood }}" />
+                </td>
+            </tr>
+        </table>
 
     </div>
 
