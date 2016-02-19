@@ -15,10 +15,10 @@ app.controller('produceController',
             $scope.search.typeId = "";
             $scope.search.inSeason = false;
 
-
             // DATA INIT
             dataInit();
 
+            
             ///////////////////////////////////// DATA INIT /////////////////////////////////////////////////////
             function dataInit() {
                 getProducts();
@@ -29,18 +29,12 @@ app.controller('produceController',
 
             /////////////////////////////////////// HELPER FUNCTIONS /////////////////////////////////////////////
             // PRETTY PRINT
-            //$scope.printDate = function(date) {
-            //    return prettyPrintService.printDate(date);
-            //};
-            //$scope.printSchoolYear = function(year) {
-            //    return prettyPrintService.printSchoolYear(year);
-            //};
-            //$scope.printYesOrNo = function(bit) {
-            //    return prettyPrintService.printYesOrNo(bit);
-            //};
-            //$scope.isGreaterThanZero = function(num) {
-            //    return prettyPrintService.isGreaterThanZero(num);
-            //};
+            $scope.printDate = function(date) {
+                return prettyPrintService.printDate(date);
+            };
+            $scope.printYesOrNo = function(bit) {
+                return prettyPrintService.printYesOrNo(bit);
+            };
 
 
             ///////////////////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////
@@ -67,10 +61,5 @@ app.controller('produceController',
             ///////////////////////////////////////////// USER DATA CALLS /////////////////////////////////////////////
             $scope.getProduct = function(id) { getProductById(id); };
 
-            //function fixPayDates(timeCards) {
-            //    for (var i = 0; i < timeCards.length; i++) {
-            //        timeCards[i].payDate = new Date(timeCards[i].payDate);
-            //    }
-            //}
 
         }]);
