@@ -23,7 +23,7 @@ app.controller('produceController',
             function dataInit() {
                 getProducts();
                 $scope.product = $scope.products[0];
-                getProductsTypes();
+                getProductTypes();
             }
 
 
@@ -50,8 +50,8 @@ app.controller('produceController',
                         $scope.product = data.product;
                     })
             }
-            function getProductsTypes() {
-                produceService.getProductsTypes()
+            function getProductTypes() {
+                produceService.getProductTypes()
                     .success(function(data) {
                         $scope.productTypes = data.types;
                     })
