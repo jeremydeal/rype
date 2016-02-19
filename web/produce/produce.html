@@ -35,11 +35,18 @@
     <!-- PRODUCE LIST -->
     <div class="col-sm-4">
 
+        <!-- FILTER SEARCH -->
+        <form class="" role="search">
+            <div class="form-group">
+                <input ng-model="search.query" type="text" class="form-control" placeholder="Search Produce">
+            </div>
+        </form>
+
         <table class="table">
-            <tr ng-repeat="p in products">
+            <tr ng-repeat="p in products | filter:search.query ">
                 <td>
-                    <p><strong>{{ p.CommonName + "(" + p.Variety + ")" }}</strong></p>
-                    <img ng-src="../images/{{ p.ImgGood }}" />
+                    <p><strong>{{ p.CommonName + " (" + p.Variety + ")" }}</strong></p>
+                    <img style="width: 100px" ng-src="../images/{{ p.ImgGood }}" />
                 </td>
             </tr>
         </table>

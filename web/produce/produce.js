@@ -8,6 +8,10 @@ app.controller('produceController',
             $scope.products = {};
             $scope.product = {};
 
+            // SORT AND FILTER VARS
+            $scope.search = {};
+            $scope.search.query = "";
+
             // DATA INIT
             dataInit();
 

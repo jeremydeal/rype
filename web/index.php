@@ -22,12 +22,6 @@ echo '
             <li><a class="active" href="#/test1">Home</a></li>
             <li><a href="#/produce">Produce</a></li>
             <li><a href="#/test1">Grocery Store</a></li>
-            <form class="navbar-form navbar-right" role="search">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search Produce">
-                </div>
-                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-            </form>
         </ul>
     </div>
 
