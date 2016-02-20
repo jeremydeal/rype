@@ -1,7 +1,7 @@
 app.filter('filterProduceByWhetherInSeason', function () {
     return function (products, inSeason) {
         // if inSeason is false, don't filter
-        if (inSeason == null || inseason == false || inSeason.isEmpty()) {
+        if (inSeason == null || inSeason == false || inSeason.isEmpty()) {
             return products;
         }
 
@@ -22,7 +22,7 @@ app.filter('filterProduceByWhetherInSeason', function () {
             var curMonth = new Date().getMonth();
 
             // add to filtered if the season is year-round
-            if (start == end) {
+            if (start.isEmpty() || end.isEmpty() || start == end) {
                 filtered.push(p);
             }
             else {
