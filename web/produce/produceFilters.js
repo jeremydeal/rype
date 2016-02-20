@@ -11,7 +11,7 @@ app.filter('filterProduceByWhetherInSeason', function () {
             'september', 'october', 'november', 'december'];
 
         // iterate through products
-        var filtered = [];
+        var filtered = {};
         for (var i = 0; i < products.length; i++) {
             var p = products[i];
 
@@ -47,7 +47,7 @@ app.filter('filterProduceByType', function () {
             return products;
         }
 
-        var filtered = [];
+        var filtered = {};
         for (var i = 0; i < products.length; i++) {
             var p = products[i];
             if (p.ProduceTypeId == typeId) {
