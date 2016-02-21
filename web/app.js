@@ -12,7 +12,7 @@ app.config(['$routeProvider', function($routeProvider) {
         controller: 'produceController'
     });
     $routeProvider.when('/test1', {
-        templateUrl: "test/test1.html",
+        templateUrl: "home/test1.html",
         controller: 'testController'
     });
     $routeProvider.otherwise({redirectTo: '/produce'});

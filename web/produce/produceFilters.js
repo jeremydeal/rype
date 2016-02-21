@@ -15,7 +15,7 @@ app.filter('filterProduceByWhetherInSeason', function () {
         // iterate through products
         angular.forEach(products, function(p) {
 
-            if (p.SeasonStart || p.SeasonEnd) {
+            if (!p.SeasonStart || !p.SeasonEnd) {
                 console.log("%o rejected: start or end dates not defined.", p);
             }
             else {
