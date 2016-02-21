@@ -30,7 +30,7 @@ app.filter('filterProduceByWhetherInSeason', function () {
                     console.log("%o passed filter: start date == end date.", p);
                 }
                 else {
-                    if (start < curMonth < end) {
+                    if (start < curMonth && curMonth < end) {
                         // check date if season within same calendar year
                         filtered.push(p);
                         console.log("%o passed filter: in season, same calendar year.\ncurMonth = %s\nstart = %s\nend = %s", p, curMonth, start, end);
