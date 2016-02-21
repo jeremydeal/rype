@@ -52,7 +52,7 @@
                     <label>Produce Class</label>
                 </td>
                 <td>
-                    <select name="filterClass" ng-model="search.class" ng-options="c.ProduceClass for c in productClasses">
+                    <select name="filterClass" ng-model="search.class" ng-options="c.ProduceClass as c.ProduceClass for c in productClasses">
                         <option value="" selected>----</option>
                     </select>
                 </td>
@@ -85,7 +85,7 @@
                 <tr ng-repeat="p in products | filter:search.query |
                                                 filterProduceByWhetherInSeason:search.inSeason |
                                                 filterProduceByClass:search.class |
-                                                filterProduceByType:search.type ">
+                                                filterProduceByType:search.type">
                     <td>
                         <p><strong>{{ p.Variety + " (" + p.CommonName + ")" }}</strong></p>
                         <img style="width: 100px" ng-src="../../src/images/{{ p.ImgGood }}" ng-click="getProduct(p.ProduceId)" />
