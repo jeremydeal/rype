@@ -30,19 +30,19 @@ app.filter('filterProduceByWhetherInSeason', function () {
                     console.log("%o passed filter: start date == end date.", p);
                 }
                 else {
-                    // check date if season within same calendar year
                     if (start < curMonth < end) {
+                        // check date if season within same calendar year
                         filtered.push(p);
                         console.log("%o passed filter: in season, same calendar year.", p);
                     }
-
-                    // check date if season extends over 2 calendar years
-                    if (start > end && (curMonth < end || curMonth > start)) {
+                    else if (start > end && (curMonth < end || curMonth > start)) {
+                        // check date if season extends over 2 calendar years
                         filtered.push(p);
                         console.log("%o passed filter: in season, across calendar years.", p);
                     }
-
-                    console.log("%o rejected: not in season.", p);
+                    else {
+                        console.log("%o rejected: not in season.", p);
+                    }
                 }
             }
         });
