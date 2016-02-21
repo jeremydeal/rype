@@ -14,8 +14,13 @@ $app->group('/produce/', function() use ($app) {
 
 // PRODUCE TYPE ROUTES
 $app->group('/produceType/', function() use ($app) {
-    $app->get('', 'getProduceType');
+    $app->get('', 'getProduceTypes');
     $app->get('byId/{produceTypeId}', 'getProduceTypeById');
+});
+
+// PRODUCE CLASS ROUTES
+$app->group('/produceClass/', function() use ($app) {
+    $app->get('', 'getProduceClasses');
 });
 
 

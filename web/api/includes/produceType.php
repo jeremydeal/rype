@@ -1,7 +1,7 @@
 <?php
 
 // GET /api/produceType/
-function getProduceType($request, $response, $args)
+function getProduceTypes($request, $response, $args)
 {
     $sql = "SELECT *
               FROM produceType";
