@@ -25,26 +25,26 @@ app.filter('filterProduceByWhetherInSeason', function () {
                 // add to filtered if the season is year-round
                 if (start == end) {
                     filtered.push(p);
-                    console.log("Item passed filter: start date == end date.")
+                    console.log("Item passed filter: start date == end date.");
                 }
                 else {
                     // check date if season within same calendar year
                     if (start < curMonth < end) {
                         filtered.push(p);
-                        console.log("Item passed filter: in season, same calendar year ")
+                        console.log("Item passed filter: in season, same calendar year ");
                     }
 
                     // check date if season extends over 2 calendar years
                     if (start > end && (curMonth < end || curMonth > start)) {
                         filtered.push(p);
-                        console.log("Item passed filter: in season, across calendar years")
+                        console.log("Item passed filter: in season, across calendar years");
                     }
 
-                    console.log("Item rejected: not in season.")
+                    console.log("Item rejected: not in season.");
                 }
             }
             else {
-                console.log("Item rejected: start or end dates not defined.")
+                console.log("Item rejected: start or end dates not defined.");
             }
 
         }
