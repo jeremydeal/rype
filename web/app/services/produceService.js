@@ -2,7 +2,9 @@
 app.factory('produceService', function($http) {
     var baseUrl = "../api/produce/";
     var produceTypesUrl = "../api/produceType/";
+    var produceClassesUrl = "../api/produceClass/";
     var produceService = {};
+
 
     // get all products
     produceService.getProducts = function() {
@@ -19,10 +21,18 @@ app.factory('produceService', function($http) {
         return $http.get(baseUrl + "byType/" + typeId);
     };
 
+
+    //////////////////////////////////// SUPPLEMENTARY //////////////////////////////////////
     // get product types
     produceService.getProductTypes = function() {
         return $http.get(produceTypesUrl);
     };
+
+    // get product classes
+    produceService.getProductClasses = function() {
+        return $http.get(produceClassesUrl);
+    };
+
 
     return produceService;
 });

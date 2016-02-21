@@ -49,6 +49,16 @@
             </tr>
             <tr>
                 <td>
+                    <label>Produce Class</label>
+                </td>
+                <td>
+                    <select name="filterClass" ng-model="search.class" ng-options="c.ProduceClass for c in productClasses">
+                        <option value="" selected>----</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label>Produce Type</label>
                 </td>
                 <td>

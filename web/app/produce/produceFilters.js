@@ -51,6 +51,23 @@ app.filter('filterProduceByWhetherInSeason', function () {
     };
 });
 
+app.filter('filterProduceByClass', function () {
+    return function (products, className) {
+        if (!products) return products;
+        if (!className) return products;
+
+        var filtered = [];
+
+        angular.forEach(products, function(p) {
+            if (p.ProduceClass == className) {
+                filtered.push(p);
+            }
+        });
+
+        return filtered;
+    };
+});
+
 app.filter('filterProduceByType', function () {
     return function (products, typeId) {
         if (!products) return products;

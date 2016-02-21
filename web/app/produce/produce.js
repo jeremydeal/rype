@@ -8,11 +8,13 @@ app.controller('produceController',
             $scope.products = {};
             $scope.product = {};
             $scope.productTypes = {};
+            $scope.productClasses = {};
 
             // SORT AND FILTER VARS
             $scope.search = {};
             $scope.search.query = "";
             $scope.search.type = "";
+            $scope.search.class = "";
             $scope.search.inSeason = false;
 
             // DATA INIT
@@ -24,6 +26,7 @@ app.controller('produceController',
                 getProducts();
                 getProductById(2);
                 getProductTypes();
+                getProductClasses();
             }
 
 
@@ -54,6 +57,12 @@ app.controller('produceController',
                 produceService.getProductTypes()
                     .success(function(data) {
                         $scope.productTypes = data.types;
+                    })
+            }
+            function getProductClasses() {
+                produceService.getProductClasses()
+                    .success(function(data) {
+                        $scope.productClasses = data.classes;
                     })
             }
 
