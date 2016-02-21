@@ -84,6 +84,7 @@
             <table class="table">
                 <tr ng-repeat="p in products | filter:search.query |
                                                 filterProduceByWhetherInSeason:search.inSeason |
+                                                filterProduceByClass:search.class |
                                                 filterProduceByType:search.type ">
                     <td>
                         <p><strong>{{ p.Variety + " (" + p.CommonName + ")" }}</strong></p>
