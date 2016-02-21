@@ -15,35 +15,35 @@ app.filter('filterProduceByWhetherInSeason', function () {
         // iterate through products
         angular.forEach(products, function(p) {
 
-            // get 0-indexed value of months
-            var start = months.indexOf(p.SeasonStart.toLowerCase());
-            var end = months.indexOf(p.SeasonEnd.toLowerCase());
+            if (p.SeasonStart || p.SeasonEnd) {
+                console.log("%o rejected: start or end dates not defined.", p);
+            }
+            else {
 
+                // get 0-indexed value of months
+                var start = months.indexOf(p.SeasonStart.toLowerCase());
+                var end = months.indexOf(p.SeasonEnd.toLowerCase());
 
-            if (start && end) {
                 // add to filtered if the season is year-round
                 if (start == end) {
                     filtered.push(p);
-                    console.log("Item passed filter: start date == end date.");
+                    console.log("%o passed filter: start date == end date.", p);
                 }
                 else {
                     // check date if season within same calendar year
                     if (start < curMonth < end) {
                         filtered.push(p);
-                        console.log("Item passed filter: in season, same calendar year ");
+                        console.log("%o passed filter: in season, same calendar year.", p);
                     }
 
                     // check date if season extends over 2 calendar years
                     if (start > end && (curMonth < end || curMonth > start)) {
                         filtered.push(p);
-                        console.log("Item passed filter: in season, across calendar years");
+                        console.log("%o passed filter: in season, across calendar years.", p);
                     }
 
-                    console.log("Item rejected: not in season.");
+                    console.log("%o rejected: not in season.", p);
                 }
-            }
-            else {
-                console.log("Item rejected: start or end dates not defined.");
             }
         });
 
