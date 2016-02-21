@@ -6,7 +6,7 @@
 
             <div class="jumbotron">
                 <h1>{{ product.Variety }} ({{ product.CommonName }})</h1>
-                <img ng-src="../images/{{ product.ImgGood }}" />
+                <img ng-src="../../src/images/{{ product.ImgGood }}" />
             </div>
 
             <div class="row">
@@ -77,7 +77,7 @@
                                                 filterProduceByType:search.type ">
                     <td>
                         <p><strong>{{ p.Variety + " (" + p.CommonName + ")" }}</strong></p>
-                        <img style="width: 100px" ng-src="../images/{{ p.ImgGood }}" ng-click="getProduct(p.ProduceId)" />
+                        <img style="width: 100px" ng-src="../../src/images/{{ p.ImgGood }}" ng-click="getProduct(p.ProduceId)" />
                     </td>
                 </tr>
             </table>
