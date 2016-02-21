@@ -16,26 +16,37 @@ app.filter('filterProduceByWhetherInSeason', function () {
             var p = products[i];
 
             // get 0-indexed value of months
-            var start = months.indexOf(p.SeasonStart.trim().toLowerCase());
-            var end = months.indexOf(p.SeasonEnd.trim().toLowerCase());
+            var start = months.indexOf(p.SeasonStart.toLowerCase());
+            var end = months.indexOf(p.SeasonEnd.toLowerCase());
 
             var curMonth = new Date().getMonth();
 
-            // add to filtered if the season is year-round
-            if (!start || !end || start == end) {
-                filtered.push(p);
+            if (start && end) {
+                // add to filtered if the season is year-round
+                if (start == end) {
+                    filtered.push(p);
+                    console.log("Item passed filter: start date == end date.")
+                }
+                else {
+                    // check date if season within same calendar year
+                    if (start < curMonth < end) {
+                        filtered.push(p);
+                        console.log("Item passed filter: in season, same calendar year ")
+                    }
+
+                    // check date if season extends over 2 calendar years
+                    if (start > end && (curMonth < end || curMonth > start)) {
+                        filtered.push(p);
+                        console.log("Item passed filter: in season, across calendar years")
+                    }
+
+                    console.log("Item rejected: not in season.")
+                }
             }
             else {
-                // check date if season within same calendar year
-                if (start < curMonth < end) {
-                    filtered.push(p);
-                }
-
-                // check date if season extends over 2 calendar years
-                if (start > end && (curMonth < end || curMonth > start)) {
-                    filtered.push(p);
-                }
+                console.log("Item rejected: start or end dates not defined.")
             }
+
         }
         return filtered;
     };
