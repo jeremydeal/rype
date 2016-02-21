@@ -63,7 +63,7 @@ app.filter('filterProduceByType', function () {
                 filtered.push(p);
             }
         });
- 
+
         return filtered;
     };
 });
