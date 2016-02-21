@@ -1,7 +1,7 @@
 <div class="container row">
 
     <!-- SELECTED PRODUCT -->
-    <perfect-scrollbar class="col-sm-8 scrollable" wheel-propagation="true" wheel-speed="10" min-scrollbar-length="20">
+    <perfect-scrollbar class="col-sm-8 scrollable" wheel-propagation="true" wheel-speed="3" min-scrollbar-length="20">
 
         <div class="jumbotron">
             <h1>{{ product.Variety }} ({{ product.CommonName }})</h1>
@@ -69,7 +69,7 @@
         </table>
 
         <!-- PRODUCE LIST -->
-        <perfect-scrollbar class="scrollable" wheel-propagation="true" wheel-speed="10" min-scrollbar-length="20">
+        <perfect-scrollbar class="scrollable" wheel-propagation="true" wheel-speed="6" min-scrollbar-length="20">
             <table class="table">
                 <tr ng-repeat="p in products | filter:search.query |
                                                 filterProduceByWhetherInSeason:search.inSeason |
