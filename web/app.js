@@ -12,9 +12,9 @@ app.config(['$routeProvider', function($routeProvider) {
         templateUrl: 'produce/produce.html',
         controller: 'produceController'
     });
-    $routeProvider.when('/test1', {
-        templateUrl: "home/test1.html",
-        controller: 'testController'
+    $routeProvider.when('/home', {
+        templateUrl: "home/home.html",
+        controller: 'homeController'
     });
     $routeProvider.otherwise({redirectTo: '/produce'});
 }]);

@@ -26,9 +26,9 @@ echo '
 
     <div class="navbar">
         <ul class="nav nav-pills">
-            <li><a class="active" href="#/test1">Home</a></li>
+            <li><a class="active" href="#/home">Home</a></li>
             <li><a href="#/produce">Produce</a></li>
-            <li><a href="#/test1">Grocery Store</a></li>
+            <li><a href="#/home">Grocery Store</a></li>
         </ul>
     </div>
 
@@ -42,7 +42,7 @@ echo '
 
     <!-- CONTROLLERS -->
     <script src="produce/produce.js"></script>
-    <script src="test/test1.js"></script>
+    <script src="home/home.js"></script>
 
     <!-- FILTERS -->
     <script src="produce/produceFilters.js"></script>

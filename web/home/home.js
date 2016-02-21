@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('test1Controller',
+app.controller('homeController',
     ['$scope',
         function($scope) {
 
