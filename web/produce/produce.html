@@ -1,7 +1,7 @@
 <div class="container row">
 
     <!-- SELECTED PRODUCT -->
-    <div class="col-sm-8">
+    <perfect-scrollbar class="col-sm-8 scrollable" wheel-propagation="true" wheel-speed="10" min-scrollbar-length="20">
 
         <div class="jumbotron">
             <h1>{{ product.Variety }} ({{ product.CommonName }})</h1>
@@ -29,11 +29,11 @@
             </div>
         </div>
 
-    </div>
+    </perfect-scrollbar>
 
 
     <!-- PRODUCE LIST -->
-    <div class="col-sm-4 scrollbar-area">
+    <perfect-scrollbar class="col-sm-4">
 
         <!-- FILTER SEARCH -->
         <table class="table">
@@ -68,17 +68,19 @@
             </tr>
         </table>
 
-
-        <table class="table">
-            <tr ng-repeat="p in products | filter:search.query |
-                                            filterProduceByWhetherInSeason:search.inSeason |
-                                            filterProduceByType:search.type ">
-                <td>
-                    <p><strong>{{ p.Variety + " (" + p.CommonName + ")" }}</strong></p>
-                    <img style="width: 100px" ng-src="../images/{{ p.ImgGood }}" ng-click="getProduct(p.ProduceId)" />
-                </td>
-            </tr>
-        </table>
+        <!-- PRODUCE LIST -->
+        <perfect-scrollbar class="scrollable" wheel-propagation="true" wheel-speed="10" min-scrollbar-length="20">
+            <table class="table">
+                <tr ng-repeat="p in products | filter:search.query |
+                                                filterProduceByWhetherInSeason:search.inSeason |
+                                                filterProduceByType:search.type ">
+                    <td>
+                        <p><strong>{{ p.Variety + " (" + p.CommonName + ")" }}</strong></p>
+                        <img style="width: 100px" ng-src="../images/{{ p.ImgGood }}" ng-click="getProduct(p.ProduceId)" />
+                    </td>
+                </tr>
+            </table>
+        </perfect-scrollbar>
 
     </div>
 

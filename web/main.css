@@ -25,7 +25,9 @@ li a:hover {
 
 
 /* SCROLLBAR */
-/*.scrollbar-area {*/
-    /*max-height: 500px;*/
-    /*overflow: auto;*/
-/*}*/
+.scrollable {
+    white-space: pre-line;
+    height: 500px;
+    overflow-y: hidden;
+    position: relative;
+}
