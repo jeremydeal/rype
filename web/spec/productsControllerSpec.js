@@ -5,6 +5,16 @@ describe('productsController', function(){
 
     beforeEach(module('myApp'));
 
+    //// register mock of ProductsService
+    //beforeEach(angular.mock.module(function($provide) {
+    //    $provide.service('productsService', function($productsService) {
+    //        $productsService.getProducts = function() {
+    //            return {"hardcoded": "value"}
+    //        }
+    //    })
+    //}));
+
+    // controller constructor
     beforeEach(inject(function($controller, $rootScope){
         $controllerConstructor = $controller;
         scope = $rootScope.$new();
@@ -15,6 +25,5 @@ describe('productsController', function(){
         var ctrl = $controllerConstructor('productsController', {$scope:scope});
         expect(Object.size(ctrl.products)).toBe(3);
     });
-
 
 });
