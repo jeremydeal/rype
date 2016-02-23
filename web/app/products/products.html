@@ -62,7 +62,8 @@
                     <label>Produce Type</label>
                 </td>
                 <td>
-                    <select name="filterType" ng-model="search.type" ng-options="t.ProduceTypeId as t.CommonName for t in productTypes">
+                    <select name="filterType" ng-model="search.type"
+                            ng-options="t.ProduceTypeId as t.CommonName for t in productTypes | filterProductsByClass:search.class">
                         <option value="" selected>----</option>
                     </select>
                 </td>
