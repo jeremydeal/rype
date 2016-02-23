@@ -1,4 +1,4 @@
-describe('productsCotnroller', function(){
+describe('productsController', function(){
 
     var $controllerConstructor;
     var scope;
@@ -11,10 +11,10 @@ describe('productsCotnroller', function(){
     }));
 
 
-    it('should have three expense items', function(){
-        var ctrl = $controllerConstructor('expensesController', {$scope:scope});
-        expect(ctrl.expenseItems.length).toBe(3);
-    })
+    it('should have three products', function(){
+        var ctrl = $controllerConstructor('productsController', {$scope:scope});
+        expect(Object.size(ctrl.products)).toBe(3);
+    });
 
 
-})
+});
