@@ -1,4 +1,4 @@
-app.filter('filterProduceByWhetherInSeason', function () {
+app.filter('filterProductsByWhetherInSeason', function () {
     return function (products, inSeason) {
         // if inSeason is false, don't filter
         if (!products) return products;
@@ -51,7 +51,7 @@ app.filter('filterProduceByWhetherInSeason', function () {
     };
 });
 
-app.filter('filterProduceByClass', function () {
+app.filter('filterProductsByClass', function () {
     return function (products, className) {
         if (!products) return products;
         if (!className) return products;
@@ -68,7 +68,7 @@ app.filter('filterProduceByClass', function () {
     };
 });
 
-app.filter('filterProduceByType', function () {
+app.filter('filterProductsByType', function () {
     return function (products, typeId) {
         if (!products) return products;
         if (!typeId) return products;

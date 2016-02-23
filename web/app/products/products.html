@@ -83,9 +83,9 @@
         <perfect-scrollbar class="scrollable" wheel-propagation="true" wheel-speed="6" min-scrollbar-length="20">
             <table class="table">
                 <tr ng-repeat="p in products | filter:search.query |
-                                                filterProduceByWhetherInSeason:search.inSeason |
-                                                filterProduceByClass:search.class |
-                                                filterProduceByType:search.type">
+                                                filterProductsByWhetherInSeason:search.inSeason |
+                                                filterProductsByClass:search.class |
+                                                filterProductsByType:search.type">
                     <td>
                         <p><strong>{{ p.Variety + " (" + p.CommonName + ")" }}</strong></p>
                         <img style="width: 100px" ng-src="../../src/images/{{ p.ImgGood }}" ng-click="getProduct(p.ProduceId)" />

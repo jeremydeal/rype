@@ -1,8 +1,8 @@
 'use strict';
 
-app.controller('produceController',
-    ['$scope', 'produceService',
-        function($scope, produceService) {
+app.controller('productsController',
+    ['$scope', 'productsService', 'prettyPrintService',
+        function($scope, productsService, prettyPrintService) {
 
             // CONTROLLER GLOBALS
             $scope.products = {};
@@ -42,25 +42,25 @@ app.controller('produceController',
 
             ///////////////////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////
             function getProducts() {
-                produceService.getProducts()
+                productsService.getProducts()
                     .success(function(data) {
                         $scope.products = data.products;
                     })
             }
             function getProductById(id) {
-                produceService.getProductById(id)
+                productsService.getProductById(id)
                     .success(function(data) {
                         $scope.product = data.product;
                     })
             }
             function getProductTypes() {
-                produceService.getProductTypes()
+                productsService.getProductTypes()
                     .success(function(data) {
                         $scope.productTypes = data.types;
                     })
             }
             function getProductClasses() {
-                produceService.getProductClasses()
+                productsService.getProductClasses()
                     .success(function(data) {
                         $scope.productClasses = data.classes;
                     })

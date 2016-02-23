@@ -1,38 +1,38 @@
 // handles all API calls to the Produce table on the backend
-app.factory('produceService', function($http) {
+app.factory('productsService', function($http) {
     var baseUrl = "../api/produce/";
     var produceTypesUrl = "../api/produceType/";
     var produceClassesUrl = "../api/produceClass/";
-    var produceService = {};
+    var productsService = {};
 
 
     // get all products
-    produceService.getProducts = function() {
+    productsService.getProducts = function() {
         return $http.get(baseUrl);
     };
 
     // get one product
-    produceService.getProductById = function(id) {
+    productsService.getProductById = function(id) {
         return $http.get(baseUrl + "byId/" + id);
     };
 
     // get products by type
-    produceService.getProductsByType = function(typeId) {
+    productsService.getProductsByType = function(typeId) {
         return $http.get(baseUrl + "byType/" + typeId);
     };
 
 
     //////////////////////////////////// SUPPLEMENTARY //////////////////////////////////////
     // get product types
-    produceService.getProductTypes = function() {
+    productsService.getProductTypes = function() {
         return $http.get(produceTypesUrl);
     };
 
     // get product classes
-    produceService.getProductClasses = function() {
+    productsService.getProductClasses = function() {
         return $http.get(produceClassesUrl);
     };
 
 
-    return produceService;
+    return productsService;
 });
