@@ -62,7 +62,7 @@ app.controller('loginController',
 
                         // if creation successful, log in!
                         var loginData = {
-                            "Email": $scope.newUser.Email,
+                            "Email": encodeURI($scope.newUser.Email),
                             "Password": $scope.newUser.Password
                         };
 
