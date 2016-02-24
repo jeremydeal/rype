@@ -30,8 +30,6 @@ function getUser($request, $response, $args) {
     }
 
     $response->write('{"user": ' . json_encode($user) . '}');
-
-    return $response;
 }
 
 
@@ -74,7 +72,7 @@ function login($request, $response, $args)
         // leave $user null
     }
 
-    return $response->write("{'user': " . json_encode($user) . " }");
+    $response->write("{'user': " . json_encode($user) . " }");
 }
 
 
@@ -98,7 +96,7 @@ function logout($request, $response, $args) {
     // And destroy the session.
     session_destroy();
 
-    return $response->write("success");
+    $response->write("success");
 }
 
 
@@ -134,8 +132,8 @@ function createUser($request, $response, $args)
         $stmt->execute();
         $db = null;
 
-        return $response->write('{"message": "success"}');
+        $response->write('{"message": "success"}');
     } catch(PDOException $e) {
-        return $response->write('{"message": "failure"}');
+        $response->write('{"message": "failure"}');
     }
 }
