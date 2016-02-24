@@ -109,7 +109,8 @@ function createUser($request, $response, $args)
 {
     // grab $_POST data
     $postData = $request->getParsedBody();
-    $response->write($postData['Email']);
+    $email = $request->getParsedBody()['Email'];
+    $response->write($email);
 
 //    // generate random salt
 //    $salt = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
