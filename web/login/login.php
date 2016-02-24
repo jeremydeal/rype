@@ -25,7 +25,7 @@ try {
     $db = null;
 
         // check auth info against DB values
-        if ($user != null && password_verify($json->Password, $user->password))
+        if ($user != null && password_verify($json->Password, $user->Password))
         {
             // successful login; generate session
             session_start();
