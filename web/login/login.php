@@ -7,6 +7,8 @@ require_once 'loginInit.php';
 // grab $_POST data
 $json = json_decode($_POST);
 
+var_dump($json);
+
 // grab auth info from DB
 $user = null;
 
