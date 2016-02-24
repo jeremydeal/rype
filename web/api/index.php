@@ -8,8 +8,8 @@ $app = new Slim\App(array("settings" => array("displayErrorDetails" => true)));
 // LOGIN ROUTES
 $app->group('/user/', function() use ($app) {
     $app->get('get/', 'getUser');
-    $app->post('login/', 'login');
-    $app->get('logout/', 'logout');
+//    $app->post('login/', 'login');
+//    $app->get('logout/', 'logout');
     $app->post('create/', 'createUser');
 });
 
