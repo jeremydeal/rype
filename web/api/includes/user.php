@@ -41,9 +41,9 @@ function login($request, $response, $args)
     // grab auth info from DB
     $user = null;
 
-    $sql = "SELECT TOP 1 u.*
-              FROM user AS u
-              WHERE u.Email = :email";
+    $sql = "SELECT *
+              FROM user
+              WHERE user.Email = :email";
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
@@ -51,9 +51,10 @@ function login($request, $response, $args)
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_OBJ);
         $db = null;
-        $response->write("{'user':" . json_encode($user) . "}");
+        $response->write("{'user': " . json_encode($user) . "}");
     } catch(PDOException $e) {
         // leave $user null
+        $response->write("Balls");
     }
 
 //    // check auth info against DB values
