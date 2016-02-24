@@ -8,9 +8,9 @@ app.controller('loginController',
             $scope.panel = "login";
 
             // scope variables for login
-            $scope.login = {};
-            $scope.login.Email = "";
-            $scope.login.Password = "";
+            $scope.loginUser = {};
+            $scope.loginUser.Email = "";
+            $scope.loginUser.Password = "";
 
             $scope.currentUser = {};
 
@@ -39,7 +39,7 @@ app.controller('loginController',
             }
 
             function login() {
-                usersService.login($scope.login)
+                usersService.login($scope.loginUser)
                     .success(function(data) {
                         console.log(data.message)
                     })
