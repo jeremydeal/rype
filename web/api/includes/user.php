@@ -29,7 +29,7 @@ function getUser($request, $response, $args) {
         // if no session var, leave $user null
     }
 
-    $response->write('{"user": ' . json_encode($user) . '}');
+    return $response->write('{"user": ' . json_encode($user) . '}');
 }
 
 
@@ -53,7 +53,7 @@ function login($request, $response, $args)
         $users = $stmt->fetchAll(PDO::FETCH_OBJ);
         $user = $users[0];
         $db = null;
-//
+
 //        //    // check auth info against DB values
 //        if ($user != null && password_verify($loginData['Password'], $user->password))
 //        {
@@ -67,12 +67,12 @@ function login($request, $response, $args)
 //            // failed login; return null user
 //            $user = null;
 //        }
-//
+
     } catch(PDOException $e) {
         // leave $user null
     }
 
-    $response->write("{'user': " . json_encode($user) . " }");
+    return $response->write("{'user': " . json_encode($user) . " }");
 }
 
 
@@ -96,7 +96,7 @@ function logout($request, $response, $args) {
     // And destroy the session.
     session_destroy();
 
-    $response->write("success");
+    return $response->write("success");
 }
 
 
@@ -132,8 +132,8 @@ function createUser($request, $response, $args)
         $stmt->execute();
         $db = null;
 
-        $response->write('{"message": "success"}');
+        return $response->write('{"message": "success"}');
     } catch(PDOException $e) {
-        $response->write('{"message": "failure"}');
+        return $response->write('{"message": "failure"}');
     }
 }
