@@ -39,7 +39,7 @@ app.controller('loginController',
             }
 
             function login() {
-                usersService.login($scope.loginUser)
+                usersService.login(JSON.stringify($scope.loginUser))
                     .success(function(data) {
                         // go to welcome screen!
                         if (Object.size(data.user) > 0) {
