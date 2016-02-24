@@ -8,6 +8,10 @@ var app = angular.module('myApp', [
 
 // ROUTING
 app.config(['$routeProvider', function($routeProvider) {
+    $routeProvider.when('/login', {
+        templateUrl: "app/login/login.html",
+        controller: 'loginController'
+    });
     $routeProvider.when('/home', {
         templateUrl: "app/home/home.html",
         controller: 'homeController'

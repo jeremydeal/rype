@@ -1,3 +1,5 @@
+'use strict';
+
 // handles all API calls to the Produce table on the backend
 app.factory('productsService', function($http) {
     var baseUrl = "../api/produce/";
