@@ -38,8 +38,8 @@ app.controller('loginController',
                     })
             }
 
-            function login(loginUser) {
-                usersService.login(loginUser)
+            function login() {
+                usersService.login($scope.loginUser)
                     .success(function(data) {
                         // go to welcome screen!
                         if (Object.size(data.user) > 0) {
@@ -56,16 +56,16 @@ app.controller('loginController',
                     })
             }
 
-            function createUser(newUser) {
-                usersService.createUser(newUser)
+            function createUser() {
+                usersService.createUser($scope.newUser)
                     .success(function(data) {
 
                         if (data.message == "success") {
 
                             // if creation successful, log in!
                             var loginData = {
-                                "Email": encodeURI(newUser.Email),
-                                "Password": newUser.Password
+                                "Email": $scope.newUser.Email,
+                                "Password": $scope.newUser.Password
                             };
 
                             usersService.login(loginData)
@@ -81,7 +81,7 @@ app.controller('loginController',
             $scope.isLoggedIn = function() { getUser() };
             $scope.login = function() { login() };
             $scope.logout = function() { logout() };
-            $scope.createUser = function(user) { createUser(user) };
+            $scope.createUser = function() { createUser() };
             $scope.changePanel = function(panel) {
                 $scope.panel = panel;
             };
