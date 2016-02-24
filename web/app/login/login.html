@@ -22,6 +22,10 @@
                 </div>
             </div>
         </form>
+
+        <br/>
+
+        <button type="button" ng-click="changePanel('create')">Sign up</button>
     </div>
 
     <!-- CREATE -->
@@ -63,7 +67,10 @@
                 </div>
             </div>
         </form>
+    </div>
 
+    <div ng-switch-when="welcome">
+        <p>Howdy, {{ currentUser.FirstName + " " + currentUser.LastName + "!" }} Welcome!</p>
     </div>
 
 </div>

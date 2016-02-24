@@ -22,7 +22,13 @@ app.controller('loginController',
 
             /////////////////////////////// DATA INITIALIZATION ////////////////////////////////////////////
             function dataInit() {
+                // if a user is currently logged in, welcome!
                 getUser();
+                if ($scope.currentUser.length > 0) {
+                    $scope.panel = "welcome";
+                }
+
+
             }
 
 
@@ -76,5 +82,8 @@ app.controller('loginController',
             $scope.login = login();
             $scope.logout = logout();
             $scope.createUser = createUser(user);
+            $scope.changePanel = function(panel) {
+                $scope.panel = panel;
+            };
 
         }]);
