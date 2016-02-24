@@ -37,11 +37,11 @@ function login($request, $response, $args)
         $_SESSION['LastName'] = $user->LastName;
 
         // return success code
-        return json_encode('{"message": "success"}');
+        $response->write(json_encode('{"message": "success"}'));
     }
     else {
         // failed login; return failure code
-        return json_encode('{"message": "failure"}');
+        $response->write(json_encode('{"message": "failure"}'));
     }
 }
 
@@ -106,7 +106,6 @@ VALUES (
         $stmt->execute();
         $db = null;
     } catch(PDOException $e) {
-        return $response->write('{"error: { "text": ' . $e->getMessage() . '} }');
+        $response->write('{"error: { "text": ' . $e->getMessage() . '} }');
     }
 }
-
