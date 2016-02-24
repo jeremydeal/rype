@@ -39,22 +39,19 @@ function login($request, $response, $args)
     // grab $_POST data
     $loginData = $request->getParsedBody();
 
-    $newResponse = $response->withHeader('Content-type', 'application/json');
-    $newResponse->write(json_encode($loginData, JSON_PRETTY_PRINT));
+    // grab auth info from DB
+    $user = null;
 
-//    // grab auth info from DB
-//    $user = null;
-//
-//    $sql = "SELECT TOP 1 *
-//              FROM user
-//              WHERE user.Email = :email";
-//    try {
-//        $db = getDB();
-//        $stmt = $db->prepare($sql);
-//        $stmt->bindParam("email", $loginData['Email']);
-//        $stmt->execute();
-//        $user = $stmt->fetch(PDO::FETCH_OBJ);
-//        $db = null;
+    $sql = "SELECT TOP 1 *
+              FROM user
+              WHERE user.Email = :email";
+    try {
+        $db = getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("email", $loginData['Email']);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_OBJ);
+        $db = null;
 //
 //        //    // check auth info against DB values
 //        if ($user != null && password_verify($loginData['Password'], $user->password))
@@ -70,11 +67,11 @@ function login($request, $response, $args)
 //            $user = null;
 //        }
 //
-//    } catch(PDOException $e) {
-//        // leave $user null
-//    }
-//
-//    $response->write("{'user': " . json_encode($user) . " }");
+    } catch(PDOException $e) {
+        // leave $user null
+    }
+
+    $response->write("{'user': " . json_encode($user) . " }");
 }
 
 
