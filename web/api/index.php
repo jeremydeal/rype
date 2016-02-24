@@ -5,6 +5,11 @@ require 'includes/init.php';
 
 $app = new Slim\App();
 
+// LOGIN ROUTES
+$app->group('/user/', function() use ($app) {
+    $app->post('login/', 'login');
+});
+
 // PRODUCE ROUTES
 $app->group('/produce/', function() use ($app) {
     $app->get('', 'getProduce');

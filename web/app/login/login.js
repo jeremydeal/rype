@@ -7,8 +7,21 @@ app.controller('loginController',
             $scope.email = "";
             $scope.password = "";
 
-            $scope.login = function() {
-                loginService.login($scope.email, $scope.password);
+
+
+
+            /////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////////
+            function login() {
+                var data = {
+                    "email": $scope.email,
+                    "password": $scope.password
+                };
+
+                loginService.login(data);
             }
+
+
+            /////////////////////////////// VIEW METHODS ////////////////////////////////////////////////////
+            $scope.login = login();
 
         }]);
