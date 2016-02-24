@@ -46,7 +46,7 @@ function login($request, $response, $args)
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
-        $stmt->bindParam("email", $postData->Email);
+        $stmt->bindParam("email", $postData['Email']);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_OBJ);
         $db = null;
@@ -56,7 +56,7 @@ function login($request, $response, $args)
 
     // check auth info against DB values
     $salt = $user->Salt;
-    $saltedPass =  $postData->Password . $salt;
+    $saltedPass =  $postData['Password'] . $salt;
     $hashedPass = hash('sha256', $saltedPass);
     if ($user != null && $hashedPass == $user->Password)
     {
@@ -111,7 +111,7 @@ function createUser($request, $response, $args)
     $salt = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
 
     // hash the password
-    $saltedPass =  $postData->Password . $salt;
+    $saltedPass =  $postData['Password'] . $salt;
     $hashedPass = hash('sha256', $saltedPass);
 
     // store the new user in the DB
@@ -133,11 +133,11 @@ VALUES (
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
-        $stmt->bindParam("email", $postData->Email);
+        $stmt->bindParam("email", $postData['Email']);
         $stmt->bindParam("password", $hashedPass);
         $stmt->bindParam("salt", $salt);
-        $stmt->bindParam("firstName", $postData->FirstName);
-        $stmt->bindParam("lastName", $postData->LastName);
+        $stmt->bindParam("firstName", $postData['FirstName']);
+        $stmt->bindParam("lastName", $postData['LastName']);
         $stmt->execute();
         $db = null;
 
