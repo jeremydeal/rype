@@ -24,7 +24,7 @@ app.controller('loginController',
             function dataInit() {
                 // if a user is currently logged in, welcome!
                 getUser();
-                if ($scope.currentUser.length > 0) {
+                if (Object.size($scope.currentUser) > 0) {
                     $scope.panel = "welcome";
                 }
             }
@@ -42,7 +42,8 @@ app.controller('loginController',
                 usersService.login($scope.loginUser)
                     .success(function(data) {
                         // go to welcome screen!
-                        if ($scope.currentUser.length > 0) {
+                        if (Object.size(data.user) > 0) {
+                            $scope.currentUser = data.user;
                             $scope.panel = "welcome";
                         }
                     })

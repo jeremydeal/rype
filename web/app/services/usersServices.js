@@ -8,8 +8,8 @@ app.factory('usersService', function($http) {
         return $http.get(baseUrl + "get/");
     };
 
-    usersService.login = function(data){
-        return $http.post(baseUrl + "login/", data);
+    usersService.login = function(user){
+        return $http.post(baseUrl + "login/", user);
     };
 
     usersService.logout = function() {

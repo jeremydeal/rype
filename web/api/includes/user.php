@@ -32,6 +32,7 @@ function getUser($request, $response, $args) {
     $response->write('{"user": ' . json_encode($user) . '}');
 }
 
+
 // POST /api/user/login/
 function login($request, $response, $args)
 {
@@ -41,7 +42,7 @@ function login($request, $response, $args)
     // grab auth info from DB
     $user = null;
 
-    $sql = "SELECT *
+    $sql = "SELECT TOP 1 *
               FROM user
               WHERE user.Email = :email";
     try {
@@ -51,31 +52,32 @@ function login($request, $response, $args)
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_OBJ);
         $db = null;
+
+        //    // check auth info against DB values
+        if ($user != null && password_verify($user->password, $loginData['Password']))
+        {
+            // successful login; generate session
+            // session_cache_limiter so that PHP will not contradict Slim's cache expiration headers
+            session_cache_limiter(false);
+            session_start();
+            $_SESSION['UserId'] = $user->UserId;
+            $_SESSION['Email'] = $user->Email;
+            $_SESSION['FirstName'] = $user->FirstName;
+            $_SESSION['LastName'] = $user->LastName;
+
+            // return success code
+            $response->write('{"message": "success"}');
+        }
+        else {
+            // failed login; return failure code
+            $response->write('{"message": "failure"}');
+        }
+
         $response->write("{'user': " . json_encode($user) . "}");
     } catch(PDOException $e) {
         // leave $user null
-        $response->write("Balls");
+        $response->write("{'user': " . json_encode($user) . "}");
     }
-
-//    // check auth info against DB values
-//    if ($user != null && password_verify($user->password, $loginData['Password']))
-//    {
-//        // successful login; generate session
-//        // session_cache_limiter so that PHP will not contradict Slim's cache expiration headers
-//        session_cache_limiter(false);
-//        session_start();
-//        $_SESSION['UserId'] = $user->UserId;
-//        $_SESSION['Email'] = $user->Email;
-//        $_SESSION['FirstName'] = $user->FirstName;
-//        $_SESSION['LastName'] = $user->LastName;
-//
-//        // return success code
-//        $response->write('{"message": "success"}');
-//    }
-//    else {
-//        // failed login; return failure code
-//        $response->write('{"message": "failure"}');
-//    }
 }
 
 
@@ -109,7 +111,7 @@ function createUser($request, $response, $args)
     // grab $_POST data
     $postData = $request->getParsedBody();
 
-    // TODO: delete Salt from DB and expand Password to 255
+    // hash the pass
     $hashedPass = password_hash($postData["Password"], PASSWORD_DEFAULT);
 
     // store the new user in the DB
