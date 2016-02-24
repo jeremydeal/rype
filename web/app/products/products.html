@@ -83,7 +83,7 @@
         <!-- PRODUCE LIST -->
         <perfect-scrollbar class="scrollable" wheel-propagation="true" wheel-speed="6" min-scrollbar-length="20">
             <table class="table">
-                <tr ng-repeat="p in products | filter:search.query |
+                <tr ng-repeat="p in products | filterProductsBySearch:search.query |
                                                 filterProductsByWhetherInSeason:search.inSeason |
                                                 filterProductsByClass:search.class |
                                                 filterProductsByType:search.type">

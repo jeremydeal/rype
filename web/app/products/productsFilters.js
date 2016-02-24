@@ -1,3 +1,20 @@
+app.filter('filterProductsBySearch', function () {
+    return function (products, query) {
+        if (!products) return products;
+        if (!query) return products;
+
+        var filtered = [];
+
+        angular.forEach(products, function(p) {
+            if (p.CommonName == query || p.Variety == query) {
+                filtered.push(p);
+            }
+        });
+
+        return filtered;
+    };
+});
+
 app.filter('filterProductsByWhetherInSeason', function () {
     return function (products, inSeason) {
         // if inSeason is false, don't filter
