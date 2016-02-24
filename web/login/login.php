@@ -5,7 +5,7 @@ require_once 'loginInit.php';
 
 
 // grab $_POST data
-$json = json_decode($_POST);
+$json = json_decode(file_get_contents('php://input'), true);
 
 var_dump($json);
 
