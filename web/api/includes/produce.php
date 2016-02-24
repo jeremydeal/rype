@@ -11,9 +11,9 @@ function getProduce($request, $response, $args)
         $stmt = $db->query($sql);
         $products = $stmt->fetchAll(PDO::FETCH_OBJ);
         $db = null;
-        return $response->write('{"products": ' . json_encode($products) . '}');
+        $response->write('{"products": ' . json_encode($products) . '}');
     } catch(PDOException $e) {
-        return $response->write('{"error": { "text": ' . $e->getMessage() . '} }');
+        $response->write('{"error": { "text": ' . $e->getMessage() . '} }');
     }
 }
 
@@ -31,9 +31,9 @@ function getProduceById($request, $response, $args)
         $stmt->execute();
         $product = $stmt->fetch(PDO::FETCH_OBJ);
         $db = null;
-        return $response->write('{"product": ' . json_encode($product) . '}');
+        $response->write('{"product": ' . json_encode($product) . '}');
     } catch (PDOException $e) {
-        return $response->write('{"error: { "text": ' . $e->getMessage() . '} }');
+        $response->write('{"error: { "text": ' . $e->getMessage() . '} }');
     }
 }
 
@@ -51,8 +51,8 @@ function getProduceByType($request, $response, $args)
         $stmt->execute();
         $products = $stmt->fetchAll(PDO::FETCH_OBJ);
         $db = null;
-        return $response->write('{"products": ' . json_encode($products) . '}');
+        $response->write('{"products": ' . json_encode($products) . '}');
     } catch (PDOException $e) {
-        return $response->write('{"error: { "text": ' . $e->getMessage() . '} }');
+        $response->write('{"error: { "text": ' . $e->getMessage() . '} }');
     }
 }
