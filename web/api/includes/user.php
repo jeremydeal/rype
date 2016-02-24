@@ -110,12 +110,15 @@ function createUser($request, $response, $args)
     // grab $_POST data
     $postData = $request->getParsedBody();
 
-    // generate random salt
-    $salt = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
+//    // generate random salt
+//    $salt = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
+//
+//    // hash the password
+//    $saltedPass =  $postData['Password'] . $salt;
+//    $hashedPass = hash('sha256', $saltedPass);
 
-    // hash the password
-    $saltedPass =  $postData['Password'] . $salt;
-    $hashedPass = hash('sha256', $saltedPass);
+    $salt = "salt";
+    $hashedPass = $postData["Password"];
 
     // store the new user in the DB
     $sql = "INSERT INTO user (
