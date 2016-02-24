@@ -109,45 +109,43 @@ function createUser($request, $response, $args)
 {
     // grab $_POST data
     $postData = $request->getParsedBody();
-    $email = $request->getParsedBody()->Email;
-    $response->write($email);
 
-//    // generate random salt
-//    $salt = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
-//
-//    // hash the password
-//    $saltedPass =  $postData['Password'] . $salt;
-//    $hashedPass = hash('sha256', $saltedPass);
-//
-//    // store the new user in the DB
-//    $sql = "INSERT INTO user (
-//                      Email,
-//                      Password,
-//                      Salt,
-//                      FirstName,
-//                      LastName
-//                    )
-//                    VALUES (
-//                      :email,
-//                      :password,
-//                      :salt,
-//                      :firstName,
-//                      :lastName
-//                    )";
-//
-//    try {
-//        $db = getDB();
-//        $stmt = $db->prepare($sql);
-//        $stmt->bindParam("email", $postData['Email']);
-//        $stmt->bindParam("password", $hashedPass);
-//        $stmt->bindParam("salt", $salt);
-//        $stmt->bindParam("firstName", $postData['FirstName']);
-//        $stmt->bindParam("lastName", $postData['LastName']);
-//        $stmt->execute();
-//        $db = null;
-//
-//        $response->write('{"message": "success"}');
-//    } catch(PDOException $e) {
-//        $response->write('{"message": "failure"}');
-//    }
+    // generate random salt
+    $salt = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
+
+    // hash the password
+    $saltedPass =  $postData['Password'] . $salt;
+    $hashedPass = hash('sha256', $saltedPass);
+
+    // store the new user in the DB
+    $sql = "INSERT INTO user (
+                      Email,
+                      Password,
+                      Salt,
+                      FirstName,
+                      LastName
+                    )
+                    VALUES (
+                      :email,
+                      :password,
+                      :salt,
+                      :firstName,
+                      :lastName
+                    )";
+
+    try {
+        $db = getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("email", $postData['Email']);
+        $stmt->bindParam("password", $hashedPass);
+        $stmt->bindParam("salt", $salt);
+        $stmt->bindParam("firstName", $postData['FirstName']);
+        $stmt->bindParam("lastName", $postData['LastName']);
+        $stmt->execute();
+        $db = null;
+
+        $response->write('{"message": "success"}');
+    } catch(PDOException $e) {
+        $response->write('{"message": "failure"}');
+    }
 }

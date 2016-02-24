@@ -58,8 +58,8 @@ app.controller('loginController',
 
                         // if creation successful, log in!
                         var loginData = {
-                            "email": $scope.newUser.Email,
-                            "password": $scope.newUser.Password
+                            "Email": $scope.newUser.Email,
+                            "Password": $scope.newUser.Password
                         };
 
                         usersService.login(loginData)
