@@ -42,7 +42,7 @@ function login($request, $response, $args)
     // grab auth info from DB
     $user = null;
 
-    $sql = "SELECT TOP 1 *
+    $sql = "SELECT *
               FROM user
               WHERE user.Email = :email";
     try {
@@ -50,7 +50,8 @@ function login($request, $response, $args)
         $stmt = $db->prepare($sql);
         $stmt->bindParam("email", $loginData['Email']);
         $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_OBJ);
+        $users = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $user = $users[0];
         $db = null;
 //
 //        //    // check auth info against DB values
