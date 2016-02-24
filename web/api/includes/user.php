@@ -2,16 +2,16 @@
 
 // GET /api/user/getUser/
 function getUser($request, $response, $args) {
-    // successful login; generate session
+    // generate session
     // session_cache_limiter so that PHP will not contradict Slim's cache expiration headers
     session_cache_limiter(false);
     session_start();
 
+    $user = null;
+
     if (isset($_SESSION['UserId'])) {
 
         // grab auth info from DB
-        $user = null;
-
         $sql = "SELECT u.*
                   FROM user AS u
                   WHERE u.UserId = :userId";
@@ -25,10 +25,9 @@ function getUser($request, $response, $args) {
         } catch (PDOException $e) {
             // leave $user null
         }
-
-        $response->write('{"user": ' . json_encode($user) . '}');
     }
 
+    $response->write('{"user": ' . json_encode($user) . '}');
 }
 
 // POST /api/user/login/
