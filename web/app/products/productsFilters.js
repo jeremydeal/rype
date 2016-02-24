@@ -6,7 +6,8 @@ app.filter('filterProductsBySearch', function () {
         var filtered = [];
 
         angular.forEach(products, function(p) {
-            if (p.CommonName == query || p.Variety == query) {
+            if (p.CommonName.indexOf(query) > -1 ||
+                    p.Variety.indexOf(query) > -1) {
                 filtered.push(p);
             }
         });
