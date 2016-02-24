@@ -23,8 +23,10 @@ function getUser($request, $response, $args) {
             $user = $stmt->fetch(PDO::FETCH_OBJ);
             $db = null;
         } catch (PDOException $e) {
-            // leave $user null
+            // if DB error, leave $user null
         }
+
+        // if no session var, leave $user null
     }
 
     $response->write('{"user": ' . json_encode($user) . '}');
@@ -107,7 +109,7 @@ function createUser($request, $response, $args)
 {
     // grab $_POST data
     $postData = $request->getParsedBody();
-    $response->write(json_encode($postData));
+    $response->write($postData['Email']);
 
 //    // generate random salt
 //    $salt = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
@@ -118,19 +120,19 @@ function createUser($request, $response, $args)
 //
 //    // store the new user in the DB
 //    $sql = "INSERT INTO user (
-//  Email,
-//  Password,
-//  Salt,
-//  FirstName,
-//  LastName
-//)
-//VALUES (
-//  :email,
-//  :password,
-//  :salt,
-//  :firstName,
-//  :lastName
-//)";
+//                      Email,
+//                      Password,
+//                      Salt,
+//                      FirstName,
+//                      LastName
+//                    )
+//                    VALUES (
+//                      :email,
+//                      :password,
+//                      :salt,
+//                      :firstName,
+//                      :lastName
+//                    )";
 //
 //    try {
 //        $db = getDB();
