@@ -98,6 +98,8 @@ function logout($request, $response, $args) {
 
     // And destroy the session.
     session_destroy();
+
+    $response->write("success");
 }
 
 
