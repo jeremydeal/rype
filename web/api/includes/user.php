@@ -38,7 +38,9 @@ function login($request, $response, $args)
 {
     // grab $_POST data
     $loginData = $request->getParsedBody();
-    $response->write(json_encode($loginData, JSON_PRETTY_PRINT));
+
+    $newResponse = $response->withHeader('Content-type', 'application/json');
+    $newResponse->write(json_encode($loginData, JSON_PRETTY_PRINT));
 
 //    // grab auth info from DB
 //    $user = null;
