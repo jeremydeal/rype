@@ -10,11 +10,11 @@ app.factory('usersService', function($http) {
     };
 
     usersService.login = function(user){
-        return $http.post(loginUrl + "login/", user);
+        return $http.post(loginUrl + "login.php", user);
     };
 
     usersService.logout = function() {
-        return $http.get(loginUrl + "logout/");
+        return $http.get(loginUrl + "logout.php");
     };
 
     usersService.createUser = function(user) {
