@@ -32,11 +32,12 @@ function getUser($request, $response, $args) {
     $response->write('{"user": ' . json_encode($user) . '}');
 }
 
+// TODO: fix salt code after createUser() is running
 // POST /api/user/login/
 function login($request, $response, $args)
 {
     // grab $_POST data
-    $postData = $request->getParsedBody();
+    $loginData = $request->getParsedBody();
 
     // grab auth info from DB
     $user = null;
@@ -47,7 +48,7 @@ function login($request, $response, $args)
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
-        $stmt->bindParam("email", $postData['Email']);
+        $stmt->bindParam("email", $loginData['Email']);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_OBJ);
         $db = null;
@@ -56,10 +57,7 @@ function login($request, $response, $args)
     }
 
     // check auth info against DB values
-    $salt = $user->Salt;
-    $saltedPass =  $postData['Password'] . $salt;
-    $hashedPass = hash('sha256', $saltedPass);
-    if ($user != null && $hashedPass == $user->Password)
+    if ($user != null && password_verify($user->password, $loginData['Password']))
     {
         // successful login; generate session
         // session_cache_limiter so that PHP will not contradict Slim's cache expiration headers
@@ -110,28 +108,18 @@ function createUser($request, $response, $args)
     // grab $_POST data
     $postData = $request->getParsedBody();
 
-//    // generate random salt
-//    $salt = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
-//
-//    // hash the password
-//    $saltedPass =  $postData['Password'] . $salt;
-//    $hashedPass = hash('sha256', $saltedPass);
-
-    $salt = "salt";
-    $hashedPass = $postData["Password"];
+    // TODO: delete Salt from DB and expand Password to 255
+    $hashedPass = password_hash($postData["Password"], PASSWORD_DEFAULT);
 
     // store the new user in the DB
     $sql = "INSERT INTO user (
                       Email,
                       Password,
-                      Salt,
                       FirstName,
                       LastName
-                    )
-                    VALUES (
+                    ) VALUES (
                       :email,
                       :password,
-                      :salt,
                       :firstName,
                       :lastName
                     )";
@@ -141,7 +129,6 @@ function createUser($request, $response, $args)
         $stmt = $db->prepare($sql);
         $stmt->bindParam("email", $postData['Email']);
         $stmt->bindParam("password", $hashedPass);
-        $stmt->bindParam("salt", $salt);
         $stmt->bindParam("firstName", $postData['FirstName']);
         $stmt->bindParam("lastName", $postData['LastName']);
         $stmt->execute();
