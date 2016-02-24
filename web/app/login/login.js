@@ -41,7 +41,10 @@ app.controller('loginController',
             function login() {
                 usersService.login($scope.loginUser)
                     .success(function(data) {
-                        console.log(data.message)
+                        // go to welcome screen!
+                        if ($scope.currentUser.length > 0) {
+                            $scope.panel = "welcome";
+                        }
                     })
             }
 
