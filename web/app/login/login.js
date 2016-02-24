@@ -27,8 +27,6 @@ app.controller('loginController',
                 if ($scope.currentUser.length > 0) {
                     $scope.panel = "welcome";
                 }
-
-
             }
 
 
@@ -41,12 +39,7 @@ app.controller('loginController',
             }
 
             function login() {
-                var data = {
-                    "email": $scope.loginEmail,
-                    "password": $scope.loginPassword
-                };
-
-                usersService.login(data)
+                usersService.login($scope.login)
                     .success(function(data) {
                         console.log(data.message)
                     })
