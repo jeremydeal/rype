@@ -3,6 +3,9 @@
 // POST /api/user/login/
 function login($request, $response, $args)
 {
+    // grab $_POST data
+    $postData = $request->getParsedBody();
+
     // grab auth info from DB
     $user = null;
 
@@ -12,7 +15,7 @@ function login($request, $response, $args)
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
-        $stmt->bindParam("email", $request->params('Email'));
+        $stmt->bindParam("email", $postData->Email);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_OBJ);
         $db = null;
@@ -21,17 +24,24 @@ function login($request, $response, $args)
     }
 
     // check auth info against DB values
-    $salt = $user->salt;
-    $saltedPass =  $request->params('Password') . $salt;
+    $salt = $user->Salt;
+    $saltedPass =  $postData->Password . $salt;
     $hashedPass = hash('sha256', $saltedPass);
     if ($user != null && $hashedPass == $user->Password)
     {
-        // successful login
+        // successful login; generate session
+        session_start();
+        $_SESSION['UserId'] = $user->UserId;
+        $_SESSION['Email'] = $user->Email;
+        $_SESSION['FirstName'] = $user->FirstName;
+        $_SESSION['LastName'] = $user->LastName;
 
+        // return success code
+        return json_encode('{"message": "success"}');
     }
     else {
-        // failed login
-
+        // failed login; return failure code
+        return json_encode('{"message": "failure"}');
     }
 }
 
@@ -59,11 +69,14 @@ function logout($request, $response, $args) {
 // POST /api/user/login/
 function createUser($request, $response, $args)
 {
+    // grab $_POST data
+    $postData = $request->getParsedBody();
+
     // generate random salt
     $salt = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
 
     // hash the password
-    $saltedPass =  $request->params('Password') . $salt;
+    $saltedPass =  $postData->Password . $salt;
     $hashedPass = hash('sha256', $saltedPass);
 
     // store the new user in the DB
@@ -85,11 +98,11 @@ VALUES (
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
-        $stmt->bindParam("email", $request->params('Email'));
+        $stmt->bindParam("email", $postData->Email);
         $stmt->bindParam("password", $hashedPass);
         $stmt->bindParam("salt", $salt);
-        $stmt->bindParam("firstName", $request->params('FirstName'));
-        $stmt->bindParam("lastName", $request->params('LastName'));
+        $stmt->bindParam("firstName", $postData->FirstName);
+        $stmt->bindParam("lastName", $postData->LastName);
         $stmt->execute();
         $db = null;
     } catch(PDOException $e) {
