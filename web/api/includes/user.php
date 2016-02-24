@@ -38,47 +38,40 @@ function login($request, $response, $args)
 {
     // grab $_POST data
     $loginData = $request->getParsedBody();
-    $response->write("{ 'user': " . json_encode($loginData) . " }");
 
-//    // grab auth info from DB
-//    $user = null;
-//
-//    $sql = "SELECT TOP 1 *
-//              FROM user
-//              WHERE user.Email = :email";
-//    try {
-//        $db = getDB();
-//        $stmt = $db->prepare($sql);
-//        $stmt->bindParam("email", $loginData['Email']);
-//        $stmt->execute();
-//        $user = $stmt->fetch(PDO::FETCH_OBJ);
-//        $db = null;
-//
-//        //    // check auth info against DB values
-//        if ($user != null && password_verify($user->password, $loginData['Password']))
-//        {
-//            // successful login; generate session
-//            // session_cache_limiter so that PHP will not contradict Slim's cache expiration headers
-//            session_cache_limiter(false);
-//            session_start();
-//            $_SESSION['UserId'] = $user->UserId;
-//            $_SESSION['Email'] = $user->Email;
-//            $_SESSION['FirstName'] = $user->FirstName;
-//            $_SESSION['LastName'] = $user->LastName;
-//
-//            // return success code
-//            $response->write('{"message": "success"}');
-//        }
-//        else {
-//            // failed login; return failure code
-//            $response->write('{"message": "failure"}');
-//        }
-//
-//        $response->write("{'user': " . json_encode($user) . "}");
-//    } catch(PDOException $e) {
-//        // leave $user null
-//        $response->write("{'user': " . json_encode($user) . "}");
-//    }
+    // grab auth info from DB
+    $user = null;
+
+    $sql = "SELECT TOP 1 *
+              FROM user
+              WHERE user.Email = :email";
+    try {
+        $db = getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("email", $loginData['Email']);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_OBJ);
+        $db = null;
+
+        //    // check auth info against DB values
+        if ($user != null && password_verify($loginData['Password'], $user->password))
+        {
+            // successful login; generate session
+            // session_cache_limiter so that PHP will not contradict Slim's cache expiration headers
+            session_cache_limiter(false);
+            session_start();
+            $_SESSION['UserId'] = $user->UserId;
+        }
+        else {
+            // failed login; return null user
+            $user = null;
+        }
+
+    } catch(PDOException $e) {
+        // leave $user null
+    }
+
+    $response->write("{'user': " . json_encode($user) . " }");
 }
 
 
