@@ -29,7 +29,9 @@ function getUser($request, $response, $args) {
         // if no session var, leave $user null
     }
 
-    return $response->write('{"user": ' . json_encode($user) . '}');
+    $response->write('{"user": ' . json_encode($user) . '}');
+
+    return $response;
 }
 
 
