@@ -1,20 +1,69 @@
-<form novalidate name="loginForm" id="loginForm" method="post" action="" class="form-horizontal">
-    <div class="control-group">
-        <label class="control-label" for="inputEmail">Email</label>
-        <div class="controls">
-            <input type="text" id="inputEmail" placeholder="Email" ng-model="email" required>
-        </div>
+<div ng-switch="panel">
+
+    <!-- LOGIN -->
+    <div ng-switch-when="login">
+        <form novalidate name="loginForm" id="loginForm" method="post" action="" class="form-horizontal">
+            <div class="control-group">
+                <label class="control-label" for="inputEmail">Email</label>
+                <div class="controls">
+                    <input type="email" id="inputEmail" placeholder="Email" ng-model="login.Email" required>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputPassword">Password</label>
+                <div class="controls">
+                    <input type="password" id="inputPassword" placeholder="Password" ng-model="login.Password" required>
+                </div>
+            </div>
+            <br />
+            <div class="control-group">
+                <div class="controls">
+                    <input type="submit" class="btn btn-primary" ng-disabled="loginForm.$invalid" ng-click="login(login)" value="Sign in" />
+                </div>
+            </div>
+        </form>
     </div>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">Password</label>
-        <div class="controls">
-            <input type="password" id="inputPassword" placeholder="Password" ng-model="password" required>
-        </div>
+
+    <!-- CREATE -->
+    <div ng-switch-when="create">
+        <form novalidate name="createForm" id="createForm" method="post" action="" class="form-horizontal">
+            <div class="control-group">
+                <label class="control-label" for="firstName">First Name</label>
+                <div class="controls">
+                    <input type="text" id="firstName" placeholder="First Name" ng-model="newUser.FirstName" required>
+                    <p ng-show="createForm.FirstName.$error.required && !createForm.FirstName.$pristine" class="alert-danger">First name required.</p>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="lastName">Last Name</label>
+                <div class="controls">
+                    <input type="text" id="lastName" placeholder="Last Name" ng-model="newUser.LastName" required>
+                    <p ng-show="createForm.LastName.$error.required && !createForm.LastName.$pristine" class="alert-danger">Last name required.</p>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="email">Email</label>
+                <div class="controls">
+                    <input type="email" id="email" placeholder="Email" ng-model="newUser.Email" required>
+                    <p ng-show="createForm.Email.$error.required && !createForm.Email.$pristine" class="alert-danger">Email required.</p>
+                    <p ng-show="createForm.Email.$error.email" class="alert-danger">Please enter a valid email.</p>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="password">Password</label>
+                <div class="controls">
+                    <input type="password" id="password" placeholder="Password" ng-model="newUser.Password" required>
+                    <p ng-show="createForm.Password.$error.required && !createForm.Password.$pristine" class="alert-danger">Password required.</p>
+                </div>
+            </div>
+            <br />
+            <div class="control-group">
+                <div class="controls">
+                    <input type="submit" class="btn btn-primary" ng-disabled="createForm.$invalid" ng-click="createUser(newUser)" value="Sign in" />
+                </div>
+            </div>
+        </form>
+
     </div>
-    <br />
-    <div class="control-group">
-        <div class="controls">
-            <input type="submit" class="btn btn-primary" ng-disabled="loginForm.$invalid" ng-click="login()" value="Sign in" />
-        </div>
-    </div>
-</form>
+
+</div>

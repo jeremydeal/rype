@@ -7,7 +7,10 @@ $app = new Slim\App();
 
 // LOGIN ROUTES
 $app->group('/user/', function() use ($app) {
+    $app->get('get/', 'getUser');
     $app->post('login/', 'login');
+    $app->get('logout/', 'logout');
+    $app->post('create/', 'createUser');
 });
 
 // PRODUCE ROUTES

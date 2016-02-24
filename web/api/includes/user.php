@@ -1,5 +1,36 @@
 <?php
 
+// GET /api/user/getUser/
+function getUser($request, $response, $args) {
+    // successful login; generate session
+    // session_cache_limiter so that PHP will not contradict Slim's cache expiration headers
+    session_cache_limiter(false);
+    session_start();
+
+    if (isset($_SESSION['UserId'])) {
+
+        // grab auth info from DB
+        $user = null;
+
+        $sql = "SELECT u.*
+                  FROM user AS u
+                  WHERE u.UserId = :userId";
+        try {
+            $db = getDB();
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam("userId", $_SESSION['UserId']);
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_OBJ);
+            $db = null;
+        } catch (PDOException $e) {
+            // leave $user null
+        }
+
+        $response->write('{"user": ' . json_encode($user) . '}');
+    }
+
+}
+
 // POST /api/user/login/
 function login($request, $response, $args)
 {
@@ -20,7 +51,7 @@ function login($request, $response, $args)
         $user = $stmt->fetch(PDO::FETCH_OBJ);
         $db = null;
     } catch(PDOException $e) {
-        // leave $outputData null
+        // leave $user null
     }
 
     // check auth info against DB values
@@ -30,6 +61,8 @@ function login($request, $response, $args)
     if ($user != null && $hashedPass == $user->Password)
     {
         // successful login; generate session
+        // session_cache_limiter so that PHP will not contradict Slim's cache expiration headers
+        session_cache_limiter(false);
         session_start();
         $_SESSION['UserId'] = $user->UserId;
         $_SESSION['Email'] = $user->Email;
@@ -37,16 +70,18 @@ function login($request, $response, $args)
         $_SESSION['LastName'] = $user->LastName;
 
         // return success code
-        $response->write(json_encode('{"message": "success"}'));
+        $response->write('{"message": "success"}');
     }
     else {
         // failed login; return failure code
-        $response->write(json_encode('{"message": "failure"}'));
+        $response->write('{"message": "failure"}');
     }
 }
 
 
 function logout($request, $response, $args) {
+    // session_cache_limiter so that PHP will not contradict Slim's cache expiration headers
+    session_cache_limiter(false);
     session_start();
 
     // Unset session variables.
@@ -105,7 +140,9 @@ VALUES (
         $stmt->bindParam("lastName", $postData->LastName);
         $stmt->execute();
         $db = null;
+
+        $response->write('{"message": "success"}');
     } catch(PDOException $e) {
-        $response->write('{"error: { "text": ' . $e->getMessage() . '} }');
+        $response->write('{"message": "failure"}');
     }
 }
