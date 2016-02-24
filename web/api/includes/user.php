@@ -109,7 +109,7 @@ function createUser($request, $response, $args)
 {
     // grab $_POST data
     $postData = $request->getParsedBody();
-    $email = $request->getParsedBody()['Email'];
+    $email = $request->getParsedBody()->Email;
     $response->write($email);
 
 //    // generate random salt
