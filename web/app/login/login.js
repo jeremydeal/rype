@@ -71,10 +71,10 @@ app.controller('loginController',
 
 
             /////////////////////////////// VIEW METHODS ////////////////////////////////////////////////////
-            $scope.isLoggedIn = getUser();
-            $scope.login = login();
-            $scope.logout = logout();
-            $scope.createUser = createUser(user);
+            $scope.isLoggedIn = function() { getUser() };
+            $scope.login = function() { login() };
+            $scope.logout = function() { logout() };
+            $scope.createUser = function(user) { createUser(user) };
             $scope.changePanel = function(panel) {
                 $scope.panel = panel;
             };
