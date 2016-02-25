@@ -25,7 +25,7 @@
 
         <br/>
 
-        <button type="button" ng-click="changePanel('create')">Sign up</button>
+        <button type="button" class="btn btn-primary" ng-click="changePanel('create')">Sign up</button>
     </div>
 
     <!-- CREATE -->
@@ -71,7 +71,7 @@
 
     <div ng-switch-when="welcome">
         <p>Howdy, {{ currentUser.FirstName + " " + currentUser.LastName + "!" }} Welcome!</p>
-        <button type="button" ng-click="logout()">Log out</button>
+        <button type="button" class="btn btn-primary" ng-click="logout()">Log out</button>
     </div>
 
 </div>

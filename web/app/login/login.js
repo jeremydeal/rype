@@ -62,14 +62,14 @@ app.controller('loginController',
                         if (data.message == "success") {
 
                             // if creation successful, log in!
-                            var loginData = {
-                                "Email": $scope.newUser.Email,
-                                "Password": $scope.newUser.Password
-                            };
+                            var loginData = {};
+                            loginData.Email = $scope.newUser.Email;
+                            loginData.Password = $scope.newUser.Password;
 
                             usersService.login(loginData)
                                 .success(function(data) {
-                                    console.log(data.message)
+                                    $scope.currentUser = data.user;
+                                    changePanel('welcome');
                                 })
                         }
                     })
