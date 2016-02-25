@@ -3,7 +3,7 @@
 require '../../vendor/autoload.php';
 require 'includes/init.php';
 
-$app = new Slim\App(array("settings" => array("displayErrorDetails" => true)));
+\Slim\Slim::registerAutoloader();
 
 // LOGIN ROUTES
 $app->group('/user/', function() use ($app) {
