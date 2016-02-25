@@ -10,7 +10,10 @@ $app->group('/user/', function() use ($app) {
     $app->get('get/', 'getUser');
 //    $app->post('login/', 'login');
 //    $app->get('logout/', 'logout');
-    $app->post('create/', 'createUser');
+    $app->post('create/', function() use ($app) {
+        $user = json_decode($app->request->getBody());
+        createUser($user);
+    });
 });
 
 // TEST ROUTES
@@ -24,14 +27,14 @@ $app->group('/test/', function() use ($app) {
 // PRODUCE ROUTES
 $app->group('/produce/', function() use ($app) {
     $app->get('', 'getProduce');
-    $app->get('byId/{produceId}', 'getProduceById');
-    $app->get('byType/{produceTypeId}', 'getProduceByType');
+    $app->get('byId/:produceId', 'getProduceById');
+    $app->get('byType/:produceTypeId', 'getProduceByType');
 });
 
 // PRODUCE TYPE ROUTES
 $app->group('/produceType/', function() use ($app) {
     $app->get('', 'getProduceTypes');
-    $app->get('byId/{produceTypeId}', 'getProduceTypeById');
+    $app->get('byId/:produceTypeId', 'getProduceTypeById');
 });
 
 // PRODUCE CLASS ROUTES

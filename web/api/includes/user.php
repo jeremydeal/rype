@@ -1,10 +1,7 @@
 <?php
 
-use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Message\ResponseInterface;
-
 // GET /api/user/getUser/
-function getUser(ServerRequestInterface $request, ResponseInterface $response, $args) {
+function getUser() {
     // generate session
     // session_cache_limiter so that PHP will not contradict Slim's cache expiration headers
     session_cache_limiter(false);
@@ -32,20 +29,15 @@ function getUser(ServerRequestInterface $request, ResponseInterface $response, $
         // if no session var, leave $user null
     }
 
-    $response->getBody()->write('{"user": ' . json_encode($user) . '}');
-
-    return $response;
+    echo '{"user": ' . json_encode($user) . '}';
 }
 
 
 // POST /api/user/login/
-function createUser(ServerRequestInterface $request, ResponseInterface $response, $args)
+function createUser($user)
 {
-    // grab $_POST data
-    $postData = $request->getParsedBody();
-
     // hash the pass
-    $hashedPass = password_hash($postData["Password"], PASSWORD_DEFAULT);
+    $hashedPass = password_hash($user["Password"], PASSWORD_DEFAULT);
 
     // store the new user in the DB
     $sql = "INSERT INTO user (
@@ -63,17 +55,15 @@ function createUser(ServerRequestInterface $request, ResponseInterface $response
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
-        $stmt->bindParam("email", $postData['Email']);
+        $stmt->bindParam("email", $user['Email']);
         $stmt->bindParam("password", $hashedPass);
-        $stmt->bindParam("firstName", $postData['FirstName']);
-        $stmt->bindParam("lastName", $postData['LastName']);
+        $stmt->bindParam("firstName", $user['FirstName']);
+        $stmt->bindParam("lastName", $user['LastName']);
         $stmt->execute();
         $db = null;
 
-        $response->getBody()->write('{"message": "success"}');
+        echo '{"message": "success"}';
     } catch(PDOException $e) {
-        $response->getBody()->write('{"message": "failure"}');
+        echo '{"message": "failure"}';
     }
-
-    return $response;
 }

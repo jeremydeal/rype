@@ -1,7 +1,7 @@
 <?php
 
 // GET /api/produce/
-function getProduce($request, $response, $args)
+function getProduce()
 {
     $sql = "SELECT p.produceId, p.*, pt.*
               FROM produce AS p
@@ -11,14 +11,14 @@ function getProduce($request, $response, $args)
         $stmt = $db->query($sql);
         $products = $stmt->fetchAll(PDO::FETCH_OBJ);
         $db = null;
-        $response->write('{"products": ' . json_encode($products) . '}');
+        echo '{"products": ' . json_encode($products) . '}';
     } catch(PDOException $e) {
-        $response->write('{"error": { "text": ' . $e->getMessage() . '} }');
+        echo '{"error": { "text": ' . $e->getMessage() . '} }';
     }
 }
 
 // GET /api/produce/byId/1
-function getProduceById($request, $response, $args)
+function getProduceById($produceId)
 {
     $sql = "SELECT p.*, pt.*
               FROM produce AS p
@@ -27,18 +27,18 @@ function getProduceById($request, $response, $args)
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
-        $stmt->bindParam("produceId", $args['produceId']);
+        $stmt->bindParam("produceId", $produceId);
         $stmt->execute();
         $product = $stmt->fetch(PDO::FETCH_OBJ);
         $db = null;
-        $response->write('{"product": ' . json_encode($product) . '}');
+        echo '{"product": ' . json_encode($product) . '}';
     } catch (PDOException $e) {
-        $response->write('{"error: { "text": ' . $e->getMessage() . '} }');
+        echo '{"error: { "text": ' . $e->getMessage() . '} }';
     }
 }
 
 // GET /api/produce/byType/1
-function getProduceByType($request, $response, $args)
+function getProduceByType($typeId)
 {
     $sql = "SELECT p.*, pt.*
               FROM produce AS p
@@ -47,12 +47,12 @@ function getProduceByType($request, $response, $args)
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
-        $stmt->bindParam("produceTypeId", $args['produceTypeId']);
+        $stmt->bindParam("produceTypeId", $typeId);
         $stmt->execute();
         $products = $stmt->fetchAll(PDO::FETCH_OBJ);
         $db = null;
-        $response->write('{"products": ' . json_encode($products) . '}');
+        echo '{"products": ' . json_encode($products) . '}';
     } catch (PDOException $e) {
-        $response->write('{"error: { "text": ' . $e->getMessage() . '} }');
+        echo '{"error: { "text": ' . $e->getMessage() . '} }';
     }
 }
