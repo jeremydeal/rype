@@ -8,6 +8,3 @@ require_once 'user.php';
 require_once 'produce.php';
 require_once 'produceType.php';
 require_once 'produceClass.php';
-
-
-require_once 'test.php';
