@@ -33,9 +33,69 @@ function getUser() {
 }
 
 
+// POST /user/login/
+function login($user) {
+    // grab auth info from DB
+    $dbUser = null;
+
+    $sql = "SELECT *
+          FROM user
+          WHERE user.Email = :email";
+    try {
+        $db = getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("email", $user->Email);
+        $stmt->execute();
+        $dbUsers = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $dbUser = $dbUsers[0];
+        $db = null;
+
+        // check auth info against DB values
+        if ($user != null && password_verify($user->Password, $dbUser->Password))
+        {
+            // successful login; generate session
+            session_start();
+            $_SESSION['UserId'] = $dbUser->UserId;
+        }
+        else {
+            // failed login; return null user
+            $dbUser = null;
+        }
+    }
+    catch(PDOException $e) {
+        // leave $user null
+    }
+
+    echo "{'user': " . json_encode($dbUser) . "}";
+}
+
+
+// POST /user/logout/
+function logout() {
+
+    // Unset session variables.
+    session_cache_limiter(false);
+    session_start();
+    $_SESSION = array();
+
+    // Delete the session cookie.
+    if (ini_get("session.use_cookies")) {
+        $params = session_get_cookie_params();
+        setcookie(session_name(), '', time() - 42000,
+            $params["path"], $params["domain"],
+            $params["secure"], $params["httponly"]
+        );
+    }
+
+    // And destroy the session.
+    session_destroy();
+
+    echo "{'message': 'success'}";
+}
+
+
 // POST /api/user/login/
-function createUser($user)
-{
+function createUser($user) {
     // hash the pass
     $hashedPass = password_hash($user->Password, PASSWORD_DEFAULT);
 

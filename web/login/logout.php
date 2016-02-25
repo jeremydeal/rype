@@ -1,9 +1,6 @@
 <?php
 
 // POST /user/logout/
-require_once 'loginInit.php';
-
-
 
 session_cache_limiter(false);
 session_start();

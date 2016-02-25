@@ -1,7 +1,4 @@
-<?php
-
 // POST /user/login/
-require_once 'loginInit.php';
 
 
 // grab $_POST data

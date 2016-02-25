@@ -8,21 +8,24 @@ $app = new \Slim\Slim();
 // LOGIN ROUTES
 $app->group('/user/', function() use ($app) {
     $app->get('get/', 'getUser');
-//    $app->post('login/', 'login');
-//    $app->get('logout/', 'logout');
+    $app->post('login/', function() use ($app) {
+        $user = json_decode($app->request->getBody());
+        login($user);
+    });
+    $app->get('logout/', 'logout');
     $app->post('create/', function() use ($app) {
         $user = json_decode($app->request->getBody());
         createUser($user);
     });
 });
 
-// TEST ROUTES
-$app->group('/test/', function() use ($app) {
-    $app->post('test1/', function() use ($app) {
-        $data = json_decode($app->request->getBody());
-        test1($data);
-    });
-});
+//// TEST ROUTES
+//$app->group('/test/', function() use ($app) {
+//    $app->post('test1/', function() use ($app) {
+//        $data = json_decode($app->request->getBody());
+//        test1($data);
+//    });
+//});
 
 // PRODUCE ROUTES
 $app->group('/produce/', function() use ($app) {
