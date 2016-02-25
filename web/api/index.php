@@ -3,8 +3,6 @@
 require '../../vendor/autoload.php';
 require 'includes/init.php';
 
-\Slim\Slim::registerAutoloader();
-
 // LOGIN ROUTES
 $app->group('/user/', function() use ($app) {
     $app->get('get/', 'getUser');
