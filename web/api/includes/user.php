@@ -66,7 +66,7 @@ function login($user) {
         // leave $user null
     }
 
-    echo "{'user': " . json_encode($dbUser) . "}";
+    echo '{"user": ' . json_encode($dbUser) . '}';
 }
 
 
@@ -90,7 +90,7 @@ function logout() {
     // And destroy the session.
     session_destroy();
 
-    echo "{'message': 'success'}";
+    echo '{"message": "success"}';
 }
 
 
