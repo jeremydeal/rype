@@ -1,7 +1,10 @@
 <?php
 
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ResponseInterface;
+
 // GET /api/user/getUser/
-function getUser($request, $response, $args) {
+function getUser(ServerRequestInterface $request, ResponseInterface $response, $args) {
     // generate session
     // session_cache_limiter so that PHP will not contradict Slim's cache expiration headers
     session_cache_limiter(false);
@@ -29,12 +32,12 @@ function getUser($request, $response, $args) {
         // if no session var, leave $user null
     }
 
-    $response->write('{"user": ' . json_encode($user) . '}');
+    $response->getBody()->write('{"user": ' . json_encode($user) . '}');
 }
 
 
 // POST /api/user/login/
-function createUser($request, $response, $args)
+function createUser(ServerRequestInterface $request, ResponseInterface $response, $args)
 {
     // grab $_POST data
     $postData = $request->getParsedBody();
@@ -65,8 +68,8 @@ function createUser($request, $response, $args)
         $stmt->execute();
         $db = null;
 
-        $response->write('{"message": "success"}');
+        $response->getBody()->write('{"message": "success"}');
     } catch(PDOException $e) {
-        $response->write('{"message": "failure"}');
+        $response->getBody()->write('{"message": "failure"}');
     }
 }
