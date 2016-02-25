@@ -70,10 +70,10 @@ function createUser(ServerRequestInterface $request, ResponseInterface $response
 
         $response->getBody()->write('{"message": "success"}');
 
-        exit();
+        return $response;
     } catch(PDOException $e) {
         $response->getBody()->write('{"message": "failure"}');
 
-        exit();
+        return $response;
     }
 }
