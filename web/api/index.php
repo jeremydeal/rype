@@ -15,7 +15,10 @@ $app->group('/user/', function() use ($app) {
 
 // TEST ROUTES
 $app->group('/test/', function() use ($app) {
-    $app->post('test1/', 'getUser');
+    $app->post('test1/', function() use ($app) {
+        $data = json_decode($app->request->getBody());
+        test1($data);
+    });
 });
 
 // PRODUCE ROUTES
