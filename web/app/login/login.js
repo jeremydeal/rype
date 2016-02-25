@@ -68,8 +68,11 @@ app.controller('loginController',
 
                             usersService.login(loginData)
                                 .success(function(data) {
-                                    $scope.currentUser = data.user;
-                                    changePanel('welcome');
+                                    // go to welcome screen!
+                                    if (Object.size(data.user) > 0) {
+                                        $scope.currentUser = data.user;
+                                        changePanel('welcome');
+                                    }
                                 })
                         }
                     })

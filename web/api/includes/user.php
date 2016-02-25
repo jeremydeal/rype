@@ -120,6 +120,13 @@ function createUser($user) {
         $stmt->bindParam("firstName", $user->FirstName);
         $stmt->bindParam("lastName", $user->LastName);
         $stmt->execute();
+
+        // if successful, log in
+        if ($db->lastInsertId() > -1) {
+            session_start();
+            $_SESSION['UserId'] = $db->lastInsertId();
+        }
+
         $db = null;
 
         echo '{"message": "success"}';
