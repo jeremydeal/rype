@@ -33,6 +33,8 @@ function getUser(ServerRequestInterface $request, ResponseInterface $response, $
     }
 
     $response->getBody()->write('{"user": ' . json_encode($user) . '}');
+
+    return $response;
 }
 
 
@@ -69,11 +71,9 @@ function createUser(ServerRequestInterface $request, ResponseInterface $response
         $db = null;
 
         $response->getBody()->write('{"message": "success"}');
-
-        return $response;
     } catch(PDOException $e) {
         $response->getBody()->write('{"message": "failure"}');
-
-        return $response;
     }
+
+    return $response;
 }
