@@ -17,8 +17,6 @@ app.controller('loginController',
             // scope variables for createUser
             $scope.newUser = {};
 
-            $scope.test = {};
-
             dataInit();
 
 
@@ -62,7 +60,7 @@ app.controller('loginController',
                 usersService.createUser($scope.newUser)
                     .success(function(data) {
 
-                        $scope.test = data;
+                        console.log(data);
 
                         //if (data.message == "success") {
                         //
