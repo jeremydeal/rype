@@ -17,6 +17,8 @@ app.controller('loginController',
             // scope variables for createUser
             $scope.newUser = {};
 
+            $scope.test = {};
+
             dataInit();
 
 
@@ -60,19 +62,21 @@ app.controller('loginController',
                 usersService.createUser($scope.newUser)
                     .success(function(data) {
 
-                        if (data.message == "success") {
+                        $scope.test = data;
 
-                            // if creation successful, log in!
-                            var loginData = {
-                                "Email": $scope.newUser.Email,
-                                "Password": $scope.newUser.Password
-                            };
-
-                            usersService.login(loginData)
-                                .success(function(data) {
-                                    console.log(data.message)
-                                })
-                        }
+                        //if (data.message == "success") {
+                        //
+                        //    // if creation successful, log in!
+                        //    var loginData = {
+                        //        "Email": $scope.newUser.Email,
+                        //        "Password": $scope.newUser.Password
+                        //    };
+                        //
+                        //    usersService.login(loginData)
+                        //        .success(function(data) {
+                        //            console.log(data.message)
+                        //        })
+                        //}
                     })
             }
 
