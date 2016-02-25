@@ -13,6 +13,11 @@ $app->group('/user/', function() use ($app) {
     $app->post('create/', 'createUser');
 });
 
+// TEST ROUTES
+$app->group('/test/', function() use ($app) {
+    $app->post('test1/', 'getUser');
+});
+
 // PRODUCE ROUTES
 $app->group('/produce/', function() use ($app) {
     $app->get('', 'getProduce');

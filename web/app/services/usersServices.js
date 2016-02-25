@@ -10,7 +10,7 @@ app.factory('usersService', function($http) {
     };
 
     usersService.login = function(user){
-        return $http.post(loginUrl + "login.php", user);
+        return $http.post("../api/test/test1", user);
     };
 
     usersService.logout = function() {
