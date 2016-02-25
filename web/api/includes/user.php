@@ -1,7 +1,29 @@
 <?php
 
 // GET /api/user/getUser/
-function getUser() {
+function getUsers() {
+
+    $users = null;
+
+    $sql = "SELECT u.*
+                  FROM user AS u";
+    try {
+        $db = getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("userId", $_SESSION['UserId']);
+        $stmt->execute();
+        $users = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $db = null;
+    } catch (PDOException $e) {
+        // if DB error, leave $user null
+    }
+
+    echo '{"users": ' . json_encode($users) . '}';
+}
+
+
+// GET /api/user/getUser/
+function getCurrentUser() {
     // generate session
     // session_cache_limiter so that PHP will not contradict Slim's cache expiration headers
     session_cache_limiter(false);
