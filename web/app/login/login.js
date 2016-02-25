@@ -1,21 +1,13 @@
 'use strict';
 
 app.controller('loginController',
-    ['$scope', 'usersService',
-        function($scope, usersService) {
-
-            // nav variable
-            $scope.panel = "login";
+    ['$scope', '$location', 'usersService',
+        function($scope, $location, usersService) {
 
             // scope variables for login
-            $scope.loginUser = {};
-            $scope.loginUser.Email = "";
-            $scope.loginUser.Password = "";
-
-            $scope.currentUser = {};
-
-            // scope variables for createUser
-            $scope.newUser = {};
+            $scope.user = {};
+            $scope.user.Email = "";
+            $scope.user.Password = "";
 
             dataInit();
 
@@ -39,56 +31,30 @@ app.controller('loginController',
             }
 
             function login() {
-                usersService.login($scope.loginUser)
+                usersService.login($scope.user)
                     .success(function(data) {
                         // go to welcome screen!
                         if (Object.size(data.user) > 0) {
-                            $scope.currentUser = data.user;
-                            changePanel('welcome');
-                        }
-                    })
-            }
-
-            function logout() {
-                usersService.logout();
-                clearUserInfo();
-                changePanel('login');
-            }
-
-            function createUser() {
-                usersService.createUser($scope.newUser)
-                    .success(function(data) {
-
-                        // if creation successful, log in!
-                        if (data.message == "success") {
-                            $scope.currentUser = $scope.newUser;
-                            changePanel('welcome');
+                            $rootScope.user = data.user;
+                            $location('/dashboard');        // TODO: change path here
                         }
                     })
             }
 
 
             /////////////////////////////// HELPER METHODS //////////////////////////////////////////////////
-            function changePanel(panel) {
-                $scope.panel = panel;
-            }
-
             function clearUserInfo() {
-                $scope.currentUser = {};
-                $scope.newUser = {};
-                $scope.loginUser = {};
-                $scope.loginUser.Email = "";
-                $scope.loginUser.Password = "";
+                $scope.user = {};
+                $scope.user.Email = "";
+                $scope.user.Password = "";
             }
 
 
             /////////////////////////////// VIEW METHODS ////////////////////////////////////////////////////
             $scope.isLoggedIn = function() { getUser() };
             $scope.login = function() { login() };
-            $scope.logout = function() { logout() };
-            $scope.createUser = function() { createUser() };
-            $scope.changePanel = function(panel) {
-                changePanel(panel);
-            };
+            $scope.createUser = function() {
+                $location('/createUser');        // TODO: navigate to somewhere
+            }
 
         }]);
