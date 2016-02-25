@@ -50,10 +50,9 @@ app.controller('loginController',
             }
 
             function logout() {
-                usersService.logout()
-                    .success(function(data) {
-                        changePanel('login');
-                    })
+                usersService.logout();
+                clearUserInfo();
+                changePanel('login');
             }
 
             function createUser() {
@@ -80,6 +79,14 @@ app.controller('loginController',
             /////////////////////////////// HELPER METHODS //////////////////////////////////////////////////
             function changePanel(panel) {
                 $scope.panel = panel;
+            }
+
+            function clearUserInfo() {
+                $scope.currentUser = {};
+                $scope.newUser = {};
+                $scope.loginUser = {};
+                $scope.loginUser.Email = "";
+                $scope.loginUser.Password = "";
             }
 
 
