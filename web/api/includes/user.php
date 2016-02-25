@@ -37,7 +37,7 @@ function getUser() {
 function createUser($user)
 {
     // hash the pass
-    $hashedPass = password_hash($user["Password"], PASSWORD_DEFAULT);
+    $hashedPass = password_hash($user->Password, PASSWORD_DEFAULT);
 
     // store the new user in the DB
     $sql = "INSERT INTO user (
@@ -55,10 +55,10 @@ function createUser($user)
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
-        $stmt->bindParam("email", $user['Email']);
+        $stmt->bindParam("email", $user->Email);
         $stmt->bindParam("password", $hashedPass);
-        $stmt->bindParam("firstName", $user['FirstName']);
-        $stmt->bindParam("lastName", $user['LastName']);
+        $stmt->bindParam("firstName", $user->FirstName);
+        $stmt->bindParam("lastName", $user->LastName);
         $stmt->execute();
         $db = null;
 
