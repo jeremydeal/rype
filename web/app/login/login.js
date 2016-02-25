@@ -25,7 +25,7 @@ app.controller('loginController',
                 // if a user is currently logged in, welcome!
                 getUser();
                 if (Object.size($scope.currentUser) > 0) {
-                    $scope.panel = "welcome";
+                    changePanel("welcome");
                 }
             }
 
@@ -44,7 +44,7 @@ app.controller('loginController',
                         // go to welcome screen!
                         if (Object.size(data.user) > 0) {
                             $scope.currentUser = data.user;
-                            $scope.panel = "welcome";
+                            changePanel('welcome');
                         }
                     })
             }
@@ -52,7 +52,7 @@ app.controller('loginController',
             function logout() {
                 usersService.logout()
                     .success(function(data) {
-                        console.log(data.message)
+                        changePanel('login');
                     })
             }
 
@@ -60,22 +60,26 @@ app.controller('loginController',
                 usersService.createUser($scope.newUser)
                     .success(function(data) {
 
-                        console.log(data);
+                        if (data.message == "success") {
 
-                        //if (data.message == "success") {
-                        //
-                        //    // if creation successful, log in!
-                        //    var loginData = {
-                        //        "Email": $scope.newUser.Email,
-                        //        "Password": $scope.newUser.Password
-                        //    };
-                        //
-                        //    usersService.login(loginData)
-                        //        .success(function(data) {
-                        //            console.log(data.message)
-                        //        })
-                        //}
+                            // if creation successful, log in!
+                            var loginData = {
+                                "Email": $scope.newUser.Email,
+                                "Password": $scope.newUser.Password
+                            };
+
+                            usersService.login(loginData)
+                                .success(function(data) {
+                                    console.log(data.message)
+                                })
+                        }
                     })
+            }
+
+
+            /////////////////////////////// HELPER METHODS //////////////////////////////////////////////////
+            function changePanel(panel) {
+                $scope.panel = panel;
             }
 
 
@@ -85,7 +89,7 @@ app.controller('loginController',
             $scope.logout = function() { logout() };
             $scope.createUser = function() { createUser() };
             $scope.changePanel = function(panel) {
-                $scope.panel = panel;
+                changePanel(panel);
             };
 
         }]);
