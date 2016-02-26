@@ -20,7 +20,7 @@ app.controller('dashboardController',
             function logout() {
                 usersService.logout();
                 clearUserInfo();
-                $location("/login");        // TODO: test
+                $location.path("/login");        // TODO: test
             }
 
 

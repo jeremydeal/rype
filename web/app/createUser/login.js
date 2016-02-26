@@ -27,7 +27,7 @@ app.controller('createUserController',
                         // if creation successful, log in!
                         if (data.message == "success") {
                             $scope.currentUser = $scope.newUser;
-                            changePanel('welcome');
+                            $location.path('/welcome');
                         }
                     })
             }

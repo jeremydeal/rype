@@ -36,7 +36,7 @@ app.controller('loginController',
                         // go to welcome screen!
                         if (Object.size(data.user) > 0) {
                             $rootScope.user = data.user;
-                            $location('/dashboard');        // TODO: change path here
+                            $location.path('/dashboard');        // TODO: change path here
                         }
                     })
             }
@@ -54,7 +54,7 @@ app.controller('loginController',
             $scope.isLoggedIn = function() { getUser() };
             $scope.login = function() { login() };
             $scope.createUser = function() {
-                $location('/createUser');        // TODO: navigate to somewhere
+                $location.path('/createUser');        // TODO: navigate to somewhere
             }
 
         }]);
