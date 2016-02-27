@@ -7,9 +7,9 @@ app.factory('loginService', function($http, $location, sessionService){
 
 		// verify user credentials
 		var $promise = $http.post('../session/authenticate_user.php', data);
-		$promise.then(function(msg) {
+		$promise.then(function(reponse) {
 
-			var uid = msg.data;
+			var uid = reponse.data;
 			if (uid) {
 				// store session unique id
 				sessionService.set('uid',uid);
