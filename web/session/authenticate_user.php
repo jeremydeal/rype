@@ -9,15 +9,16 @@ $password = $user->Password;
 //print $email . " and " . $password;
 
 // authenticate user in database
-$sql = "SELECT u.*
-              FROM user AS u
-                WHERE u.Username = :username";
+$sql = "SELECT *
+              FROM user
+                WHERE Username = :username";
 try {
     $db = getDB();
     $stmt = $db->prepare($sql);
     $stmt->bindParam("username", $username);
     $stmt->execute();
-    $dbUser= $stmt->fetch(PDO::FETCH_OBJ);
+    $dbUsers = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $dbUser = $dbUsers[0];
     $db = null;
     print '{"user": ' . json_encode($dbUser) . '}';
 } catch (PDOException $e) {
