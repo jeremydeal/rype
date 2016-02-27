@@ -19,24 +19,16 @@ try {
     $stmt->execute();
     $dbUser = $stmt->fetch(PDO::FETCH_OBJ);
     $db = null;
-    print '{"user": ' . json_encode($dbUser) . '}';
+
+    session_start();
+    $_SESSION['uid'] = $dbUser->UserId;
+    print $_SESSION['uid'];
+
 } catch (PDOException $e) {
-    echo '{"error: { "text": ' . $e->getMessage() . '} }';
 }
 
 
 
-//$sql = "SELECT UserId, Email, Password
-//          FROM user
-//          WHERE Email = :email";
-////try {
-//    $db = getDB();
-//    $stmt = $db->prepare($sql);
-//    $stmt->bindParam("email", $email);
-//    $stmt->execute();
-//    $dbUser = $stmt->fetch(PDO::FETCH_OBJ);
-//    $db = null;
-//
 //    // check auth info against DB values
 ////    if (password_verify($user->Password, $dbUser->Password)) {
 //    if ($password == $dbUser->Password) {
