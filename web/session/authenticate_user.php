@@ -17,7 +17,8 @@ try {
     $db = null;
 
     // check auth info against DB values
-    if (password_verify($user->Password, $dbUser->Password)) {
+//    if (password_verify($user->Password, $dbUser->Password)) {
+    if ($user->Password == $dbUser->Password) {
         // successful login; generate session
         session_start();
         $_SESSION['uid'] = $dbUser->UserId;
