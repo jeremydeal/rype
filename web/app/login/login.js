@@ -17,7 +17,7 @@ app.controller('loginController',
 
 
             /////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////////
-            $scope.login=function(data){
+            $scope.login = function(data){
                 loginService.login(data, $scope);
             };
 
