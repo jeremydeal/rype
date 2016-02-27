@@ -7,7 +7,7 @@ $user = json_decode(file_get_contents('php://input'));
 // authenticate user in database
 $sql = "SELECT UserId, Email, Password
           FROM user
-          WHERE Email = :email";
+          WHERE Email LIKE :email";
 try {
     $db = getDB();
     $stmt = $db->prepare($sql);
@@ -17,7 +17,7 @@ try {
     $db = null;
 
     // check auth info against DB values
-    if (password_verify($user->Password, $dbUser->Password) == True) {
+    if (password_verify($user->Password, $dbUser->Password)) {
         // successful login; generate session
         session_start();
         $_SESSION['uid'] = $dbUser->UserId;
