@@ -6,8 +6,8 @@ $user = json_decode(file_get_contents('php://input'));
 
 // authenticate user in database
 $sql = "SELECT UserId, Email, Password
-          FROM user
-          WHERE Email LIKE :email";
+          FROM heroku_adb66377d108485.[user]
+          WHERE Email = :email";
 try {
     $db = getDB();
     $stmt = $db->prepare($sql);
