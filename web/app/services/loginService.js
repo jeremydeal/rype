@@ -4,12 +4,13 @@ app.factory('loginService', function($http, $location, sessionService){
 	var $loginService = {};
 
 	$loginService.login = function(data, scope){
+
 		// verify user credentials
 		var $promise = $http.post('../session/authenticate_user.php', data);
 		$promise.then(function(msg) {
-			if(msg.data) {
-				var uid = msg.data.uid;
 
+			var uid = msg.data;
+			if (uid) {
 				// store session unique id
 				sessionService.set('uid',uid);
 
