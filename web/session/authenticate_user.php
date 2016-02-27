@@ -17,8 +17,7 @@ try {
     $stmt = $db->prepare($sql);
     $stmt->bindParam("username", $username);
     $stmt->execute();
-    $dbUsers = $stmt->fetchAll(PDO::FETCH_OBJ);
-    $dbUser = $dbUsers[0];
+    $dbUser = $stmt->fetch(PDO::FETCH_OBJ);
     $db = null;
     print '{"user": ' . json_encode($dbUser) . '}';
 } catch (PDOException $e) {
