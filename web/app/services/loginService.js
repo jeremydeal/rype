@@ -8,6 +8,7 @@ app.factory('loginService', function($http, $location, sessionService){
 		var $promise = $http.post('../session/authenticate_user.php',data); //send data to user.php
 		$promise.then(function(response) {
 			var uid = response.data;
+			console.log(uid)
 			if (uid) {
 				sessionService.set('uid', uid);
 				$location.path('/dashboard');
