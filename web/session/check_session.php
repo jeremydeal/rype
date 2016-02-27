@@ -1,4 +1,4 @@
 <?php 
 	session_start();
-	if( isset($_SESSION['id']) ) print 'authenticated';
+	if( isset($_SESSION['uid']) ) print 'authenticated';
 ?>
