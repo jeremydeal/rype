@@ -5,24 +5,15 @@ app.factory('loginService', function($http, $location, sessionService){
 
 	$loginService.login = function(data, scope){
 
-		// verify user credentials
-		var $promise = $http.post('../session/authenticate_user.php', data);
-		$promise.then(function(reponse) {
-
-			var uid = reponse.data;
+		var $promise = $http.post('../session/authenticate_user.php',data); //send data to user.php
+		$promise.then(function(response) {
+			var uid = response.data;
 			if (uid) {
-				// store session unique id
-				sessionService.set('uid',uid);
-
-				//// store user in JS session
-				//var user = data.user;
-				//user.uid = null;
-				//sessionService.set('user', user);
-
+				sessionService.set('uid', uid);
 				$location.path('/dashboard');
 			}
-			else  {
-				scope.msg = 'Incorrect information.';
+			else {
+				scope.msg = 'incorrect information';
 				$location.path('/login');
 			}
 		});
@@ -33,7 +24,7 @@ app.factory('loginService', function($http, $location, sessionService){
 		$location.path('/login');
 	};
 
-	$loginService.islogged = function(){
+	$loginService.isLogged = function(){
 		return $http.post('../session/check_session.php');
 	};
 
