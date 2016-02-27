@@ -6,7 +6,7 @@ $user = json_decode(file_get_contents('php://input'));
 $email = $user->Email;
 $password = $user->Password;
 
-//print $email . " and " . $password;
+print $email . " and " . $password;
 
 // authenticate user in database
 $sql = "SELECT u.*
