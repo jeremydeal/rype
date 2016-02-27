@@ -25,7 +25,7 @@
 
             // return user
             $dbUser->uid = $_SESSION['uid'];
-            echo '{"user": ' . json_encode($dbUser) . '}';
+            print '{"user": ' . json_encode($dbUser) . '}';
         }
     }
     catch(PDOException $e) {
