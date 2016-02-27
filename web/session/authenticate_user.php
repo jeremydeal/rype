@@ -3,30 +3,30 @@
 require_once '../api/includes/db.php';
 
 $user = json_decode(file_get_contents('php://input'));
-
-// authenticate user in database
-$sql = "SELECT UserId, Email, Password
-          FROM user
-          WHERE Email = :email";
-try {
-    $db = getDB();
-    $stmt = $db->prepare($sql);
-    $stmt->bindParam("email", $user->Email);
-    $stmt->execute();
-    $dbUser = $stmt->fetch(PDO::FETCH_OBJ);
-    $db = null;
-
-    // check auth info against DB values
-//    if (password_verify($user->Password, $dbUser->Password)) {
-    if ($user->Password == $dbUser->Password) {
-        // successful login; generate session
-        session_start();
-        $_SESSION['uid'] = $dbUser->UserId;
-        print $_SESSION['uid'];
-    }
-}
-catch(PDOException $e) {
-}
+print json_encode($user);
+//// authenticate user in database
+//$sql = "SELECT UserId, Email, Password
+//          FROM user
+//          WHERE Email = :email";
+//try {
+//    $db = getDB();
+//    $stmt = $db->prepare($sql);
+//    $stmt->bindParam("email", $user->Email);
+//    $stmt->execute();
+//    $dbUser = $stmt->fetch(PDO::FETCH_OBJ);
+//    $db = null;
+//
+//    // check auth info against DB values
+////    if (password_verify($user->Password, $dbUser->Password)) {
+//    if ($user->Password == $dbUser->Password) {
+//        // successful login; generate session
+//        session_start();
+//        $_SESSION['uid'] = $dbUser->UserId;
+//        print $_SESSION['uid'];
+//    }
+//}
+//catch(PDOException $e) {
+//}
 
 
 //
