@@ -1,6 +1,6 @@
 <?php
 
-require_once '../api/includes/db.php';
+require_once 'db.php';
 
 $user = json_decode(file_get_contents('php://input'));
 $email = $user->Email;
