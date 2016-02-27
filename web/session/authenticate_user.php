@@ -6,7 +6,7 @@
 	// check user password
     $sql = "SELECT *
           FROM user
-          WHERE user.Email = :email";
+          WHERE Email = :email";
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
@@ -15,18 +15,20 @@
         $dbUser = $stmt->fetch(PDO::FETCH_OBJ);
         $db = null;
 
-        // check auth info against DB values
-        if ($user != null && password_verify($user->Password, $dbUser->Password))
-        {
-            // successful login; generate session
-            session_start();
-            $_SESSION['uid'] = uniqid('ang_');
-            print $_SESSION['uid'];
-//
-//            // return user
-//            $dbUser->uid = $_SESSION['uid'];
-//            print '{"user": ' . json_encode($dbUser) . '}';
-        }
+        var_dump($dbUser);
+
+//        // check auth info against DB values
+//        if ($user != null && password_verify($user->Password, $dbUser->Password))
+//        {
+//            // successful login; generate session
+//            session_start();
+//            $_SESSION['uid'] = uniqid('ang_');
+//            print $_SESSION['uid'];
+////
+////            // return user
+////            $dbUser->uid = $_SESSION['uid'];
+////            print '{"user": ' . json_encode($dbUser) . '}';
+//        }
     }
     catch(PDOException $e) {
         // database access failed; do not return uid
