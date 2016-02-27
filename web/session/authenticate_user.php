@@ -1,10 +1,36 @@
 <?php
-    require_once '../api/includes/db.php';
 
-	$user = json_decode(file_get_contents('php://input'));
+require_once '../api/includes/db.php';
 
-    if ($user->Email == "jeremy.n.deal@gmail.com" && $user->Password == "shadows1") {
+$user = json_decode(file_get_contents('php://input'));
+
+// authenticate user in database
+$sql = "SELECT UserId, Email, Password
+          FROM user
+          WHERE Email = :email";
+try {
+    $db = getDB();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("email", $user->Email);
+    $stmt->execute();
+    $dbUser = $stmt->fetch(PDO::FETCH_OBJ);
+    $db = null;
+
+    // check auth info against DB values
+    if (password_verify($user->Password, $dbUser->Password)) {
+        // successful login; generate session
         session_start();
-        $_SESSION['uid'] = uniqid('ang_');
+        $_SESSION['uid'] = $dbUser->UserId;
         print $_SESSION['uid'];
     }
+}
+catch(PDOException $e) {
+}
+
+
+//
+//    if ($user->Email == "jeremy.n.deal@gmail.com" && $user->Password == "shadows1") {
+//        session_start();
+//        $_SESSION['uid'] = uniqid('ang_');
+//        print $_SESSION['uid'];
+//    }
