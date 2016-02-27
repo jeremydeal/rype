@@ -12,8 +12,7 @@
         $stmt = $db->prepare($sql);
         $stmt->bindParam("email", $user->Email);
         $stmt->execute();
-        $dbUsers = $stmt->fetchAll(PDO::FETCH_OBJ);
-        $dbUser = $dbUsers[0];
+        $dbUser = $stmt->fetch(PDO::FETCH_OBJ);
         $db = null;
 
         // check auth info against DB values
@@ -22,10 +21,11 @@
             // successful login; generate session
             session_start();
             $_SESSION['uid'] = uniqid('ang_');
-
-            // return user
-            $dbUser->uid = $_SESSION['uid'];
-            print '{"user": ' . json_encode($dbUser) . '}';
+            print $_SESSION['uid'];
+//
+//            // return user
+//            $dbUser->uid = $_SESSION['uid'];
+//            print '{"user": ' . json_encode($dbUser) . '}';
         }
     }
     catch(PDOException $e) {
