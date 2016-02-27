@@ -6,7 +6,7 @@ app.controller('loginController',
 
             // scope variables for login
             $scope.user = {};
-            $scope.user.Email = "";
+            $scope.user.Username = "";
             $scope.user.Password = "";
 
             dataInit();
@@ -23,11 +23,6 @@ app.controller('loginController',
 
 
             /////////////////////////////// HELPER METHODS //////////////////////////////////////////////////
-            function clearUserInfo() {
-                $scope.user = {};
-                $scope.user.Email = "";
-                $scope.user.Password = "";
-            }
 
 
             /////////////////////////////// VIEW METHODS ////////////////////////////////////////////////////

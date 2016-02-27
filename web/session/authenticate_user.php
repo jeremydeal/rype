@@ -3,19 +3,19 @@
 require_once 'db.php';
 
 $user = json_decode(file_get_contents('php://input'));
-$email = $user->Email;
+$username = $user->Username;
 $password = $user->Password;
 
-print $email . " and " . $password;
+//print $email . " and " . $password;
 
 // authenticate user in database
 $sql = "SELECT u.*
               FROM user AS u
-                WHERE u.Email = :email";
+                WHERE u.Username = :username";
 try {
     $db = getDB();
     $stmt = $db->prepare($sql);
-    $stmt->bindParam("email", $email);
+    $stmt->bindParam("username", $username);
     $stmt->execute();
     $dbUser= $stmt->fetch(PDO::FETCH_OBJ);
     $db = null;
