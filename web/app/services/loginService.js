@@ -5,11 +5,18 @@ app.factory('loginService', function($http, $location, sessionService){
 
 	$loginService.login = function(data, scope){
 		// verify user credentials
-		var $promise = $http.post('../session/user.php', data);
+		var $promise = $http.post('../session/authenticate_user.php', data);
 		$promise.then(function(msg) {
-			var uid = msg.data;
+			var uid = msg.data.user.uid;
 			if(uid) {
+				// store session unique id
 				sessionService.set('uid',uid);
+
+				// store user in JS session
+				var user = msg.data.user;
+				user.uid = null;
+				sessionService.set('user', user);
+
 				$location.path('/dashboard');
 			}
 			else  {
