@@ -37,3 +37,22 @@ app.config(['$routeProvider', function($routeProvider) {
     });
     $routeProvider.otherwise({redirectTo: '/products'});
 }]);
+
+// deny permission on certain pages if not logged in
+app.run(function($rootScope, $location, loginService){
+    // routes that require login
+    var routePermissions = ['/dashboard'];
+
+    $rootScope.$on('$routeChangeStart', function(){
+        // if the route requires permission...
+        if( routePermissions.indexOf($location.path()) !=-1)
+        {
+            // ...check to see if the user has a session registered
+            var connected = loginService.isLogged();
+            connected.then(function(msg){
+                // if isLogged() returns nothing, redirect to login
+                if(!msg.data) $location.path('/login');
+            });
+        }
+    });
+});

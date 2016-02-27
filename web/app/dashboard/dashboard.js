@@ -1,8 +1,8 @@
 'use strict';
 
 app.controller('dashboardController',
-    ['$scope', '$location', 'usersService',
-        function($scope, $location, usersService) {
+    ['$scope', 'loginService',
+        function($scope, loginService) {
 
             // scope variables for login
             $scope.user = {};
@@ -11,17 +11,13 @@ app.controller('dashboardController',
 
 
             /////////////////////////////// DATA INITIALIZATION ////////////////////////////////////////////
-            function dataInit() {
-                $scope.user = $rootScope.user;
-            }
+            function dataInit() {}
 
 
             /////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////////
-            function logout() {
-                usersService.logout();
-                clearUserInfo();
-                $location.path("/login");        // TODO: test
-            }
+            $scope.logout=function(){
+                loginService.logout();
+            };
 
 
             /////////////////////////////// HELPER METHODS //////////////////////////////////////////////////
@@ -30,8 +26,5 @@ app.controller('dashboardController',
             }
 
 
-            /////////////////////////////// VIEW METHODS ////////////////////////////////////////////////////
-            $scope.isLoggedIn = function() { getUser() };
-            $scope.logout = function() { logout() };
 
         }]);

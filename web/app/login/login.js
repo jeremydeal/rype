@@ -1,8 +1,8 @@
 'use strict';
 
 app.controller('loginController',
-    ['$scope', '$location', 'usersService',
-        function($scope, $location, usersService) {
+    ['$scope', '$location', 'loginService',
+        function($scope, $location, loginService) {
 
             // scope variables for login
             $scope.user = {};
@@ -13,33 +13,13 @@ app.controller('loginController',
 
 
             /////////////////////////////// DATA INITIALIZATION ////////////////////////////////////////////
-            function dataInit() {
-                // if a user is currently logged in, welcome!
-                getUser();
-                if (Object.size($scope.currentUser) > 0) {
-                    changePanel("welcome");
-                }
-            }
+            function dataInit() {}
 
 
             /////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////////
-            function getUser() {
-                usersService.getUser()
-                    .success(function(data) {
-                        $scope.currentUser = data.user;
-                    })
-            }
-
-            function login() {
-                usersService.login($scope.user)
-                    .success(function(data) {
-                        // go to welcome screen!
-                        if (Object.size(data.user) > 0) {
-                            $rootScope.user = data.user;
-                            $location.path('/dashboard');        // TODO: change path here
-                        }
-                    })
-            }
+            $scope.login=function(data){
+                loginService.login(data, $scope);
+            };
 
 
             /////////////////////////////// HELPER METHODS //////////////////////////////////////////////////
@@ -51,8 +31,6 @@ app.controller('loginController',
 
 
             /////////////////////////////// VIEW METHODS ////////////////////////////////////////////////////
-            $scope.isLoggedIn = function() { getUser() };
-            $scope.login = function() { login() };
             $scope.createUser = function() {
                 $location.path('/createUser');        // TODO: navigate to somewhere
             }
