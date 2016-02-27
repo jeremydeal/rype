@@ -10,7 +10,7 @@ app.factory('loginService', function($http, $location, sessionService){
 			var uid = msg.data;
 			if(uid) {
 				sessionService.set('uid',uid);
-				$location.path('/home');
+				$location.path('/dashboard');
 			}
 			else  {
 				scope.msg = 'Incorrect information.';

@@ -15,8 +15,12 @@ app.controller('dashboardController',
 
 
             /////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////////
-            $scope.logout=function(){
+            $scope.logout = function(){
                 loginService.logout();
+            };
+
+            $scope.isLogged = function() {
+                loginService.isLogged();
             };
 
 
