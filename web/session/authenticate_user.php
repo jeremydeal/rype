@@ -5,8 +5,8 @@ require_once '../api/includes/db.php';
 $user = json_decode(file_get_contents('php://input'));
 
 // authenticate user in database
-$sql = "SELECT *
-          FROM customer
+$sql = "SELECT UserId, Email, Password
+          FROM user
           WHERE Email = :email";
 try {
     $db = getDB();
@@ -20,7 +20,7 @@ try {
     if (password_verify($user->Password, $dbUser->Password)) {
         // successful login; generate session
         session_start();
-        $_SESSION['uid'] = $dbUser->CustomerId;
+        $_SESSION['uid'] = $dbUser->UserId;
         print $_SESSION['uid'];
     }
 }
