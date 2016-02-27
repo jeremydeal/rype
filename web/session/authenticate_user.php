@@ -10,7 +10,7 @@ $password = $user->Password;
 
 // authenticate user in database
 $sql = "SELECT *
-              FROM user
+              FROM heroku_adb66377d108485.user
                 WHERE Username = :username";
 try {
     $db = getDB();
