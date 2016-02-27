@@ -6,17 +6,17 @@ app.factory('loginService', function($http, $location, sessionService){
 	$loginService.login = function(data, scope){
 		// verify user credentials
 		var $promise = $http.post('../session/authenticate_user.php', data);
-		$promise.then(function(data) {
+		$promise.then(function(msg) {
 			if(data) {
-				var uid = data.user.uid;
+				var uid = msg.data.uid;
 
 				// store session unique id
 				sessionService.set('uid',uid);
 
-				// store user in JS session
-				var user = data.user;
-				user.uid = null;
-				sessionService.set('user', user);
+				//// store user in JS session
+				//var user = data.user;
+				//user.uid = null;
+				//sessionService.set('user', user);
 
 				$location.path('/dashboard');
 			}
