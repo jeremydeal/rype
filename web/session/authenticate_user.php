@@ -20,9 +20,11 @@ try {
     $dbUser = $stmt->fetch(PDO::FETCH_OBJ);
     $db = null;
 
-    session_start();
-    $_SESSION['uid'] = $dbUser->UserId;
-    print $_SESSION['uid'];
+    print $dbUser->UserId;
+
+//    session_start();
+//    $_SESSION['uid'] = $dbUser->UserId;
+//    print $_SESSION['uid'];
 
 } catch (PDOException $e) {
 }
