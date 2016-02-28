@@ -1,8 +1,10 @@
 <?php
 
-require_once 'db.php';
+//require_once 'db.php';
 
 $user = json_decode(file_get_contents('php://input'));
+
+
 //$username = $user->Username;
 //$password = $user->Password;
 //

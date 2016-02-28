@@ -1,11 +1,12 @@
 'use strict';
 
-app.factory('loginService', function($http, $location, sessionService){
+app.factory('loginService', function($http, $location, sessionService) {
 	var $loginService = {};
 
 	$loginService.login = function(data, scope){
 
-		var $promise = $http.post('../session/authenticate_user.php',data); //send data to user.php
+		var $promise = $http.post('../session/authenticate_user.php',data);
+
 		$promise.then(function(response) {
 			var uid = response.data;
 			console.log(uid);
