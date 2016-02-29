@@ -5,7 +5,7 @@ app.factory('loginService', function($http, $location, sessionService) {
 
 	$loginService.login = function(data, scope){
 
-		var $promise = $http.get('../session/authenticate_user.php/', data);
+		var $promise = $http.get('../session/authenticate_user.php', data);
 
 		$promise.then(function(response) {
 
