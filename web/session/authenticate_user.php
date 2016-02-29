@@ -7,7 +7,7 @@ $user = json_decode(file_get_contents('php://input'));
 if ($user->Username && $user->Password) {
 
     // authenticate user in database
-    $sql = "SELECT * FROM customer WHERE Username = :username";
+    $sql = "SELECT :username FROM customer";
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
