@@ -19,14 +19,13 @@ if ($user->Username && $user->Password) {
         $db = null;
 
         // create and return the session
-        session_start();
-        $_SESSION['uid'] = uniqid('ang_');
-//        print $_SESSION['uid'];
         if (isset($dbUser))
         {
             // we found a customer matching that username; authenticate the password
             if (isset($dbUser->Password) && password_verify($user->Password, $dbUser->Password))
             {
+                session_start();
+                $_SESSION['uid'] = $dbUser->CustomerId;
                 print json_encode($dbUser);
             }
             else {
