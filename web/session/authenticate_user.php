@@ -47,7 +47,7 @@ $user = json_decode(file_get_contents('php://input'));
 //
 //
 
-    if ($user->Email == "jeremy.n.deal@gmail.com" && $user->Password == "shadows1") {
+    if ($user->Email == "test" && $user->Password == "test") {
         session_start();
         $_SESSION['uid'] = uniqid('ang_');
         print $_SESSION['uid'];
