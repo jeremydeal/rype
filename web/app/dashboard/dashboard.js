@@ -1,8 +1,8 @@
 'use strict';
 
 app.controller('dashboardController',
-    ['$scope', 'loginService',
-        function($scope, loginService) {
+    ['$scope', 'loginService', 'sessionService',
+        function($scope, loginService, sessionService) {
 
             // scope variables for login
             $scope.user = {};
@@ -11,7 +11,9 @@ app.controller('dashboardController',
 
 
             /////////////////////////////// DATA INITIALIZATION ////////////////////////////////////////////
-            function dataInit() {}
+            function dataInit() {
+                populateUser();
+            }
 
 
             /////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////////
@@ -22,6 +24,13 @@ app.controller('dashboardController',
             $scope.isLogged = function() {
                 loginService.isLogged();
             };
+
+            // populate user object from JS session
+            function populateUser() {
+                $scope.user.Username = sessionService.get("Username");
+                $scope.user.FirstName = sessionService.get("FirstName");
+                $scope.user.LastName = sessionService.get("LastName");
+            }
 
 
             /////////////////////////////// HELPER METHODS //////////////////////////////////////////////////
