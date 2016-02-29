@@ -146,21 +146,7 @@ function createUser($user) {
         // if successful, log in
         if ($idInserted > -1) {
             // authenticate user in database
-            $sql = "SELECT CustomerId, Username, Password, FirstName, LastName
-                  FROM customer
-                  WHERE CustomerId = :customerId";
-            try {
-                $stmt = $db->prepare($sql);
-                $stmt->bindParam("customerId", $idInserted);
-                $stmt->execute();
-                $dbUser = $stmt->fetch(PDO::FETCH_OBJ);
-                $db = null;
-
-                print json_encode($dbUser);
-            }
-            catch (PDOException $e) {
-                // DB access error; do not return a user
-            }
+            print 'user created';
         }
 
         $db = null;

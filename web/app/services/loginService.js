@@ -39,15 +39,15 @@ app.factory('loginService', function($http, $location, sessionService) {
 		//return $http.post('../session/check_session.php');
 	};
 
-	$loginService.createUser = function(data, scope) {
-		var $promise = $http.post('../api/user/create/', data);
+	$loginService.createUser = function(user, scope) {
+		var $promise = $http.post('../api/user/create/', user);
 
 		$promise.then(function(response) {
-				var user = response.data;
-				if (user) {
+				
+				// if user creation is successful, log in!
+				if (response.data) {
 					$loginService.login(user, scope);
 				}
-				return user;
 			}
 		)
 
