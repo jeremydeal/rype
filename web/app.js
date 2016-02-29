@@ -58,6 +58,10 @@ app.run(function($rootScope, $location, loginService){
             //    if (!msg.data) $location.path('/login');
             //});
         }
+        else if ( $location.path() == '/login' )
+        {
+            if (loginService.isLogged()) $location.path('/dashboard');
+        }
 
     });
 });
