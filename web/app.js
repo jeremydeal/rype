@@ -58,7 +58,7 @@ app.run(function($rootScope, $location, loginService){
             //    if (!msg.data) $location.path('/login');
             //});
         }
-        else if ( $location.path() == '/login' || $location() == '/createUser')
+        else if ( $location.path() == '/login' || $location.path() == '/createUser')
         {
             if (loginService.isLogged()) $location.path('/dashboard');
         }

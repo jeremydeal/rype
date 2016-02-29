@@ -3,7 +3,7 @@
 app.factory('loginService', function($http, $location, sessionService) {
 	var $loginService = {};
 
-	$loginService.login = function(data, scope){
+	$loginService.login = function(data, scope) {
 
 		var $promise = $http.post('../session/authenticate_user.php', data);
 
@@ -26,7 +26,7 @@ app.factory('loginService', function($http, $location, sessionService) {
 		});
 	};
 
-	$loginService.logout = function(){
+	$loginService.logout = function() {
 		sessionService.destroy('uid');
 		sessionService.destroy('Username');
 		sessionService.destroy('FirstName');
@@ -34,9 +34,23 @@ app.factory('loginService', function($http, $location, sessionService) {
 		$location.path('/login');
 	};
 
-	$loginService.isLogged = function(){
+	$loginService.isLogged = function() {
 		return (sessionService.get('uid') != null);
 		//return $http.post('../session/check_session.php');
+	};
+
+	$loginService.createUser = function(data, scope) {
+		var $promise = $http.post('../api/user/create/', data);
+
+		$promise.then(function(response) {
+				var user = response.data;
+				if (user) {
+					$loginService.login(user, scope);
+				}
+				return user;
+			}
+		)
+
 	};
 
 	return $loginService;

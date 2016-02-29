@@ -17,12 +17,7 @@ app.controller('createUserController',
 
             /////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////////
             $scope.createUser = function() {
-                usersService.createUser($scope.user)
-                    .success(function(response) {
-                        if (response.data) {
-                            loginService.login(response.data)
-                        }
-                    })
+                loginService.createUser($scope.user, $scope);
             };
 
 

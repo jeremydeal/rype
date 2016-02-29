@@ -114,7 +114,7 @@ function logout() {
 }
 
 
-// POST /api/user/login/
+// POST /api/user/create/
 function createUser($user) {
     // hash the pass
 //    $hashedPass = password_hash($user->Password, PASSWORD_DEFAULT);
