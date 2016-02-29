@@ -54,14 +54,14 @@ app.run(function($rootScope, $location, loginService){
                 if (!msg.data) $location.path('/login');
             });
         }
-        //  if the user is logged in but routes to login, redirect to dashboard
-        else if  ($location.path() == '/login')
-        {
-            var connected = loginService.isLogged();
-            connected.then(function(msg){
-               if (msg.data) $location.path('/dashboard');
-            });
-        }
+        ////  if the user is logged in but routes to login, redirect to dashboard
+        //else if  ($location.path() == '/login')
+        //{
+        //    var connected = loginService.isLogged();
+        //    connected.then(function(msg){
+        //       if (msg.data) $location.path('/dashboard');
+        //    });
+        //}
 
     });
 });
