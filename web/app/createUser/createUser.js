@@ -1,8 +1,8 @@
 'use strict';
 
 app.controller('createUserController',
-    ['$scope', '$location', 'usersService', 'loginService',
-        function($scope, $location, usersService, loginService) {
+    ['$scope', '$location', 'loginService',
+        function($scope, $location, loginService) {
 
             $scope.user = {};
 
