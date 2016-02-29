@@ -22,7 +22,7 @@ if ($user->Username && $user->Password) {
 //        print $_SESSION['uid'];
         if (isset($dbUser))
         {
-            print $dbUser->Username . " " . $dbUser->Password;
+            print json_encode($dbUser);
         }
         else
         {
