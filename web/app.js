@@ -47,21 +47,17 @@ app.run(function($rootScope, $location, loginService){
         // if the route requires permission...
         if( routePermissions.indexOf($location.path()) != -1)
         {
-            // ...check to see if the user has a session registered
-            var connected = loginService.isLogged();
-            connected.then(function(msg){
-                // if isLogged() returns nothing, redirect to login
-                if (!msg.data) $location.path('/login');
-            });
+            // ...and not logged in, go to login page
+            if (!loginService.isLogged()) $location.path('/login');
+
+            // TODO: add back in: server-side session check
+            //// ...check to see if the user has a session registered
+            //var connected = loginService.isLogged();
+            //connected.then(function(msg){
+            //    // if isLogged() returns nothing, redirect to login
+            //    if (!msg.data) $location.path('/login');
+            //});
         }
-        ////  if the user is logged in but routes to login, redirect to dashboard
-        //else if  ($location.path() == '/login')
-        //{
-        //    var connected = loginService.isLogged();
-        //    connected.then(function(msg){
-        //       if (msg.data) $location.path('/dashboard');
-        //    });
-        //}
 
     });
 });
