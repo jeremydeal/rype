@@ -141,15 +141,17 @@ function createUser($user) {
         $stmt->bindParam("lastName", $user->LastName);
         $stmt->execute();
 
+        $idInserted = $db->lastInsertId();
+
         // if successful, log in
-        if ($db->lastInsertId() > -1) {
+        if ($idInserted > -1) {
             // authenticate user in database
             $sql = "SELECT CustomerId, Username, Password, FirstName, LastName
                   FROM customer
                   WHERE CustomerId = :customerId";
             try {
                 $stmt = $db->prepare($sql);
-                $stmt->bindParam("customerId", $db->lastInsertId());
+                $stmt->bindParam("customerId", $idInserted);
                 $stmt->execute();
                 $dbUser = $stmt->fetch(PDO::FETCH_OBJ);
                 $db = null;
