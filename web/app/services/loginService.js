@@ -35,7 +35,8 @@ app.factory('loginService', function($http, $location, sessionService) {
 	};
 
 	$loginService.isLogged = function(){
-		return $http.post('../session/check_session.php');
+		return (sessionService.get('uid') == true);
+		//return $http.post('../session/check_session.php');
 	};
 
 	return $loginService;
