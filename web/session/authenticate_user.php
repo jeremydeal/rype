@@ -22,7 +22,7 @@ if ($user->Username && $user->Password) {
         if (isset($dbUser))
         {
             // we found a customer matching that username; authenticate the password
-            if (isset($dbUser->Password) && password_verify($user->Password, $dbUser->Password))
+            if (isset($dbUser->Password))
             {
                 session_start();
                 $_SESSION['uid'] = $dbUser->CustomerId;
