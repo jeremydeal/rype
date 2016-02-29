@@ -16,14 +16,10 @@ if ($user->Username && $user->Password) {
         $dbUser = $stmt->fetch(PDO::FETCH_OBJ);
         $db = null;
 
-        if ($dbUser) {
-            // we found a user matching that username; authenticate password
-
-            // create and return the session
-            session_start();
-            $_SESSION['uid'] = uniqid('ang_');
-            print $_SESSION['uid'];
-        }
+        // create and return the session
+        session_start();
+        $_SESSION['uid'] = uniqid('ang_');
+        print $_SESSION['uid'];
     }
     catch (PDOException $e) {
         // DB access error; do not create a session
