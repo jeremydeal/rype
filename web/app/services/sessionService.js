@@ -12,8 +12,7 @@ app.factory('sessionService', ['$http', function($http){
 	};
 
 	$sessionService.destroy = function(key){
-		// CHANGED TO GET; MAY NOT WORK
-		$http.get('../session/destroy_session.php');
+		//$http.get('../session/destroy_session.php');
 		return sessionStorage.removeItem(key);
 	};
 
