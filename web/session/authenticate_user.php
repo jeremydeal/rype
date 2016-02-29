@@ -19,12 +19,12 @@ if ($user->Username && $user->Password) {
         $db = null;
 
         // create and return the session
-        if (isset($dbUser))
+        if (isset($dbUser) && isset($dbUser->Password))
         {
 //            print json_encode($dbUser);
 
             // we found a customer matching that username; authenticate the password
-            if (isset($dbUser->Password))
+            if (password_verify($user->Password, $dbUser->Password))
             {
 //                session_start();
 //                $_SESSION['uid'] = $dbUser->CustomerId;
