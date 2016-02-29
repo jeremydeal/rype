@@ -20,7 +20,7 @@ if ($user->Username && $user->Password) {
         session_start();
         $_SESSION['uid'] = uniqid('ang_');
 //        print $_SESSION['uid'];
-        vardump($dbUser);
+        var_dump($dbUser);
     }
     catch (PDOException $e) {
         // DB access error; do not create a session
