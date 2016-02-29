@@ -23,7 +23,7 @@ if ($user->Username && $user->Password) {
         if (isset($dbUser))
         {
             // we found a customer matching that username; authenticate the password
-            if ($user->Password == $dbUser->Password)
+            if (isset($dbUser->Password) && $user->Password == $dbUser->Password)
             {
                 print json_encode($dbUser);
             }
@@ -41,27 +41,6 @@ if ($user->Username && $user->Password) {
     }
 }
 
-//// authenticate user in database
-//$sql = "SELECT *
-//          FROM user
-//            WHERE Username = :username";
-//try {
-//    $db = getDB();
-//    $stmt = $db->prepare($sql);
-//    $stmt->bindParam("username", $username);
-//    $stmt->execute();
-//    $dbUser = $stmt->fetch(PDO::FETCH_OBJ);
-//    $db = null;
-//
-//    print $dbUser->UserId;
-//
-////    session_start();
-////    $_SESSION['uid'] = $dbUser->UserId;
-////    print $_SESSION['uid'];
-//
-//} catch (PDOException $e) {
-//}
-
 //    // check auth info against DB values
 ////    if (password_verify($user->Password, $dbUser->Password)) {
 //    if ($password == $dbUser->Password) {
@@ -70,8 +49,3 @@ if ($user->Username && $user->Password) {
 //        $_SESSION['uid'] = $dbUser->UserId;
 //        print $_SESSION['uid'];
 //    }
-////}
-////catch(PDOException $e) {
-////}
-//
-//
