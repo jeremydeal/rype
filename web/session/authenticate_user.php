@@ -27,7 +27,7 @@ if ($user->Username && $user->Password) {
             // we found a customer matching that username; authenticate the password
             if (isset($dbUser->Password) && password_verify($dbUser->Password, $user->Password))
             {
-                print json_encode($dbUser);
+                print '{"user": ' . json_encode($dbUser) . '}';
             }
             else {
                 print "password lookup failed";

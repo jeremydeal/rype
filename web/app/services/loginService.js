@@ -9,7 +9,7 @@ app.factory('loginService', function($http, $location, sessionService) {
 
 		$promise.then(function(response) {
 
-			var user = response.data;
+			var user = response.data.user;
 			if (user) {
 				// if we received a user object, store basic user info
 				sessionService.set('uid', user.CustomerId);
