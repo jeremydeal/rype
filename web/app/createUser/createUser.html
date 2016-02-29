@@ -5,7 +5,7 @@
             <label class="control-label" for="firstName">First Name</label>
             <div class="controls">
                 <input type="text" id="firstName" placeholder="First Name" ng-model="user.FirstName" required>
-                <p ng-show="createForm.FirstName.$error.required && !createForm.FirstName.$pristine" class="alert-danger">First name required.</p>
+                <p ng-show="createForm.user.FirstName.$error.required && !createForm.user.FirstName.$pristine" class="alert-danger">First name required.</p>
             </div>
         </div>
         <div class="control-group">
