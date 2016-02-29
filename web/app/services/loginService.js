@@ -43,7 +43,7 @@ app.factory('loginService', function($http, $location, sessionService) {
 		var $promise = $http.post('../api/user/create/', user);
 
 		$promise.then(function(response) {
-				
+
 				// if user creation is successful, log in!
 				if (response.data) {
 					$loginService.login(user, scope);

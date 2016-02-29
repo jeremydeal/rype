@@ -139,13 +139,9 @@ function createUser($user) {
         $stmt->bindParam("password", $user->Password);
         $stmt->bindParam("firstName", $user->FirstName);
         $stmt->bindParam("lastName", $user->LastName);
-        $stmt->execute();
 
-        $idInserted = $db->lastInsertId();
-
-        // if successful, log in
-        if ($idInserted > -1) {
-            // authenticate user in database
+        // if INSERT succeeds, notify the front end
+        if ($stmt->execute() == True) {
             print 'user created';
         }
 
