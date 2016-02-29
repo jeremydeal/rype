@@ -21,15 +21,15 @@ if ($user->Username && $user->Password) {
         // create and return the session
         if (isset($dbUser))
         {
-            print json_encode($dbUser);
+//            print json_encode($dbUser);
 
-//            // we found a customer matching that username; authenticate the password
-//            if (isset($dbUser->Password) && password_verify($user->Password, $dbUser->Password))
-//            {
+            // we found a customer matching that username; authenticate the password
+            if (isset($dbUser->Password) && password_verify($user->Password, $dbUser->Password))
+            {
 //                session_start();
 //                $_SESSION['uid'] = $dbUser->CustomerId;
-//                print json_encode($dbUser);
-//            }
+                print json_encode($dbUser);
+            }
 //            else {
 //                print "password lookup failed";
 //            }
