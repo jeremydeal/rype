@@ -24,8 +24,8 @@ if ($user->Username && $user->Password) {
             // we found a customer matching that username; authenticate the password
             if ($user->Password == $dbUser->Password)
             {
-                session_start();
-                $_SESSION['uid'] = $dbUser->CustomerId;
+//                session_start();
+//                $_SESSION['uid'] = $dbUser->CustomerId;
                 print json_encode($dbUser);
             }
         }
