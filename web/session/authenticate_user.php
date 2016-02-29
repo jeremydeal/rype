@@ -7,7 +7,7 @@ $user = json_decode(file_get_contents('php://input'));
 if ($user->Username && $user->Password) {
 
     // authenticate user in database
-    $sql = "SELECT :username FROM customer";
+    $sql = "SELECT * FROM customer WHERE Username = :username";
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
@@ -20,7 +20,7 @@ if ($user->Username && $user->Password) {
         session_start();
         $_SESSION['uid'] = uniqid('ang_');
 //        print $_SESSION['uid'];
-        var_dump($dbUser);
+        var_dump($user);
     }
     catch (PDOException $e) {
         // DB access error; do not create a session
