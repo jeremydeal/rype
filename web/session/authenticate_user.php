@@ -4,6 +4,11 @@
 
 $user = json_decode(file_get_contents('php://input'));
 
+if ($user->Username == "test" && $user->Password == "test") {
+    session_start();
+    $_SESSION['uid'] = uniqid('ang_');
+    print $_SESSION['uid'];
+}
 
 //$username = $user->Username;
 //$password = $user->Password;
@@ -31,8 +36,6 @@ $user = json_decode(file_get_contents('php://input'));
 //} catch (PDOException $e) {
 //}
 
-
-
 //    // check auth info against DB values
 ////    if (password_verify($user->Password, $dbUser->Password)) {
 //    if ($password == $dbUser->Password) {
@@ -46,9 +49,3 @@ $user = json_decode(file_get_contents('php://input'));
 ////}
 //
 //
-
-    if ($user->Email == "test" && $user->Password == "test") {
-        session_start();
-        $_SESSION['uid'] = uniqid('ang_');
-        print $_SESSION['uid'];
-    }
