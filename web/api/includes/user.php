@@ -135,7 +135,7 @@ function createUser($user) {
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
-        $stmt->bindParam("username", $user->Email);
+        $stmt->bindParam("username", $user->Username);
         $stmt->bindParam("password", $user->Password);
         $stmt->bindParam("firstName", $user->FirstName);
         $stmt->bindParam("lastName", $user->LastName);
