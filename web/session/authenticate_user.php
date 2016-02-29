@@ -24,19 +24,12 @@ if ($user->Username && $user->Password) {
 //            print json_encode($dbUser);
 
             // we found a customer matching that username; authenticate the password
-            if (password_verify($user->Password, $dbUser->Password) == True)
+            if ($user->Password == $dbUser->Password)
             {
 //                session_start();
 //                $_SESSION['uid'] = $dbUser->CustomerId;
                 print json_encode($dbUser);
             }
-//            else {
-//                print "password lookup failed";
-//            }
-        }
-        else
-        {
-            print "no user was returned )-:";
         }
     }
     catch (PDOException $e) {
