@@ -17,7 +17,7 @@ app.controller('dashboardController',
 
 
             /////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////////
-            $scope.logout = function(){
+            $scope.logout = function() {
                 loginService.logout();
             };
 
@@ -34,10 +34,6 @@ app.controller('dashboardController',
 
 
             /////////////////////////////// HELPER METHODS //////////////////////////////////////////////////
-            function clearUserInfo() {
-                $scope.user = {};
-            }
-
 
 
         }]);
