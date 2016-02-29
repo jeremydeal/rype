@@ -20,7 +20,7 @@ if ($user->Username && $user->Password) {
         session_start();
         $_SESSION['uid'] = uniqid('ang_');
 //        print $_SESSION['uid'];
-        if (isset($dbUser->Username))
+        if (isset($dbUser))
         {
             print $dbUser->Username;
         }
