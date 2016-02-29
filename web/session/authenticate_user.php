@@ -4,17 +4,32 @@
 
 $user = json_decode(file_get_contents('php://input'));
 
-if ($user->Username == "test" && $user->Password == "test") {
-    session_start();
-    $_SESSION['uid'] = uniqid('ang_');
-    print $_SESSION['uid'];
+if ($user->Username && $user->Password) {
+
+    // authenticate user in database
+    $sql = "SELECT * FROM user WHERE Username = :username;";
+    try {
+        $db = getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("username", $user->Username);
+        $stmt->execute();
+        $dbUser = $stmt->fetch(PDO::FETCH_OBJ);
+        $db = null;
+
+        if ($dbUser) {
+            // we found a user matching that username; authenticate password
+
+            // create and return the session
+            session_start();
+            $_SESSION['uid'] = uniqid('ang_');
+            print $_SESSION['uid'];
+        }
+    }
+    catch (PDOException $e) {
+        // DB access error; do not create a session
+    }
 }
 
-//$username = $user->Username;
-//$password = $user->Password;
-//
-////print $email . " and " . $password;
-//
 //// authenticate user in database
 //$sql = "SELECT *
 //          FROM user
