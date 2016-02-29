@@ -13,9 +13,9 @@ app.factory('loginService', function($http, $location, sessionService) {
 			if (user) {
 				// if we received a user object, store basic user info
 				sessionService.set('uid', user.CustomerId);
-				sessionService.set('username', user.Username);
-				sessionService.set('firstName', user.FirstName);
-				sessionService.set('lastName', user.LastName);
+				sessionService.set('Username', user.Username);
+				sessionService.set('FirstName', user.FirstName);
+				sessionService.set('LastName', user.LastName);
 				$location.path('/dashboard');
 			}
 			else {
@@ -28,6 +28,9 @@ app.factory('loginService', function($http, $location, sessionService) {
 
 	$loginService.logout = function(){
 		sessionService.destroy('uid');
+		sessionService.destroy('Username');
+		sessionService.destroy('FirstName');
+		sessionService.destroy('LastName');
 		$location.path('/login');
 	};
 
