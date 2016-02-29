@@ -141,7 +141,7 @@ function createUser($user) {
         $stmt->bindParam("lastName", $user->LastName);
 
         // if INSERT succeeds, notify the front end
-        if ($stmt->execute() == True) {
+        if ($stmt->execute() && $stmt->rowCount() > 0) {
             print 'user created';
         }
 
