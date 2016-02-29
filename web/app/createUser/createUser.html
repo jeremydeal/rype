@@ -5,7 +5,7 @@
             <label class="control-label" for="firstName">First Name</label>
             <div class="controls">
                 <input type="text" id="firstName" placeholder="First Name" ng-model="user.FirstName" required>
-                <p ng-show="createForm.user.FirstName.$error.required && !createForm.user.FirstName.$pristine" class="alert-danger">First name required.</p>
+                <p ng-show="createForm.FirstName.$error.required && !createForm.FirstName.$pristine" class="alert-danger">First name required.</p>
             </div>
         </div>
         <div class="control-group">
@@ -16,9 +16,9 @@
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="email">Username</label>
+            <label class="control-label" for="username">Username</label>
             <div class="controls">
-                <input type="email" id="email" placeholder="Username" ng-model="user.Username" required>
+                <input type="text" id="username" placeholder="Username" ng-model="user.Username" required>
                 <p ng-show="createForm.Username.$error.required && !createForm.Username.$pristine" class="alert-danger">Email required.</p>
             </div>
         </div>
