@@ -4,7 +4,7 @@ require_once '../api/includes/db.php';
 
 $user = json_decode(file_get_contents('php://input'));
 
-if ($user->Username && $user->Password) {
+if (isset($user->Username) && isset($user->Password)) {
 
     // authenticate user in database
     $sql = "SELECT CustomerId, Username, Password, FirstName, LastName
@@ -24,7 +24,7 @@ if ($user->Username && $user->Password) {
 //            print json_encode($dbUser);
 
             // we found a customer matching that username; authenticate the password
-            if (password_verify($user->Password, $dbUser->Password))
+            if (password_verify($dbUser->Password, $user->Password))
             {
 //                session_start();
 //                $_SESSION['uid'] = $dbUser->CustomerId;
