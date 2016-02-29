@@ -45,14 +45,23 @@ app.run(function($rootScope, $location, loginService){
 
     $rootScope.$on('$routeChangeStart', function(){
         // if the route requires permission...
-        if( routePermissions.indexOf($location.path()) !=-1)
+        if( routePermissions.indexOf($location.path()) != -1)
         {
             // ...check to see if the user has a session registered
             var connected = loginService.isLogged();
             connected.then(function(msg){
                 // if isLogged() returns nothing, redirect to login
-                if(!msg.data) $location.path('/login');
+                if (!msg.data) $location.path('/login');
             });
         }
+        //  if the user is logged in but routes to login, redirect to dashboard
+        else if  ($location.path() == '/login')
+        {
+            var connected = loginService.isLogged();
+            connected.then(function(msg){
+               if (msg.data) $location.path('/dashboard');
+            });
+        }
+
     });
 });
