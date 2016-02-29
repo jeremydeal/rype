@@ -117,7 +117,7 @@ function logout() {
 // POST /api/user/login/
 function createUser($user) {
     // hash the pass
-    $hashedPass = password_hash($user->Password, PASSWORD_DEFAULT);
+//    $hashedPass = password_hash($user->Password, PASSWORD_DEFAULT);
 
     // store the new user in the DB
     $sql = "INSERT INTO customer (
@@ -136,21 +136,34 @@ function createUser($user) {
         $db = getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindParam("username", $user->Email);
-        $stmt->bindParam("password", $hashedPass);
+        $stmt->bindParam("password", $user->Password);
         $stmt->bindParam("firstName", $user->FirstName);
         $stmt->bindParam("lastName", $user->LastName);
         $stmt->execute();
 
         // if successful, log in
         if ($db->lastInsertId() > -1) {
-            session_start();
-            $_SESSION['UserId'] = $db->lastInsertId();
+            // authenticate user in database
+            $sql = "SELECT CustomerId, Username, Password, FirstName, LastName
+                  FROM customer
+                  WHERE CustomerId = :customerId";
+            try {
+                $stmt = $db->prepare($sql);
+                $stmt->bindParam("customerId", $db->lastInsertId());
+                $stmt->execute();
+                $dbUser = $stmt->fetch(PDO::FETCH_OBJ);
+                $db = null;
+
+                print json_encode($dbUser);
+            }
+            catch (PDOException $e) {
+                // DB access error; do not return a user
+            }
         }
 
         $db = null;
 
-        echo '{"message": "success"}';
     } catch(PDOException $e) {
-        echo '{"message": "failure"}';
+        // DB access error; return nothing
     }
 }
