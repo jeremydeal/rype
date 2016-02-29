@@ -4,28 +4,30 @@ require_once '../api/includes/db.php';
 
 $user = json_decode(file_get_contents('php://input'));
 
-if ($user->Username && $user->Password) {
+print $user->Username . " " . $user->Password;
 
-    // authenticate user in database
-    $sql = "SELECT * FROM customer WHERE Username = :username";
-    try {
-        $db = getDB();
-        $stmt = $db->prepare($sql);
-        $stmt->bindParam("username", $user->Username);
-        $stmt->execute();
-        $dbUser = $stmt->fetch(PDO::FETCH_OBJ);
-        $db = null;
 
-        // create and return the session
-        session_start();
-        $_SESSION['uid'] = uniqid('ang_');
+//if ($user->Username && $user->Password) {
+//
+//    // authenticate user in database
+//    $sql = "SELECT * FROM customer WHERE Username = :username";
+//    try {
+//        $db = getDB();
+//        $stmt = $db->prepare($sql);
+//        $stmt->bindParam("username", $user->Username);
+//        $stmt->execute();
+//        $dbUser = $stmt->fetch(PDO::FETCH_OBJ);
+//        $db = null;
+//
+//        // create and return the session
+//        session_start();
+//        $_SESSION['uid'] = uniqid('ang_');
 //        print $_SESSION['uid'];
-        print $user->Username . " " . $user->Password;
-    }
-    catch (PDOException $e) {
-        // DB access error; do not create a session
-    }
-}
+//    }
+//    catch (PDOException $e) {
+//        // DB access error; do not create a session
+//    }
+//}
 
 //// authenticate user in database
 //$sql = "SELECT *
