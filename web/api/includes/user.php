@@ -5,12 +5,10 @@ function getUsers() {
 
     $users = null;
 
-    $sql = "SELECT u.*
-                  FROM user AS u";
+    $sql = "SELECT * FROM customer";
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
-        $stmt->bindParam("userId", $_SESSION['UserId']);
         $stmt->execute();
         $users = $stmt->fetchAll(PDO::FETCH_OBJ);
         $db = null;
@@ -31,16 +29,16 @@ function getCurrentUser() {
 
     $user = null;
 
-    if (isset($_SESSION['UserId'])) {
+    if (isset($_SESSION['uid'])) {
 
         // grab auth info from DB
-        $sql = "SELECT u.*
-                  FROM user AS u
-                  WHERE u.UserId = :userId";
+        $sql = "SELECT *
+                  FROM customer
+                  WHERE CustomerId = :customerId";
         try {
             $db = getDB();
             $stmt = $db->prepare($sql);
-            $stmt->bindParam("userId", $_SESSION['UserId']);
+            $stmt->bindParam("customerId", $_SESSION['uid']);
             $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_OBJ);
             $db = null;
@@ -122,13 +120,13 @@ function createUser($user) {
     $hashedPass = password_hash($user->Password, PASSWORD_DEFAULT);
 
     // store the new user in the DB
-    $sql = "INSERT INTO user (
-                      Email,
+    $sql = "INSERT INTO customer (
+                      Username,
                       Password,
                       FirstName,
                       LastName
                     ) VALUES (
-                      :email,
+                      :username,
                       :password,
                       :firstName,
                       :lastName
@@ -137,7 +135,7 @@ function createUser($user) {
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
-        $stmt->bindParam("email", $user->Email);
+        $stmt->bindParam("username", $user->Email);
         $stmt->bindParam("password", $hashedPass);
         $stmt->bindParam("firstName", $user->FirstName);
         $stmt->bindParam("lastName", $user->LastName);
