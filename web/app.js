@@ -3,7 +3,8 @@
 // Declare app level module which depends on views, and components
 var app = angular.module('myApp', [
     'ngRoute',
-    'perfect_scrollbar'
+    'perfect_scrollbar',
+    'slick'
 ]);
 
 // ROUTING
