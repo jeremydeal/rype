@@ -1,9 +1,8 @@
 body, html {
     height: 100%;
 }
-
 body {
-    display: table;
+    position: relative;
 }
 
 /* NAVBAR */
