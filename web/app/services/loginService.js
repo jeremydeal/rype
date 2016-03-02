@@ -5,10 +5,14 @@ app.factory('loginService', function($http, $location, sessionService) {
 
 	$loginService.login = function(data, scope) {
 
-		var $promise = $http.({method: 'POST',
-			url: '../session/authenticate_user.php',
-			headers: { 'Content-Type': undefined },
-			data: data});
+		var $promise = $http(
+				{
+					method: 'POST',
+					url: '../session/authenticate_user.php',
+					headers: { 'Content-Type': undefined },
+					data: data
+				}
+			);
 
 		$promise.then(function(response) {
 
