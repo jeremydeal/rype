@@ -15,7 +15,7 @@ function getDB() {
     $password = $url["pass"];
     $db = substr($url["path"], 1);
 
-    $conn = new PDO($server, $db, $username, $password);
+    $conn = new PDO("mysql:host=$server;dbname=$db", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     return $conn;
