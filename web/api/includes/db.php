@@ -9,9 +9,5 @@ function getDB() {
     $dbConnection = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
     $dbConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // make the connection persistent with a 10-minute timeout
-    $dbConnection->setAttribute(\PDO::ATTR_TIMEOUT, 600); // 10 mins
-    $dbConnection->setAttribute(\PDO::ATTR_PERSISTENT, true);
-
     return $dbConnection;
 }
