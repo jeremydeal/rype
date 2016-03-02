@@ -5,32 +5,24 @@ app.factory('loginService', function($http, $location, sessionService) {
 
 	$loginService.login = function(data, scope) {
 
-		var $promise = $http(
-				{
-					method: 'POST',
-					url: '../session/authenticate_user.php/',
-					headers: { 'Content-Type': undefined },
-					data: data
+		$http.post('../session/authenticate_user.php', data)
+			.then(function(response) {
+
+				var user = response.data;
+				if (user) {
+					// if we received a user object, store basic user info
+					sessionService.set('uid', user.CustomerId);
+					sessionService.set('Username', user.Username);
+					sessionService.set('FirstName', user.FirstName);
+					sessionService.set('LastName', user.LastName);
+					$location.path('/dashboard');
 				}
-			);
-
-		$promise.then(function(response) {
-
-			var user = response.data;
-			if (user) {
-				// if we received a user object, store basic user info
-				sessionService.set('uid', user.CustomerId);
-				sessionService.set('Username', user.Username);
-				sessionService.set('FirstName', user.FirstName);
-				sessionService.set('LastName', user.LastName);
-				$location.path('/dashboard');
-			}
-			else {
-				// if no user object, return to the login page
-				scope.msg = 'incorrect information';
-				$location.path('/login');
-			}
-		});
+				//else {
+				//	// if no user object, return to the login page
+				//	scope.msg = 'incorrect information';
+				//	$location.path('/login');
+				//}
+			});
 	};
 
 	$loginService.logout = function() {
