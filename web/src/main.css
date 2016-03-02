@@ -30,5 +30,6 @@ li a:hover {
     height: 500px;
     overflow-y: hidden;
     position: relative;
+    padding: 20px;
 }
 

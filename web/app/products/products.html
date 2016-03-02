@@ -2,7 +2,7 @@
 
     <!-- SELECTED PRODUCT -->
     <div class="col-sm-8">
-        <perfect-scrollbar class="scrollable" wheel-propagation="true" wheel-speed="3" min-scrollbar-length="20" style="padding: 20px;" >
+        <perfect-scrollbar class="scrollable" suppress-scroll-x="true" wheel-propagation="true" wheel-speed="3" min-scrollbar-length="20">
 
             <div class="row">
                 <h1>{{ product.Variety }} ({{ product.CommonName }})</h1>
@@ -34,7 +34,7 @@
     </div>
 
     <!-- PRODUCE LIST -->
-    <perfect-scrollbar class="col-sm-4" style="padding: 20px;">
+    <div class="col-sm-4">
 
         <!-- FILTER SEARCH -->
         <table class="table-condensed">
@@ -81,7 +81,7 @@
         </table>
 
         <!-- PRODUCE LIST -->
-        <perfect-scrollbar class="scrollable" wheel-propagation="true" wheel-speed="6" min-scrollbar-length="20">
+        <perfect-scrollbar class="scrollable" suppress-scroll-x="true" wheel-propagation="true" wheel-speed="3" min-scrollbar-length="20">
             <table class="table">
                 <tr ng-repeat="p in products | filterProductsBySearch:search.query |
                                                 filterProductsByWhetherInSeason:search.inSeason |
