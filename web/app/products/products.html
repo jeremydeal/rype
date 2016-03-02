@@ -4,30 +4,24 @@
     <div class="col-sm-8">
         <perfect-scrollbar class="scrollable" suppress-scroll-x="true" wheel-propagation="true" wheel-speed="3" min-scrollbar-length="20">
 
-            <div class="row">
-                <h1>{{ product.Variety }} ({{ product.CommonName }})</h1>
-                <img ng-src="../../src/images/{{ product.ImgGood }}" style="width: 300px;" />
-            </div>
+            <h1>{{ product.Variety }} ({{ product.CommonName }})</h1>
+            <img ng-src="../../src/images/{{ product.ImgGood }}" style="width: 300px;" />
 
-            <div class="row">
-                <p>{{ product.DescGeneral ? product.DescGeneral : "No data available" }}</p>
-            </div>
+            <p>{{ product.DescGeneral ? product.DescGeneral : "No data available" }}</p>
 
-            <div class="row">
-                <div class="col-sm-6">
-                    <h3>Is it Ripe?</h3>
-                    <p><strong>By Look</strong></p>
-                    <p>{{ product.DescLook ? product.DescLook : "No data available" }}</p>
-                    <p><strong>By Feel</strong></p>
-                    <p>{{ product.DescFeel ? product.DescFeel : "No data available" }}</p>
-                    <p><strong>By Smell</strong></p>
-                    <p>{{ product.DescSmell ? product.DescSmell : "No data available" }}</p>
-                </div>
-                <div class="col-sm-6">
-                    <h3>Other Info</h3>
-                    <p><strong>Season</strong></p>
-                    <p>{{ (product.SeasonStart && product.SeasonEnd) ? (product.SeasonStart + " to " + product.SeasonEnd) : "" }}</p>
-                </div>
+            <div class="col-sm-6">
+                <h3>Is it Ripe?</h3>
+                <p><strong>By Look</strong></p>
+                <p>{{ product.DescLook ? product.DescLook : "No data available" }}</p>
+                <p><strong>By Feel</strong></p>
+                <p>{{ product.DescFeel ? product.DescFeel : "No data available" }}</p>
+                <p><strong>By Smell</strong></p>
+                <p>{{ product.DescSmell ? product.DescSmell : "No data available" }}</p>
+            </div>
+            <div class="col-sm-6">
+                <h3>Other Info</h3>
+                <p><strong>Season</strong></p>
+                <p>{{ (product.SeasonStart && product.SeasonEnd) ? (product.SeasonStart + " to " + product.SeasonEnd) : "" }}</p>
             </div>
 
         </perfect-scrollbar>
