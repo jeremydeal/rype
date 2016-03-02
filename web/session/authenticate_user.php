@@ -26,6 +26,7 @@ if ($user->Username && $user->Password) {
             {
 //                session_start();
 //                $_SESSION['uid'] = $dbUser->CustomerId;
+                header('Content-type:application/json;charset=utf-8');
                 print json_encode($dbUser);
             }
         }
