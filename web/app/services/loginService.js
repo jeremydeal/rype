@@ -17,11 +17,11 @@ app.factory('loginService', function($http, $location, sessionService) {
 					sessionService.set('LastName', user.LastName);
 					$location.path('/dashboard');
 				}
-				//else {
-				//	// if no user object, return to the login page
-				//	scope.msg = 'incorrect information';
-				//	$location.path('/login');
-				//}
+				else {
+					// if no user object, return to the login page
+					scope.msg = 'incorrect information';
+					$location.path('/login');
+				}
 			});
 	};
 
