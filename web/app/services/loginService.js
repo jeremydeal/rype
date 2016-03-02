@@ -8,7 +8,7 @@ app.factory('loginService', function($http, $location, sessionService) {
 		var $promise = $http(
 				{
 					method: 'POST',
-					url: '../session/authenticate_user.php',
+					url: '../session/authenticate_user.php/',
 					headers: { 'Content-Type': undefined },
 					data: data
 				}
