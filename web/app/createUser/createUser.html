@@ -37,12 +37,16 @@
                 <p ng-show="createForm.Password.$error.required && !createForm.Password.$pristine" class="alert-danger">Password required.</p>
             </div>
         </div>
+
+        
         <br />
         <div class="control-group">
             <div class="controls">
                 <input type="submit" class="btn btn-primary" ng-disabled="createForm.$invalid" ng-click="createUser()" value="Submit" />
             </div>
         </div>
+
+        <br/>
         <div class="control-group">
             <div class="controls">
                 <button type="button" class="btn btn-warning" ng-click="clearUserInfo()">Clear</button>
