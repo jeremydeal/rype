@@ -39,7 +39,10 @@ app.factory('loginService', function($http, $location, sessionService) {
 
 	$loginService.isLogged = function() {
 		//return (sessionService.get('uid') != null);
-		return ($http.get(baseUrl + 'check/') != null);
+		return $http.get(baseUrl + 'check/')
+			.then(function(response) {
+				return response.data != null;
+			})
 	};
 
 	$loginService.createUser = function(user, scope) {

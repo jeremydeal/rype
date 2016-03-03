@@ -133,7 +133,7 @@ function logout() {
     // And destroy the session.
     session_destroy();
 
-    echo '{"message": "success"}';
+    echo 'logged out!';
 }
 
 
