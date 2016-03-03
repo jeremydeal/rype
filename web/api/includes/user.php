@@ -170,14 +170,8 @@ function createUser($user) {
                 $stmt->execute();
                 $dbUser = $stmt->fetch(PDO::FETCH_OBJ);
 
-                // create and return the session
+                // if the user object is valid, return it so the client-side can login
                 if (isset($dbUser)) {
-                    // set the session
-                    session_cache_limiter(false);
-                    session_start();
-                    $_SESSION['uid'] = $dbUser->CustomerId;
-
-                    // return the user object
                     print '{"user": ' . json_encode($dbUser) . '}';
                 }
             }
