@@ -79,18 +79,18 @@ function login($user) {
             $db = null;
 
             // create and return the session
-            if (isset($dbUser) && isset($dbUser->Password))
-            {
+            if (isset($dbUser) && isset($dbUser->Password)) {
                 // we found a customer matching that username; authenticate the password
-                if ($user->Password == $dbUser->Password)
-                {
-                    // set the session
-                    session_cache_limiter(false);
-                    session_start();
-                    $_SESSION['uid'] = $dbUser->CustomerId;
+                if (password_verify($user->Password, $dbUser->Password)) {
+                    {
+                        // set the session
+                        session_cache_limiter(false);
+                        session_start();
+                        $_SESSION['uid'] = $dbUser->CustomerId;
 
-                    // return the user object
-                    print '{"user": ' . json_encode($dbUser) . '}';
+                        // return the user object
+                        print '{"user": ' . json_encode($dbUser) . '}';
+                    }
                 }
             }
         }
@@ -98,17 +98,6 @@ function login($user) {
             // DB access error; do not create a session
         }
     }
-
-//    // check auth info against DB values
-////    if (password_verify($user->Password, $dbUser->Password)) {
-//    if ($password == $dbUser->Password) {
-//        // successful login; generate session
-//        session_start();
-//        $_SESSION['uid'] = $dbUser->UserId;
-//        print $_SESSION['uid'];
-//    }
-
-
 }
 
 
