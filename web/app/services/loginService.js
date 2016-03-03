@@ -42,10 +42,8 @@ app.factory('loginService', function($http, $location, sessionService) {
 
 	$loginService.isLogged = function() {
 		//return (sessionService.get('uid') != null);
-		return $http.get(baseUrl + 'check/')
-			.then(function(response) {
-				return !!response.data;
-			})
+		var promise = $http.get(baseUrl + 'check/');
+		return promise;
 	};
 
 	$loginService.createUser = function(user, scope) {

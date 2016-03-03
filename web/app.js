@@ -45,23 +45,31 @@ app.run(function($rootScope, $location, loginService){
     var routePermissions = ['/dashboard'];
 
     $rootScope.$on('$routeChangeStart', function(){
+
+        // get an HTTP promise to check auth
+        var connected = loginService.isLogged();
+
         // if the route requires permission...
         if( routePermissions.indexOf($location.path()) != -1)
         {
             // ...and not logged in, go to login page
-            if (!loginService.isLogged()) $location.path('/login');
+            //if (!loginService.isLogged()) $location.path('/login');
 
-            // TODO: add back in: server-side session check
-            //// ...check to see if the user has a session registered
-            //var connected = loginService.isLogged();
-            //connected.then(function(msg){
-            //    // if isLogged() returns nothing, redirect to login
-            //    if (!msg.data) $location.path('/login');
-            //});
+            // ...check to see if the user has a session registered
+            connected.then(function(response){
+                // if isLogged() returns nothing, redirect to login
+                if (!response.data) $location.path('/login');
+            });
         }
         else if ( $location.path() == '/login' || $location.path() == '/createUser')
         {
-            if (loginService.isLogged()) $location.path('/dashboard');
+
+            connected.then(function(response){
+                // if isLogged() returns nothing, redirect to login
+                if (response.data) $location.path('/login');
+            });
+
+            //if (!!loginService.isLogged()) $location.path('/dashboard');
         }
 
     });
