@@ -7,13 +7,14 @@ $app = new \Slim\Slim();
 
 // LOGIN ROUTES
 $app->group('/user/', function() use ($app) {
-    $app->get('getAll/', 'getUsers');
-    $app->get('get/', 'getCurrentUser');
+//    $app->get('getAll/', 'getUsers');
+//    $app->get('get/', 'getCurrentUser');
     $app->post('login/', function() use ($app) {
         $user = json_decode($app->request->getBody());
         login($user);
     });
     $app->get('logout/', 'logout');
+    $app->get('check/', 'check');
     $app->post('create/', function() use ($app) {
         $user = json_decode($app->request->getBody());
         createUser($user);

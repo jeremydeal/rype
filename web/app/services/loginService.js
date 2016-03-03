@@ -38,8 +38,8 @@ app.factory('loginService', function($http, $location, sessionService) {
 	};
 
 	$loginService.isLogged = function() {
-		return (sessionService.get('uid') != null);
-		//return $http.post('../session/check_session.php');
+		//return (sessionService.get('uid') != null);
+		return ($http.get(baseUrl + 'check/') != null);
 	};
 
 	$loginService.createUser = function(user, scope) {

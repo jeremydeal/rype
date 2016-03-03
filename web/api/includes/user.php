@@ -52,6 +52,15 @@ function getCurrentUser() {
     echo '{"user": ' . json_encode($user) . '}';
 }
 
+// GET /user/check/
+function check() {
+    session_cache_limiter(false);
+    session_start();
+    if (isset($_SESSION['uid'])) {
+        print 'authenticated';
+    }
+}
+
 
 // POST /user/login/
 function login($user) {
@@ -81,7 +90,6 @@ function login($user) {
                     $_SESSION['uid'] = $dbUser->CustomerId;
 
                     // return the user object
-                    header('Content-type:application/json;charset=utf-8');
                     print json_encode($dbUser);
                 }
             }
