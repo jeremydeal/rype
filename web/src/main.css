@@ -15,6 +15,7 @@ body {
 /* NAVBAR */
 .navbar {
     background-color: #ff9900;
+    width: 100%;
 }
 ul {
     list-style-type: none;
