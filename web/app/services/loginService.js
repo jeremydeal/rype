@@ -32,16 +32,19 @@ app.factory('loginService', function($http, $location, sessionService) {
 		sessionService.destroy('FirstName');
 		sessionService.destroy('LastName');
 
-		$http.get(baseUrl + 'logout/');
-
-		$location.path('/login');
+		$http.get(baseUrl + 'logout/')
+			.then(function(response) {
+				if (response.data.length > 0) {
+					$location.path('/login');
+				}
+			});
 	};
 
 	$loginService.isLogged = function() {
 		//return (sessionService.get('uid') != null);
 		return $http.get(baseUrl + 'check/')
 			.then(function(response) {
-				return response.data != null;
+				return response.data.length > 0;
 			})
 	};
 
