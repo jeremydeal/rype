@@ -4,11 +4,12 @@
     <div class="col-sm-8">
         <perfect-scrollbar class="scrollable" suppress-scroll-x="true" wheel-propagation="true" wheel-speed="3" min-scrollbar-length="20">
 
-            <h1>{{ product.Variety }} ({{ product.CommonName }})</h1>
+            <h2>{{ product.Variety }} ({{ product.CommonName }})</h2>
             <img ng-src="../../src/images/{{ product.ImgGood }}" style="width: 300px;" />
 
             <p>{{ product.DescGeneral ? product.DescGeneral : "No data available" }}</p>
 
+            <!-- TODO: table format -->
             <div class="col-sm-6">
                 <h3>Is it Ripe?</h3>
                 <p><strong>By Look</strong></p>
