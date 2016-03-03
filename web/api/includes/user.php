@@ -185,8 +185,6 @@ function createUser($user) {
                 // DB access error; do not create a session
             }
 
-
-            print 'user created';
         }
 
         $db = null;
