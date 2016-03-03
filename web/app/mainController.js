@@ -5,6 +5,6 @@ app.controller('mainController',
         function($scope, loginService) {
 
             // store current user's id, if available, to determine navbar appearance
-            $scope.currentUserId = loginService.currentUserId;
+            $scope.currentUserId = $rootScope.currentUserId;
 
         }]);
