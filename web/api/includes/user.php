@@ -90,7 +90,7 @@ function login($user) {
                     $_SESSION['uid'] = $dbUser->CustomerId;
 
                     // return the user object
-                    print json_encode($dbUser);
+                    print '{"user": ' . json_encode($dbUser) . '}';
                 }
             }
         }
@@ -109,7 +109,6 @@ function login($user) {
 //    }
 
 
-//    echo '{"user": ' . json_encode($dbUser) . '}';
 }
 
 

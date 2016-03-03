@@ -9,9 +9,10 @@ app.factory('loginService', function($http, $location, sessionService) {
 		$http.post(baseUrl + "login/", data)
 			.then(function(response) {
 
-				var user = response.data;
-				if (user) {
+				if (!!response.data.user) {
 					// if we received a user object, store basic user info
+					var user = response.data.user;
+
 					sessionService.set('uid', user.CustomerId);
 					sessionService.set('Username', user.Username);
 					sessionService.set('FirstName', user.FirstName);
