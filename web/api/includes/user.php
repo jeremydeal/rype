@@ -67,7 +67,7 @@ function login($user) {
     if ($user->Username && $user->Password) {
 
         // authenticate user in database
-        $sql = "SELECT CustomerId, Username, Password, FirstName, LastName
+        $sql = "SELECT CustomerId, Username, Password, FirstName, LastName, Email
                   FROM customer
                   WHERE Username = :username";
         try {
@@ -160,7 +160,7 @@ function createUser($user) {
             $id = $db->lastInsertId();
 
             // authenticate user in database
-            $sql = "SELECT CustomerId, Username, Password, FirstName, LastName
+            $sql = "SELECT CustomerId, Username, Password, FirstName, LastName, Email
                   FROM customer
                   WHERE CustomerId = :id";
             try {

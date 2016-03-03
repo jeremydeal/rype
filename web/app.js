@@ -36,7 +36,8 @@ app.config(['$routeProvider', function($routeProvider) {
         templateUrl: 'app/stores/stores.html',
         controller: 'storesController'
     });
-    $routeProvider.otherwise({redirectTo: '/products'});
+
+    $routeProvider.otherwise({redirectTo: '/home'});
 }]);
 
 // deny permission on certain pages if not logged in
