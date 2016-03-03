@@ -18,11 +18,8 @@
     <link rel="stylesheet" href="bower_components/slick-carousel/slick/slick.css">
     <link rel="stylesheet" href="bower_components/slick-carousel/slick/slick-theme.css">
 
-    <!-- APPLICATION DEPENDENCY SCRIPTS -->
+    <!-- ANGULAR -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
-    <script src="app.js"></script>
-    <script src="src/helpers.js"></script>
 
     <!-- JASMINE TEST FRAMEWORK -->
     <!--<link rel="shortcut icon" type="image/png" href="jasmine/lib/jasmine-2.0.0/jasmine_favicon.png">-->
@@ -45,7 +42,14 @@
         </ul>
     </div>
 
+
     <div ng-view class="ng-cloak"></div>  <!-- NOTE: ng-cloak prevents the flicker on data load -->
+
+
+    <!-- APPLICATION DEPENDENCY SCRIPTS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="src/helpers.js"></script>
 
     <!-- ANGULAR SCROLLBAR -->
     <script src="bower_components/perfect-scrollbar/min/perfect-scrollbar.min.js"></script>
