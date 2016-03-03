@@ -22,7 +22,7 @@
             <div class="col-sm-6" ng-show="product.Variety">
                 <h3>Other Info</h3>
                 <p ng-show="product.SeasonStart && product.SeasonEnd"><strong>Season</strong></p>
-                <p ng-show="product.SeasonStart && product.SeasonEnd">{{ (product.SeasonStart + " to " + product.SeasonEnd) }}</p>
+                <p ng-show="product.SeasonStart && product.SeasonEnd">{{ (product.SeasonStart == "Year-round" ? "Year-round" : product.SeasonStart + " to " + product.SeasonEnd) }}</p>
             </div>
 
         </perfect-scrollbar>

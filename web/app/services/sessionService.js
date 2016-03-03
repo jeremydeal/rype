@@ -36,5 +36,14 @@ app.factory('sessionService', ['$http', function($http){
 	};
 
 
+	$sessionService.destroyUser = function() {
+		sessionStorage.removeItem('uid');
+		sessionStorage.removeItem('Username');
+		sessionStorage.removeItem('Email');
+		sessionStorage.removeItem('FirstName');
+		sessionStorage.removeItem('LastName');
+	};
+
+
 	return $sessionService;
 }]);

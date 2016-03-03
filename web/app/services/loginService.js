@@ -29,10 +29,7 @@ app.factory('loginService', function($http, $location, $rootScope, sessionServic
 	};
 
 	$loginService.logout = function() {
-		sessionService.destroy('uid');
-		sessionService.destroy('Username');
-		sessionService.destroy('FirstName');
-		sessionService.destroy('LastName');
+		sessionService.destroyUser();
 
 		$http.get(baseUrl + 'logout/')
 			.then(function(response) {
