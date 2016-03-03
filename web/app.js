@@ -52,24 +52,19 @@ app.run(function($rootScope, $location, loginService){
         // if the route requires permission...
         if( routePermissions.indexOf($location.path()) != -1)
         {
-            // ...and not logged in, go to login page
-            //if (!loginService.isLogged()) $location.path('/login');
-
             // ...check to see if the user has a session registered
             connected.then(function(response){
-                // if isLogged() returns nothing, redirect to login
+                // if not logged in, redirect to login
                 if (!response.data) $location.path('/login');
             });
         }
         else if ( $location.path() == '/login' || $location.path() == '/createUser')
         {
-
+            // ...check session
             connected.then(function(response){
-                // if isLogged() returns nothing, redirect to login
-                if (response.data) $location.path('/login');
+                // if logged in, redirect to dashboard
+                if (!!response.data) $location.path('/dashboard');
             });
-
-            //if (!!loginService.isLogged()) $location.path('/dashboard');
         }
 
     });
