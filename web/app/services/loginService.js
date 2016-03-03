@@ -43,8 +43,7 @@ app.factory('loginService', function($http, $location, sessionService) {
 
 	$loginService.isLogged = function() {
 		//return (sessionService.get('uid') != null);
-		var promise = $http.get(baseUrl + 'check/');
-		return promise;
+		return $http.get(baseUrl + 'check/');
 	};
 
 	$loginService.createUser = function(user, scope) {
@@ -53,8 +52,8 @@ app.factory('loginService', function($http, $location, sessionService) {
 		$promise.then(function(response) {
 
 				// if user creation is successful, log in!
-				if (response.data) {
-					$loginService.login(user, scope);
+				if (!!response.data.user) {
+					$loginService.login(response.data.user, scope);
 				}
 			}
 		)

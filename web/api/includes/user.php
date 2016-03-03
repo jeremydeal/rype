@@ -154,8 +154,38 @@ function createUser($user) {
         $stmt->bindParam("lastName", $user->LastName);
         $stmt->bindParam("email", $user->Email);
 
-        // if INSERT succeeds, notify the front end
+        // if INSERT succeeds, grab return the entered user and login
         if ($stmt->execute() && $stmt->rowCount() > 0) {
+
+            $id = $db->lastInsertId();
+
+            // authenticate user in database
+            $sql = "SELECT CustomerId, Username, Password, FirstName, LastName
+                  FROM customer
+                  WHERE CustomerId = :id";
+            try {
+                $db = getDB();
+                $stmt = $db->prepare($sql);
+                $stmt->bindParam("id", $id);
+                $stmt->execute();
+                $dbUser = $stmt->fetch(PDO::FETCH_OBJ);
+
+                // create and return the session
+                if (isset($dbUser)) {
+                    // set the session
+                    session_cache_limiter(false);
+                    session_start();
+                    $_SESSION['uid'] = $dbUser->CustomerId;
+
+                    // return the user object
+                    print '{"user": ' . json_encode($dbUser) . '}';
+                }
+            }
+            catch (PDOException $e) {
+                // DB access error; do not create a session
+            }
+
+
             print 'user created';
         }
 
