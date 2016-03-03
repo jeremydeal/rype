@@ -16,7 +16,7 @@ app.factory('loginService', function($http, $location, $rootScope, sessionServic
 					sessionService.setUser(user);
 
 					// update service's current logged user
-					$rootScope.currentUserId = user.CustomerId;
+					$rootScope.currentUserId = "true";
 
 					$location.path('/dashboard');
 				}
@@ -64,7 +64,7 @@ app.factory('loginService', function($http, $location, $rootScope, sessionServic
 					sessionService.setUser(response.data.user);
 
 					// update service's current logged user
-					$rootScope.currentUserId = user.CustomerId;
+					$rootScope.currentUserId = "true";
 
 					$location.path('/dashboard');
 				}
