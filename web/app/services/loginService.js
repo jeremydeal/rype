@@ -11,13 +11,7 @@ app.factory('loginService', function($http, $location, sessionService) {
 
 				if (!!response.data.user) {
 					// if we received a user object, store basic user info
-					var user = response.data.user;
-
-					sessionService.set('uid', user.CustomerId);
-					sessionService.set('Username', user.Username);
-					sessionService.set('Email', user.Email);
-					sessionService.set('FirstName', user.FirstName);
-					sessionService.set('LastName', user.LastName);
+					sessionService.setUser(response.data.user);
 					$location.path('/dashboard');
 				}
 				else {
@@ -48,7 +42,22 @@ app.factory('loginService', function($http, $location, sessionService) {
 	};
 
 	$loginService.createUser = function(user, scope) {
-		return $http.post(baseUrl + 'create/', user);
+		$http.post(baseUrl + 'create/', user)
+			.then(function(response) {
+
+				// LOG IN AUTOMATICALLY
+				if (!!response.data.user) {
+					// if we received a user object, store basic user info
+					sessionService.setUser(response.data.user);
+
+					$location.path('/dashboard');
+				}
+				else {
+					// if no user object, return to the login page
+					scope.msg = 'user creation failed';
+				}
+			});
+
 	};
 
 	return $loginService;
