@@ -15,6 +15,7 @@ app.factory('loginService', function($http, $location, sessionService) {
 
 					sessionService.set('uid', user.CustomerId);
 					sessionService.set('Username', user.Username);
+					sessionService.set('Email', user.Email);
 					sessionService.set('FirstName', user.FirstName);
 					sessionService.set('LastName', user.LastName);
 					$location.path('/dashboard');
@@ -47,17 +48,7 @@ app.factory('loginService', function($http, $location, sessionService) {
 	};
 
 	$loginService.createUser = function(user, scope) {
-		var $promise = $http.post(baseUrl + 'create/', user);
-
-		$promise.then(function(response) {
-
-				// if user creation is successful, log in!
-				if (!!response.data.user) {
-					$loginService.login(response.data.user, scope);
-				}
-			}
-		)
-
+		return $http.post(baseUrl + 'create/', user);
 	};
 
 	return $loginService;
