@@ -16,21 +16,21 @@ app.factory('sessionService', ['$http', function($http){
 	};
 
 	$sessionService.setUser = function(user) {
-		sessionStorage.set('uid', user.CustomerId);
-		sessionStorage.set('Username', user.Username);
-		sessionStorage.set('Email', user.Email);
-		sessionStorage.set('FirstName', user.FirstName);
-		sessionStorage.set('LastName', user.LastName);
+		sessionStorage.setItem('uid', user.CustomerId);
+		sessionStorage.setItem('Username', user.Username);
+		sessionStorage.setItem('Email', user.Email);
+		sessionStorage.setItem('FirstName', user.FirstName);
+		sessionStorage.setItem('LastName', user.LastName);
 	};
 
 	$sessionService.getUser = function() {
 		var user = {};
 
-		user.CustomerId = sessionStorage.get('uid');
-		user.Username = sessionStorage.get('Username');
-		user.Email = sessionStorage.get('Email');
-		user.FirstName = sessionStorage.get('FirstName');
-		user.LastName = sessionStorage.get('LastName');
+		user.CustomerId = sessionStorage.getItem('uid');
+		user.Username = sessionStorage.getItem('Username');
+		user.Email = sessionStorage.getItem('Email');
+		user.FirstName = sessionStorage.getItem('FirstName');
+		user.LastName = sessionStorage.getItem('LastName');
 
 		return user;
 	};
