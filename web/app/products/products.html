@@ -4,7 +4,7 @@
     <div class="col-sm-8">
         <perfect-scrollbar class="scrollable" suppress-scroll-x="true" wheel-propagation="true" wheel-speed="3" min-scrollbar-length="20">
 
-            <h2>{{ product.Variety + ' (' + product.CommonName + ')' }}</h2>
+            <h2 ng-show="product.Variety">{{ product.Variety + ' (' + product.CommonName + ')' }}</h2>
             <img ng-src="../../src/images/{{ product.ImgGood }}" style="width: 300px;" />
 
             <p>{{ product.DescGeneral ? product.DescGeneral : "No data available" }}</p>
@@ -12,17 +12,17 @@
             <!-- TODO: table format -->
             <div class="col-sm-6">
                 <h3>Is it Ripe?</h3>
-                <p><strong>By Look</strong></p>
-                <p>{{ product.DescLook ? product.DescLook : "No data available" }}</p>
-                <p><strong>By Feel</strong></p>
-                <p>{{ product.DescFeel ? product.DescFeel : "No data available" }}</p>
-                <p><strong>By Smell</strong></p>
-                <p>{{ product.DescSmell ? product.DescSmell : "No data available" }}</p>
+                <p ng-show="product.DescLook"><strong>By Look</strong></p>
+                <p ng-show="product.DescLook">{{ product.DescLook }}</p>
+                <p ng-show="product.DescFeel"><strong>By Feel</strong></p>
+                <p ng-show="product.DescFeel">{{ product.DescFeel }}</p>
+                <p ng-show="product.DescSmell"><strong>By Smell</strong></p>
+                <p ng-show="product.DescSmell">{{ product.DescSmell }}</p>
             </div>
             <div class="col-sm-6">
                 <h3>Other Info</h3>
-                <p><strong>Season</strong></p>
-                <p>{{ (product.SeasonStart && product.SeasonEnd) ? (product.SeasonStart + " to " + product.SeasonEnd) : "" }}</p>
+                <p ng-show="product.SeasonStart && product.SeasonEnd"><strong>Season</strong></p>
+                <p ng-show="product.SeasonStart && product.SeasonEnd">{{ (product.SeasonStart + " to " + product.SeasonEnd) }}</p>
             </div>
 
         </perfect-scrollbar>
