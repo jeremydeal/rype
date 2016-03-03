@@ -16,7 +16,7 @@ app.factory('loginService', function($http, $location, sessionService) {
 					sessionService.setUser(user);
 
 					// update service's current logged user
-					$loginService.currentUserId = user.CustomerId;
+					$rootScope.currentUserId = user.CustomerId;
 
 					$location.path('/dashboard');
 				}
@@ -39,7 +39,7 @@ app.factory('loginService', function($http, $location, sessionService) {
 				if (!!response.data) {
 
 					// update service's current logged user
-					$loginService.currentUserId = "";
+					$rootScope.currentUserId = "";
 
 					$location.path('/login');
 				}
@@ -64,7 +64,7 @@ app.factory('loginService', function($http, $location, sessionService) {
 					sessionService.setUser(response.data.user);
 
 					// update service's current logged user
-					$loginService.currentUserId = user.CustomerId;
+					$rootScope.currentUserId = user.CustomerId;
 
 					$location.path('/dashboard');
 				}
