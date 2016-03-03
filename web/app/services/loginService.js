@@ -2,10 +2,11 @@
 
 app.factory('loginService', function($http, $location, sessionService) {
 	var $loginService = {};
+	var baseUrl = "../api/user/";
 
 	$loginService.login = function(data, scope) {
 
-		$http.post('../session/authenticate_user.php', data)
+		$http.post(baseUrl + "login/", data)
 			.then(function(response) {
 
 				var user = response.data;

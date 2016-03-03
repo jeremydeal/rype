@@ -7,7 +7,7 @@
             <h2 ng-show="product.Variety">{{ product.Variety + ' (' + product.CommonName + ')' }}</h2>
             <img ng-src="../../src/images/{{ product.ImgGood }}" style="width: 300px;" />
 
-            <p>{{ product.DescGeneral ? product.DescGeneral : "No data available" }}</p>
+            <p ng-show="product.DescGeneral">{{ product.DescGeneral }}</p>
 
             <!-- TODO: table format -->
             <div class="col-sm-6">

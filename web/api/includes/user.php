@@ -55,38 +55,49 @@ function getCurrentUser() {
 
 // POST /user/login/
 function login($user) {
-    // grab auth info from DB
-    $dbUser = null;
+    if ($user->Username && $user->Password) {
 
-    $sql = "SELECT *
-          FROM user
-          WHERE user.Email = :email";
-    try {
-        $db = getDB();
-        $stmt = $db->prepare($sql);
-        $stmt->bindParam("email", $user->Email);
-        $stmt->execute();
-        $dbUsers = $stmt->fetchAll(PDO::FETCH_OBJ);
-        $dbUser = $dbUsers[0];
-        $db = null;
+        // authenticate user in database
+        $sql = "SELECT CustomerId, Username, Password, FirstName, LastName
+                  FROM customer
+                  WHERE Username = :username";
+        try {
+            $db = getDB();
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam("username", $user->Username);
+            $stmt->execute();
+            $dbUser = $stmt->fetch(PDO::FETCH_OBJ);
+            $db = null;
 
-        // check auth info against DB values
-        if ($user != null && password_verify($user->Password, $dbUser->Password))
-        {
-            // successful login; generate session
-            session_start();
-            $_SESSION['UserId'] = $dbUser->UserId;
+            // create and return the session
+            if (isset($dbUser) && isset($dbUser->Password))
+            {
+                // we found a customer matching that username; authenticate the password
+                if ($user->Password == $dbUser->Password)
+                {
+//                session_start();
+//                $_SESSION['uid'] = $dbUser->CustomerId;
+                    header('Content-type:application/json;charset=utf-8');
+                    print json_encode($dbUser);
+                }
+            }
         }
-        else {
-            // failed login; return null user
-            $dbUser = null;
+        catch (PDOException $e) {
+            // DB access error; do not create a session
         }
     }
-    catch(PDOException $e) {
-        // leave $user null
-    }
 
-    echo '{"user": ' . json_encode($dbUser) . '}';
+//    // check auth info against DB values
+////    if (password_verify($user->Password, $dbUser->Password)) {
+//    if ($password == $dbUser->Password) {
+//        // successful login; generate session
+//        session_start();
+//        $_SESSION['uid'] = $dbUser->UserId;
+//        print $_SESSION['uid'];
+//    }
+
+
+//    echo '{"user": ' . json_encode($dbUser) . '}';
 }
 
 
