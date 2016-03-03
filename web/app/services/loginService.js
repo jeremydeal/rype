@@ -44,7 +44,7 @@ app.factory('loginService', function($http, $location, sessionService) {
 		//return (sessionService.get('uid') != null);
 		return $http.get(baseUrl + 'check/')
 			.then(function(response) {
-				return response.data.length > 0;
+				return !!response.data;
 			})
 	};
 
