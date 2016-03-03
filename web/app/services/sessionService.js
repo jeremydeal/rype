@@ -12,7 +12,6 @@ app.factory('sessionService', ['$http', function($http){
 	};
 
 	$sessionService.destroy = function(key){
-		//$http.get('../session/destroy_session.php');
 		return sessionStorage.removeItem(key);
 	};
 

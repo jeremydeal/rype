@@ -10,7 +10,7 @@
             <p ng-show="product.DescGeneral">{{ product.DescGeneral }}</p>
 
             <!-- TODO: table format -->
-            <div class="col-sm-6">
+            <div class="col-sm-6" ng-show="product.Variety">
                 <h3>Is it Ripe?</h3>
                 <p ng-show="product.DescLook"><strong>By Look</strong></p>
                 <p ng-show="product.DescLook">{{ product.DescLook }}</p>
@@ -19,7 +19,7 @@
                 <p ng-show="product.DescSmell"><strong>By Smell</strong></p>
                 <p ng-show="product.DescSmell">{{ product.DescSmell }}</p>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6" ng-show="product.Variety">
                 <h3>Other Info</h3>
                 <p ng-show="product.SeasonStart && product.SeasonEnd"><strong>Season</strong></p>
                 <p ng-show="product.SeasonStart && product.SeasonEnd">{{ (product.SeasonStart + " to " + product.SeasonEnd) }}</p>

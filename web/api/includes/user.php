@@ -75,8 +75,12 @@ function login($user) {
                 // we found a customer matching that username; authenticate the password
                 if ($user->Password == $dbUser->Password)
                 {
-//                session_start();
-//                $_SESSION['uid'] = $dbUser->CustomerId;
+                    // set the session
+                    session_cache_limiter(false);
+                    session_start();
+                    $_SESSION['uid'] = $dbUser->CustomerId;
+
+                    // return the user object
                     header('Content-type:application/json;charset=utf-8');
                     print json_encode($dbUser);
                 }

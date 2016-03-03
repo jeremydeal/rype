@@ -31,6 +31,9 @@ app.factory('loginService', function($http, $location, sessionService) {
 		sessionService.destroy('Username');
 		sessionService.destroy('FirstName');
 		sessionService.destroy('LastName');
+
+		$http.get(baseUrl + 'logout/');
+
 		$location.path('/login');
 	};
 
@@ -40,7 +43,7 @@ app.factory('loginService', function($http, $location, sessionService) {
 	};
 
 	$loginService.createUser = function(user, scope) {
-		var $promise = $http.post('../api/user/create/', user);
+		var $promise = $http.post(baseUrl + 'create/', user);
 
 		$promise.then(function(response) {
 
