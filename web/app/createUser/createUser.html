@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="email">Username</label>
+            <label class="control-label" for="email">Email</label>
             <div class="controls">
                 <input type="email" id="email" placeholder="Email" ng-model="user.Email" required>
                 <p ng-show="createForm.Email.$error.required && !createForm.Email.$pristine" class="alert-danger">Email required.</p>
@@ -43,6 +43,12 @@
                 <input type="submit" class="btn btn-primary" ng-disabled="createForm.$invalid" ng-click="createUser()" value="Submit" />
             </div>
         </div>
+        <div class="control-group">
+            <div class="controls">
+                <button type="button" class="btn btn-warning" ng-click="clearUserInfo()">Clear</button>
+            </div>
+        </div>
+
     </form>
 
 </div>

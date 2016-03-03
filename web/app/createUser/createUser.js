@@ -22,9 +22,9 @@ app.controller('createUserController',
 
 
             /////////////////////////////// HELPER METHODS //////////////////////////////////////////////////
-            function clearUserInfo() {
+            $scope.clearUserInfo = function() {
                 $scope.user = {};
-            }
+            };
 
 
         }]);
