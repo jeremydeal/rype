@@ -21,8 +21,8 @@ app.controller('dashboardController',
                 loginService.logout();
             };
 
-            $scope.isLogged = function() {
-                loginService.isLogged();
+            $scope.checkLoginStatus = function() {
+                loginService.checkLoginStatus();
             };
 
             // populate user object from JS session

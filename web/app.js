@@ -47,7 +47,7 @@ app.run(function($rootScope, $location, loginService){
     $rootScope.$on('$routeChangeStart', function(){
 
         // get an HTTP promise to check auth
-        var connected = loginService.isLogged();
+        var connected = loginService.checkLoginStatus();
 
         // if the route requires permission...
         if( routePermissions.indexOf($location.path()) != -1)

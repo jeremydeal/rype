@@ -10,8 +10,14 @@ app.factory('loginService', function($http, $location, sessionService) {
 			.then(function(response) {
 
 				if (!!response.data.user) {
+
 					// if we received a user object, store basic user info
-					sessionService.setUser(response.data.user);
+					var user = response.data.user;
+					sessionService.setUser(user);
+
+					// update service's current logged user
+					$loginService.currentUserId = user.CustomerId;
+
 					$location.path('/dashboard');
 				}
 				else {
@@ -31,15 +37,20 @@ app.factory('loginService', function($http, $location, sessionService) {
 		$http.get(baseUrl + 'logout/')
 			.then(function(response) {
 				if (!!response.data) {
+
+					// update service's current logged user
+					$loginService.currentUserId = "";
+
 					$location.path('/login');
 				}
 			});
 	};
 
-	$loginService.isLogged = function() {
-		//return (sessionService.get('uid') != null);
+	$loginService.checkLoginStatus = function() {
 		return $http.get(baseUrl + 'check/');
 	};
+
+	$loginService.currentUserId = "";
 
 	$loginService.createUser = function(user, scope) {
 		$http.post(baseUrl + 'create/', user)
@@ -47,8 +58,13 @@ app.factory('loginService', function($http, $location, sessionService) {
 
 				// LOG IN AUTOMATICALLY
 				if (!!response.data.user) {
+
 					// if we received a user object, store basic user info
+					var user = response.data.user;
 					sessionService.setUser(response.data.user);
+
+					// update service's current logged user
+					$loginService.currentUserId = user.CustomerId;
 
 					$location.path('/dashboard');
 				}
