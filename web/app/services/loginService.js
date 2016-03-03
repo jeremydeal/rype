@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('loginService', function($http, $location, sessionService) {
+app.factory('loginService', function($http, $location, $rootScope, sessionService) {
 	var $loginService = {};
 	var baseUrl = "../api/user/";
 
