@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="src/main.css" />
 </head>
 
-<body class="container-fluid" ng-cloak>     <!-- NOTE: ng-cloak prevents the flicker on data load -->
+<body class="container-fluid">
 
     <div class="navbar">
         <ul class="nav nav-pills">
@@ -39,7 +39,7 @@
         </ul>
     </div>
 
-    <div ng-view></div>
+    <div ng-view ng-cloak></div>  <!-- NOTE: ng-cloak prevents the flicker on data load -->
 
     <!-- APPLICATION DEPENDENCY SCRIPTS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
