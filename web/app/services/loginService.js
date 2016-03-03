@@ -34,7 +34,7 @@ app.factory('loginService', function($http, $location, sessionService) {
 
 		$http.get(baseUrl + 'logout/')
 			.then(function(response) {
-				if (response.data.length > 0) {
+				if (!!response.data) {
 					$location.path('/login');
 				}
 			});
