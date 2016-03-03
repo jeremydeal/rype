@@ -128,28 +128,31 @@ function logout() {
 // POST /api/user/create/
 function createUser($user) {
     // hash the pass
-//    $hashedPass = password_hash($user->Password, PASSWORD_DEFAULT);
+    $hashedPass = password_hash($user->Password, PASSWORD_DEFAULT);
 
     // store the new user in the DB
     $sql = "INSERT INTO customer (
                       Username,
                       Password,
                       FirstName,
-                      LastName
+                      LastName,
+                      Email
                     ) VALUES (
                       :username,
                       :password,
                       :firstName,
-                      :lastName
+                      :lastName,
+                      :email
                     )";
 
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindParam("username", $user->Username);
-        $stmt->bindParam("password", $user->Password);
+        $stmt->bindParam("password", $hashedPass);
         $stmt->bindParam("firstName", $user->FirstName);
         $stmt->bindParam("lastName", $user->LastName);
+        $stmt->bindParam("email", $user->Email);
 
         // if INSERT succeeds, notify the front end
         if ($stmt->execute() && $stmt->rowCount() > 0) {
