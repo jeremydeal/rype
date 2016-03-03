@@ -4,14 +4,14 @@
         <div class="control-group">
             <label class="control-label" for="Username">Username</label>
             <div class="controls">
-                <input type="text" id="Username" placeholder="Username" ng-model="user.Username" required />
+                <input type="text" id="Username" name="Username" placeholder="Username" ng-model="user.Username" required />
                 <p ng-show="loginForm.Username.$error.required && !loginForm.Username.$pristine" class="alert-danger">Username required.</p>
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="Password">Password</label>
             <div class="controls">
-                <input type="password" id="Password" placeholder="Password" ng-model="user.Password" required />
+                <input type="password" id="Password" name="Password" placeholder="Password" ng-model="user.Password" required />
                 <p ng-show="loginForm.Password.$error.required && !loginForm.Password.$pristine" class="alert-danger">Password required.</p>
             </div>
         </div>
