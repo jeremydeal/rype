@@ -9,7 +9,7 @@
 
 
         // get all products
-        storesService.getSotres = function () {
+        storesService.getStores = function () {
             return $http.get(baseUrl);
         };
 
