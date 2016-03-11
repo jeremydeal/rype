@@ -1,39 +1,43 @@
-'use strict';
+(function() {
 
-app.controller('dashboardController',
-    ['$scope', 'loginService', 'sessionService',
-        function($scope, loginService, sessionService) {
+    'use strict';
 
-            // scope variables for login
-            $scope.user = {};
+    app.controller('dashboardController',
+        ['$scope', 'loginService', 'sessionService',
+            function ($scope, loginService, sessionService) {
 
-            dataInit();
+                // scope variables for login
+                $scope.user = {};
 
-
-            /////////////////////////////// DATA INITIALIZATION ////////////////////////////////////////////
-            function dataInit() {
-                populateUser();
-            }
+                dataInit();
 
 
-            /////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////////
-            $scope.logout = function() {
-                loginService.logout();
-            };
-
-            $scope.checkLoginStatus = function() {
-                loginService.checkLoginStatus();
-            };
-
-            // populate user object from JS session
-            function populateUser() {
-                $scope.user.Username = sessionService.get("Username");
-                $scope.user.FirstName = sessionService.get("FirstName");
-                $scope.user.LastName = sessionService.get("LastName");
-            }
+                /////////////////////////////// DATA INITIALIZATION ////////////////////////////////////////////
+                function dataInit() {
+                    populateUser();
+                }
 
 
-            /////////////////////////////// HELPER METHODS //////////////////////////////////////////////////
+                /////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////////
+                $scope.logout = function () {
+                    loginService.logout();
+                };
+
+                $scope.checkLoginStatus = function () {
+                    loginService.checkLoginStatus();
+                };
+
+                // populate user object from JS session
+                function populateUser() {
+                    $scope.user.Username = sessionService.get("Username");
+                    $scope.user.FirstName = sessionService.get("FirstName");
+                    $scope.user.LastName = sessionService.get("LastName");
+                }
 
 
-        }]);
+                /////////////////////////////// HELPER METHODS //////////////////////////////////////////////////
+
+
+            }]);
+
+})();

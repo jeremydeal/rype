@@ -1,7 +1,11 @@
-'use strict';
+(function() {
 
-app.controller('mainController',
-    ['$scope', '$rootScope',
-        function($scope, $rootScope) {
+    'use strict';
 
-        }]);
+    app.controller('mainController',
+        ['$scope', '$rootScope',
+            function ($scope, $rootScope) {
+
+            }]);
+
+})();

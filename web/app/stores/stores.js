@@ -1,8 +1,12 @@
-'use strict';
+(function() {
 
-app.controller('storesController',
-    ['$scope',
-        function($scope) {
+    'use strict';
+
+    app.controller('storesController',
+        ['$scope',
+            function ($scope) {
 
 
-        }]);
+            }]);
+
+})();

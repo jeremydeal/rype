@@ -1,28 +1,32 @@
-'use strict';
+(function() {
 
-app.controller('homeController',
-    ['$scope', 'sessionService',
-        function($scope, sessionService) {
+    'use strict';
 
-            // scope variables for login
-            $scope.user = {};
+    app.controller('homeController',
+        ['$scope', 'sessionService',
+            function ($scope, sessionService) {
 
-            dataInit();
+                // scope variables for login
+                $scope.user = {};
 
-
-            /////////////////////////////// DATA INITIALIZATION ////////////////////////////////////////////
-            function dataInit() {
-                populateUser();
-            }
+                dataInit();
 
 
-            /////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////////
-            // populate user object from JS session
-            function populateUser() {
-                $scope.user.Username = sessionService.get("Username");
-                $scope.user.FirstName = sessionService.get("FirstName");
-                $scope.user.LastName = sessionService.get("LastName");
-            }
+                /////////////////////////////// DATA INITIALIZATION ////////////////////////////////////////////
+                function dataInit() {
+                    populateUser();
+                }
 
 
-        }]);
+                /////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////////
+                // populate user object from JS session
+                function populateUser() {
+                    $scope.user.Username = sessionService.get("Username");
+                    $scope.user.FirstName = sessionService.get("FirstName");
+                    $scope.user.LastName = sessionService.get("LastName");
+                }
+
+
+            }]);
+
+})();

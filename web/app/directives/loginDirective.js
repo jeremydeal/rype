@@ -1,5 +1,12 @@
-app.directive('loginDirective', function() {
-    return {
-        templateUrl: ""
-    }
-});
+(function() {
+
+    'use strict';
+
+
+    app.directive('loginDirective', function () {
+        return {
+            templateUrl: ""
+        }
+    });
+
+})();

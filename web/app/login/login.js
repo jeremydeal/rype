@@ -1,33 +1,38 @@
-'use strict';
+(function() {
 
-app.controller('loginController',
-    ['$scope', '$location', 'loginService',
-        function($scope, $location, loginService) {
+    'use strict';
 
-            // scope variables for login
-            $scope.user = {};
-            $scope.user.Username = "";
-            $scope.user.Password = "";
+    app.controller('loginController',
+        ['$scope', '$location', 'loginService',
+            function ($scope, $location, loginService) {
 
-            dataInit();
+                // scope variables for login
+                $scope.user = {};
+                $scope.user.Username = "";
+                $scope.user.Password = "";
 
-
-            /////////////////////////////// DATA INITIALIZATION ////////////////////////////////////////////
-            function dataInit() {}
+                dataInit();
 
 
-            /////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////////
-            $scope.login = function(data){
-                loginService.login(data, $scope);
-            };
+                /////////////////////////////// DATA INITIALIZATION ////////////////////////////////////////////
+                function dataInit() {
+                }
 
 
-            /////////////////////////////// HELPER METHODS //////////////////////////////////////////////////
+                /////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////////
+                $scope.login = function (data) {
+                    loginService.login(data, $scope);
+                };
 
 
-            /////////////////////////////// VIEW METHODS ////////////////////////////////////////////////////
-            $scope.createUser = function() {
-                $location.path('/createUser');        // TODO: navigate to somewhere
-            }
+                /////////////////////////////// HELPER METHODS //////////////////////////////////////////////////
 
-        }]);
+
+                /////////////////////////////// VIEW METHODS ////////////////////////////////////////////////////
+                $scope.createUser = function () {
+                    $location.path('/createUser');        // TODO: navigate to somewhere
+                }
+
+            }]);
+
+})();

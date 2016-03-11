@@ -1,78 +1,82 @@
-'use strict';
+(function() {
 
-app.factory('loginService', function($http, $location, $rootScope, sessionService) {
-	var $loginService = {};
-	var baseUrl = "../api/user/";
+	'use strict';
 
-	$loginService.login = function(data, scope) {
+	app.factory('loginService', function ($http, $location, $rootScope, sessionService) {
+		var $loginService = {};
+		var baseUrl = "../api/user/";
 
-		$http.post(baseUrl + "login/", data)
-			.then(function(response) {
+		$loginService.login = function (data, scope) {
 
-				if (!!response.data.user) {
+			$http.post(baseUrl + "login/", data)
+				.then(function (response) {
 
-					// if we received a user object, store basic user info
-					var user = response.data.user;
-					sessionService.setUser(user);
+					if (!!response.data.user) {
 
-					// update service's current logged user
-					$rootScope.currentUserId = "true";
+						// if we received a user object, store basic user info
+						var user = response.data.user;
+						sessionService.setUser(user);
 
-					$location.path('/dashboard');
-				}
-				else {
-					// if no user object, return to the login page
-					scope.msg = 'incorrect information';
-					$location.path('/login');
-				}
-			});
-	};
+						// update service's current logged user
+						$rootScope.currentUserId = "true";
 
-	$loginService.logout = function() {
-		sessionService.destroyUser();
+						$location.path('/dashboard');
+					}
+					else {
+						// if no user object, return to the login page
+						scope.msg = 'incorrect information';
+						$location.path('/login');
+					}
+				});
+		};
 
-		$http.get(baseUrl + 'logout/')
-			.then(function(response) {
-				if (!!response.data) {
+		$loginService.logout = function () {
+			sessionService.destroyUser();
 
-					// update service's current logged user
-					$rootScope.currentUserId = "";
+			$http.get(baseUrl + 'logout/')
+				.then(function (response) {
+					if (!!response.data) {
 
-					$location.path('/login');
-				}
-			});
-	};
+						// update service's current logged user
+						$rootScope.currentUserId = "";
 
-	$loginService.checkLoginStatus = function() {
-		return $http.get(baseUrl + 'check/');
-	};
+						$location.path('/login');
+					}
+				});
+		};
 
-	$loginService.currentUserId = "";
+		$loginService.checkLoginStatus = function () {
+			return $http.get(baseUrl + 'check/');
+		};
 
-	$loginService.createUser = function(user, scope) {
-		$http.post(baseUrl + 'create/', user)
-			.then(function(response) {
+		$loginService.currentUserId = "";
 
-				// LOG IN AUTOMATICALLY
-				if (!!response.data.user) {
+		$loginService.createUser = function (user, scope) {
+			$http.post(baseUrl + 'create/', user)
+				.then(function (response) {
 
-					// if we received a user object, store basic user info
-					var user = response.data.user;
-					sessionService.setUser(response.data.user);
+					// LOG IN AUTOMATICALLY
+					if (!!response.data.user) {
 
-					// update service's current logged user
-					$rootScope.currentUserId = "true";
+						// if we received a user object, store basic user info
+						var user = response.data.user;
+						sessionService.setUser(response.data.user);
 
-					$location.path('/dashboard');
-				}
-				else {
-					// if no user object, return to the login page
-					scope.msg = 'user creation failed';
-				}
-			});
+						// update service's current logged user
+						$rootScope.currentUserId = "true";
 
-	};
+						$location.path('/dashboard');
+					}
+					else {
+						// if no user object, return to the login page
+						scope.msg = 'user creation failed';
+					}
+				});
 
-	return $loginService;
+		};
 
-});
+		return $loginService;
+
+	});
+
+})();

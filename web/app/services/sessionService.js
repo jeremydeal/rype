@@ -1,49 +1,53 @@
-'use strict';
+(function() {
 
-app.factory('sessionService', ['$http', function($http){
-	var $sessionService = {};
+	'use strict';
 
-	$sessionService.set = function(key, value) {
-		return sessionStorage.setItem(key, value);
-	};
+	app.factory('sessionService', ['$http', function ($http) {
+		var $sessionService = {};
 
-	$sessionService.get = function(key) {
-		return sessionStorage.getItem(key);
-	};
+		$sessionService.set = function (key, value) {
+			return sessionStorage.setItem(key, value);
+		};
 
-	$sessionService.destroy = function(key) {
-		return sessionStorage.removeItem(key);
-	};
+		$sessionService.get = function (key) {
+			return sessionStorage.getItem(key);
+		};
 
-	$sessionService.setUser = function(user) {
-		sessionStorage.setItem('uid', user.CustomerId);
-		sessionStorage.setItem('Username', user.Username);
-		sessionStorage.setItem('Email', user.Email);
-		sessionStorage.setItem('FirstName', user.FirstName);
-		sessionStorage.setItem('LastName', user.LastName);
-	};
+		$sessionService.destroy = function (key) {
+			return sessionStorage.removeItem(key);
+		};
 
-	$sessionService.getUser = function() {
-		var user = {};
+		$sessionService.setUser = function (user) {
+			sessionStorage.setItem('uid', user.CustomerId);
+			sessionStorage.setItem('Username', user.Username);
+			sessionStorage.setItem('Email', user.Email);
+			sessionStorage.setItem('FirstName', user.FirstName);
+			sessionStorage.setItem('LastName', user.LastName);
+		};
 
-		user.CustomerId = sessionStorage.getItem('uid');
-		user.Username = sessionStorage.getItem('Username');
-		user.Email = sessionStorage.getItem('Email');
-		user.FirstName = sessionStorage.getItem('FirstName');
-		user.LastName = sessionStorage.getItem('LastName');
+		$sessionService.getUser = function () {
+			var user = {};
 
-		return user;
-	};
+			user.CustomerId = sessionStorage.getItem('uid');
+			user.Username = sessionStorage.getItem('Username');
+			user.Email = sessionStorage.getItem('Email');
+			user.FirstName = sessionStorage.getItem('FirstName');
+			user.LastName = sessionStorage.getItem('LastName');
 
-
-	$sessionService.destroyUser = function() {
-		sessionStorage.removeItem('uid');
-		sessionStorage.removeItem('Username');
-		sessionStorage.removeItem('Email');
-		sessionStorage.removeItem('FirstName');
-		sessionStorage.removeItem('LastName');
-	};
+			return user;
+		};
 
 
-	return $sessionService;
-}]);
+		$sessionService.destroyUser = function () {
+			sessionStorage.removeItem('uid');
+			sessionStorage.removeItem('Username');
+			sessionStorage.removeItem('Email');
+			sessionStorage.removeItem('FirstName');
+			sessionStorage.removeItem('LastName');
+		};
+
+
+		return $sessionService;
+	}]);
+
+})();

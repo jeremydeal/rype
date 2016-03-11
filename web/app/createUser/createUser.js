@@ -1,30 +1,34 @@
-'use strict';
+(function() {
 
-app.controller('createUserController',
-    ['$scope', '$location', 'loginService',
-        function($scope, $location, loginService) {
+    'use strict';
 
-            $scope.user = {};
+    app.controller('createUserController',
+        ['$scope', '$location', 'loginService',
+            function ($scope, $location, loginService) {
 
-            dataInit();
-
-
-            /////////////////////////////// DATA INITIALIZATION ////////////////////////////////////////////
-            function dataInit() {
-
-            }
-
-
-            /////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////////
-            $scope.createUser = function() {
-                loginService.createUser($scope.user, $scope);
-            };
-
-
-            /////////////////////////////// HELPER METHODS //////////////////////////////////////////////////
-            $scope.clearUserInfo = function() {
                 $scope.user = {};
-            };
+
+                dataInit();
 
 
-        }]);
+                /////////////////////////////// DATA INITIALIZATION ////////////////////////////////////////////
+                function dataInit() {
+
+                }
+
+
+                /////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////////
+                $scope.createUser = function () {
+                    loginService.createUser($scope.user, $scope);
+                };
+
+
+                /////////////////////////////// HELPER METHODS //////////////////////////////////////////////////
+                $scope.clearUserInfo = function () {
+                    $scope.user = {};
+                };
+
+
+            }]);
+
+})();
