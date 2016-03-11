@@ -1,74 +1,83 @@
-'use strict';
+(function() {
 
-app.controller('productsController',
-    ['$scope', 'productsService', 'prettyPrintService',
-        function($scope, productsService, prettyPrintService) {
+    'use strict';
 
-            // CONTROLLER GLOBALS
-            $scope.products = {};
-            $scope.product = {};
-            $scope.productTypes = {};
-            $scope.productClasses = {};
+    app.controller('productsController',
+        ['$scope', 'productsService', 'prettyPrintService',
+            function ($scope, productsService, prettyPrintService) {
 
-            // SORT AND FILTER VARS
-            $scope.search = {};
-            $scope.search.query = "";
-            $scope.search.type = "";
-            $scope.search.class = "";
-            $scope.search.inSeason = false;
+                // CONTROLLER GLOBALS
+                $scope.products = {};
+                $scope.product = {};
+                $scope.productTypes = {};
+                $scope.productClasses = {};
 
-            // DATA INIT
-            dataInit();
+                // SORT AND FILTER VARS
+                $scope.search = {};
+                $scope.search.query = "";
+                $scope.search.type = "";
+                $scope.search.class = "";
+                $scope.search.inSeason = false;
 
-
-            ///////////////////////////////////// DATA INIT /////////////////////////////////////////////////////
-            function dataInit() {
-                getProducts();
-                getProductById(2);
-                getProductTypes();
-                getProductClasses();
-            }
+                // DATA INIT
+                dataInit();
 
 
-            /////////////////////////////////////// HELPER FUNCTIONS /////////////////////////////////////////////
-            // PRETTY PRINT
-            $scope.printDate = function(date) {
-                return prettyPrintService.printDate(date);
-            };
-            $scope.printYesOrNo = function(bit) {
-                return prettyPrintService.printYesOrNo(bit);
-            };
+                ///////////////////////////////////// DATA INIT /////////////////////////////////////////////////////
+                function dataInit() {
+                    getProducts();
+                    getProductById(2);
+                    getProductTypes();
+                    getProductClasses();
+                }
 
 
-            ///////////////////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////
-            function getProducts() {
-                productsService.getProducts()
-                    .success(function(data) {
-                        $scope.products = data.products;
-                    })
-            }
-            function getProductById(id) {
-                productsService.getProductById(id)
-                    .success(function(data) {
-                        $scope.product = data.product;
-                    })
-            }
-            function getProductTypes() {
-                productsService.getProductTypes()
-                    .success(function(data) {
-                        $scope.productTypes = data.types;
-                    })
-            }
-            function getProductClasses() {
-                productsService.getProductClasses()
-                    .success(function(data) {
-                        $scope.productClasses = data.classes;
-                    })
-            }
+                /////////////////////////////////////// HELPER FUNCTIONS /////////////////////////////////////////////
+                // PRETTY PRINT
+                $scope.printDate = function (date) {
+                    return prettyPrintService.printDate(date);
+                };
+                $scope.printYesOrNo = function (bit) {
+                    return prettyPrintService.printYesOrNo(bit);
+                };
 
 
-            ///////////////////////////////////////////// USER DATA CALLS /////////////////////////////////////////////
-            $scope.getProduct = function(id) { getProductById(id); };
+                ///////////////////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////
+                function getProducts() {
+                    productsService.getProducts()
+                        .success(function (data) {
+                            $scope.products = data.products;
+                        })
+                }
+
+                function getProductById(id) {
+                    productsService.getProductById(id)
+                        .success(function (data) {
+                            $scope.product = data.product;
+                        })
+                }
+
+                function getProductTypes() {
+                    productsService.getProductTypes()
+                        .success(function (data) {
+                            $scope.productTypes = data.types;
+                        })
+                }
+
+                function getProductClasses() {
+                    productsService.getProductClasses()
+                        .success(function (data) {
+                            $scope.productClasses = data.classes;
+                        })
+                }
 
 
-        }]);
+                ///////////////////////////////////////////// USER DATA CALLS /////////////////////////////////////////////
+                $scope.getProduct = function (id) {
+                    getProductById(id);
+                };
+
+
+            }]);
+
+})()
