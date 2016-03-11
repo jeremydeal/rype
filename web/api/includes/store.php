@@ -16,26 +16,25 @@ function getStores()
     }
 }
 
-//// GET /api/produce/byId/1
-//function getProduceById($produceId)
-//{
-//    $sql = "SELECT p.*, pt.*
-//              FROM produce AS p
-//                JOIN produceType AS pt ON p.produceTypeID = pt.produceTypeID
-//                WHERE p.produceId = :produceId";
-//    try {
-//        $db = getDB();
-//        $stmt = $db->prepare($sql);
-//        $stmt->bindParam("produceId", $produceId);
-//        $stmt->execute();
-//        $product = $stmt->fetch(PDO::FETCH_OBJ);
-//        $db = null;
-//        echo '{"product": ' . json_encode($product) . '}';
-//    } catch (PDOException $e) {
-//        echo '{"error: { "text": ' . $e->getMessage() . '} }';
-//    }
-//}
-//
+// GET /api/store/byId/1
+function getStoreById($storeId)
+{
+    $sql = "SELECT s.*
+              FROM store AS s
+                WHERE s.storeId= :storeId";
+    try {
+        $db = getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("storeId", $storeId);
+        $stmt->execute();
+        $store = $stmt->fetch(PDO::FETCH_OBJ);
+        $db = null;
+        echo '{"product": ' . json_encode($store) . '}';
+    } catch (PDOException $e) {
+        echo '{"error: { "text": ' . $e->getMessage() . '} }';
+    }
+}
+
 //// GET /api/produce/byType/1
 //function getProduceByType($typeId)
 //{

@@ -42,6 +42,7 @@ $app->group('/produceClass/', function() use ($app) {
 // STORE ROUTES
 $app->group('/store/', function() use ($app) {
     $app->get('', 'getStores');
+    $app->get('byId/:storeId', 'getStoreById');
 });
 
 
