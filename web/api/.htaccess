@@ -1,12 +1,12 @@
-RewriteEngine On
+RewriteEngine   On
+RewriteBase     /
+RewriteCond     %{REQUEST_URI} !^(/index\.php|/img|/js|/css|/robots\.txt|/favicon\.ico)
+RewriteCond     %{REQUEST_FILENAME} !-f
+RewriteCond     %{REQUEST_FILENAME} !-d
+RewriteRule     ./index.html [L]
 
-# Don't rewrite files or directories
-RewriteCond %{REQUEST_FILENAME} -f [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^ - [L]
 
-# Rewrite everything else to index.html to allow html5 state links
-RewriteRule ^ index.php [L]
+# RewriteEngine On
 
 # RewriteCond %{REQUEST_FILENAME} !-f
 # RewriteRule ^ index.php [QSA,L]
