@@ -7,7 +7,7 @@ var app = angular.module('myApp', [
     'slick'
 ]);
 
-app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+app.config(['$routeProvider', function($routeProvider) {
 
     // ROUTING
     $routeProvider
@@ -43,10 +43,6 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
         .otherwise({
             redirectTo: '/home'
         });
-
-
-    // gets rid of those pesky hash tags in the URLs
-    $locationProvider.html5Mode(true);
 
 }]);
 
