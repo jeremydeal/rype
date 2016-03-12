@@ -7,39 +7,51 @@ var app = angular.module('myApp', [
     'slick'
 ]);
 
-// ROUTING
-app.config(['$routeProvider', function($routeProvider) {
-    // user pages
-    $routeProvider.when('/login', {
-        templateUrl: "app/login/login.html",
-        controller: 'loginController'
-    });
-    $routeProvider.when('/dashboard', {
-        templateUrl: "app/dashboard/dashboard.html",
-        controller: 'dashboardController'
-    });
-    $routeProvider.when('/createUser', {
-        templateUrl: "app/createUser/createUser.html",
-        controller: 'createUserController'
-    });
+app.config(['$routeProvider', '$locationProvider', function($routeProvider) {
 
-    // content pages
-    $routeProvider.when('/home', {
-        templateUrl: "app/home/home.html",
-        controller: 'homeController'
-    });
-    $routeProvider.when('/products', {
-        templateUrl: 'app/products/products.html',
-        controller: 'productsController'
-    });
-    $routeProvider.when('/stores', {
-        templateUrl: 'app/stores/stores.html',
-        controller: 'storesController'
-    });
+    // ROUTING
+    $routeProvider
 
-    $routeProvider.otherwise({redirectTo: '/home'});
+        // user pages
+        .when('/login', {
+            templateUrl: "app/login/login.html",
+            controller: 'loginController'
+        })
+        .when('/dashboard', {
+            templateUrl: "app/dashboard/dashboard.html",
+            controller: 'dashboardController'
+        })
+        .when('/createUser', {
+            templateUrl: "app/createUser/createUser.html",
+            controller: 'createUserController'
+        })
+
+        // content pages
+        .when('/home', {
+            templateUrl: "app/home/home.html",
+            controller: 'homeController'
+        })
+        .when('/products', {
+            templateUrl: 'app/products/products.html',
+            controller: 'productsController'
+        })
+        .when('/stores', {
+            templateUrl: 'app/stores/stores.html',
+            controller: 'storesController'
+        })
+
+        .otherwise({
+            redirectTo: '/home'
+        });
+
+
+    // gets rid of those pesky hash tags in the URLs
+    $locationProvider.html5Mode(true);
+
 }]);
 
+
+// UPON ROUTING
 // deny permission on certain pages if not logged in
 app.run(function($rootScope, $location, loginService){
     // routes that require login
