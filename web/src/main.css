@@ -47,3 +47,9 @@ li a:hover {
     padding: 20px;
 }
 
+/* MAP */
+#map {
+    height: 400px;
+    width: 500px;
+    background-color: #CCCCCC;
+}
