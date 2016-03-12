@@ -6,6 +6,10 @@
 		var $loginService = {};
 		var baseUrl = "../api/user/";
 
+
+		$loginService.currentUserId = "";
+
+		// create a server-side session for the user and store the user info in a client-side session
 		$loginService.login = function (data, scope) {
 
 			$http.post(baseUrl + "login/", data)
@@ -30,6 +34,7 @@
 				});
 		};
 
+		// destroy client and server-side user sessions
 		$loginService.logout = function () {
 			sessionService.destroyUser();
 
@@ -45,12 +50,14 @@
 				});
 		};
 
+		// check for server-side user session;
+		// return a string if true, nothing if false
 		$loginService.checkLoginStatus = function () {
 			return $http.get(baseUrl + 'check/');
 		};
 
-		$loginService.currentUserId = "";
-
+		// create user in DB;
+		// if successful, log in automatically
 		$loginService.createUser = function (user, scope) {
 			$http.post(baseUrl + 'create/', user)
 				.then(function (response) {
