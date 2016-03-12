@@ -1,9 +1,22 @@
 <div class="container">
 
-<table>
-    <tr ng-repeat="s in stores">
-        <td>{{ s.StoreName }}</td>
-    </tr>
-</table>
+    <perfect-scrollbar class="scrollable" suppress-scroll-x="true" wheel-propagation="true" wheel-speed="3" min-scrollbar-length="20">
+
+        <table class="table">
+            <tr ng-repeat="s in stores">
+                <td>
+                    <p><strong>{{ s.StoreName }}</strong></p>
+                    <p>{{ s.Address }}</p>
+                    <p>{{ s.City + ", " + s.State + " " + s.Zip }}</p>
+                    <!--<button type="button" class="btn btn-primary"-->
+                            <!--ng-show="!isUserLoggedIn() || !isSelectedStore(s.StoreId)"-->
+                            <!--ng-click="setStore(s.StoreId)">-->
+                        <!--Set Store-->
+                    <!--</button>-->
+                </td>
+            </tr>
+        </table>
+
+    </perfect-scrollbar>
 
 </div>
