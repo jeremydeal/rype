@@ -7,7 +7,7 @@ var app = angular.module('myApp', [
     'slick'
 ]);
 
-app.config(['$routeProvider', '$locationProvider', function($routeProvider) {
+app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
     // ROUTING
     $routeProvider
