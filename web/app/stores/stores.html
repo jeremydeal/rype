@@ -5,10 +5,7 @@
         <table class="table">
             <tr ng-repeat="s in stores">
                 <td><strong>{{ s.StoreName }}</strong></td>
-                <td>
-                    {{ s.Address }}
-                    {{ s.City + ", " + s.State + " " + s.Zip }}
-                </td>
+                <td>{{ s.Address }}<br />{{ s.City + ", " + s.State + " " + s.Zip }}</td>
                 <!--<td ng-show="!isUserLoggedIn() || !isSelectedStore(s.StoreId)">-->
                     <!--<button type="button" class="btn btn-primary"-->
                         <!--ng-click="setUserStore(s.StoreId)">-->
