@@ -4,16 +4,15 @@
 
         <table class="table">
             <tr ng-repeat="s in stores">
-                <td>
-                    <p><strong>{{ s.StoreName }}</strong></p>
-                    <p>{{ s.Address }}</p>
-                    <p>{{ s.City + ", " + s.State + " " + s.Zip }}</p>
+                <td><strong>{{ s.StoreName }}</strong></td>
+                <td>{{ s.Address }}</td>
+                <td>{{ s.City + ", " + s.State + " " + s.Zip }}</td>
+                <!--<td ng-show="!isUserLoggedIn() || !isSelectedStore(s.StoreId)">-->
                     <!--<button type="button" class="btn btn-primary"-->
-                            <!--ng-show="!isUserLoggedIn() || !isSelectedStore(s.StoreId)"-->
-                            <!--ng-click="setStore(s.StoreId)">-->
+                        <!--ng-click="setStore(s.StoreId)">-->
                         <!--Set Store-->
                     <!--</button>-->
-                </td>
+                <!--</td>-->
             </tr>
         </table>
 
