@@ -33,6 +33,7 @@
 			user.Email = sessionStorage.getItem('Email');
 			user.FirstName = sessionStorage.getItem('FirstName');
 			user.LastName = sessionStorage.getItem('LastName');
+			user.PreferredStore = sessionStorage.getItem('PreferredStore');
 
 			return user;
 		};
@@ -48,6 +49,7 @@
 			sessionStorage.removeItem('Email');
 			sessionStorage.removeItem('FirstName');
 			sessionStorage.removeItem('LastName');
+			sessionStorage.removeItem('PreferredStore');
 		};
 
 
