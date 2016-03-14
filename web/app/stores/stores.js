@@ -54,23 +54,30 @@
                         title: curStore.StoreName
                     });
                     // add StoreId as metedata so we can respond to user click events
-                    marker.metadata = { StoreId: curStore.StoreId };
+                    marker.metadata = { obj: curStore };
                     // fill info box that appears when user clicks a marker
-                    marker.content = '<h2>' + curStore.StoreName + '</h2>' +
-                        '<div class="infoWindowContent">' +
+                    marker.content = '<div class="infoWindowContent">' +
                         curStore.Address + " " + curStore.City + ", " +
                         curStore.State + " " + curStore.Zip +
                         '</div>';
 
                     // make info box appear on user click
                     google.maps.event.addListener(marker, 'click', function() {
-                        infoWindow.setContent(marker.content);
-                        infoWindow.open($scope.map, marker)
-
-                        $scope.store = curStore;
+                        $scope.openInfoWindow(null, marker);
+                        $scope.$digest();
                     });
 
                     $scope.markers.push(marker);
+                };
+
+                // onClick() event handler for user selecting a store within the map
+                $scope.openInfoWindow = function(e, selectedMarker) {
+                    e && e.preventDefault();
+
+                    infoWindow.setContent('<h2>' + selectedMarker.title + '</h2>' + selectedMarker.content);
+                    infoWindow.open($scope.map, selectedMarker);
+
+                    $scope.store = selectedMarker.metadata.obj;
                 };
 
 

@@ -5,7 +5,7 @@
     <perfect-scrollbar class="scrollable" suppress-scroll-x="true" wheel-propagation="true" wheel-speed="3" min-scrollbar-length="20">
 
         <table class="table">
-            <tr ng-repeat="s in stores" ng-class="{true: 'selectedStore', false: ''}[s.StoreId === store.StoreId]">
+            <tr ng-repeat="s in stores" ng-class="{true: 'selectedStore'}[s.StoreId === store.StoreId]">
                 <td><strong>{{ s.StoreName }}</strong></td>
                 <td>{{ s.Address }}<br />{{ s.City + ", " + s.State + " " + s.Zip }}</td>
                 <td>{{ "(" + s.Latitude + ", " + s.Longitude + ")" }}</td>
