@@ -102,7 +102,7 @@
                     $scope.markers.push(marker);
                 };
 
-                createMarkers($scope.stores);
+                //createMarkers($scope.stores);
 
                 // add click event to browser;
                 // note: click event added to map in createMarker()
@@ -118,6 +118,7 @@
                     storesService.getStores()
                         .success(function (data) {
                             $scope.stores = data.stores;
+                            createMarkers($scope.stores);
                         })
                 }
 
