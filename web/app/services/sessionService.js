@@ -23,6 +23,8 @@
 			sessionStorage.setItem('Email', user.Email);
 			sessionStorage.setItem('FirstName', user.FirstName);
 			sessionStorage.setItem('LastName', user.LastName);
+			sessionStorage.setItem('PreferredStore', user.PreferredStore);
+
 		};
 
 		$sessionService.getUser = function () {
