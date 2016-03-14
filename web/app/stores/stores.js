@@ -98,15 +98,15 @@
                     $scope.user = sessionService.getUser();
                 }
 
-                $scope.isUserLoggedIn = function() {
-                    sessionService.userExists();
-                };
+                //$scope.isUserLoggedIn = function() {
+                //    sessionService.userExists();
+                //};
 
                 $scope.isUserPreferredStore = function(storeId) {
                     return sessionService.get("PreferredStore") != storeId;
                 };
 
-                $scope.setUserStore = function(storeId) {
+                $scope.setUserPreferredStore = function(storeId) {
                     sessionService.set("PreferredStore", storeId);
                 };
 

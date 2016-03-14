@@ -12,9 +12,9 @@
                 <td><strong>{{ s.StoreName }}</strong></td>
                 <td>{{ s.Address }}<br />{{ s.City + ", " + s.State + " " + s.Zip }}</td>
                 <td>{{ "(" + s.Latitude + ", " + s.Longitude + ")" }}</td>
-                <td ng-show="isUserLoggedIn() && !isUserPreferredStore(s.StoreId)">
+                <td ng-show="!!user && !isUserPreferredStore(s.StoreId)">
                     <button type="button" class="btn btn-primary"
-                        ng-click="setUserStore(s.StoreId)">
+                        ng-click="setUserPreferredStore(s.StoreId)">
                         Set Store
                     </button>
                 </td>
