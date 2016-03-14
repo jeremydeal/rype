@@ -95,7 +95,14 @@
                 // CURRENT USER
                 // populate user object from JS session
                 function populateUser() {
-                    $scope.user = sessionService.getUser();
+                    // check if user is logged in server side...
+                    loginService.checkLoginStatus()
+                        .then(function(response){
+                            // if logged in, populate user from sessionStorage
+                            if (!!response.data) {
+                                $scope.user = sessionService.getUser();
+                            }
+                        });
                 }
 
                 //$scope.isUserLoggedIn = function() {
@@ -109,7 +116,6 @@
                 $scope.setUserPreferredStore = function(storeId) {
                     sessionService.set("PreferredStore", storeId);
                 };
-
 
             }]);
 
