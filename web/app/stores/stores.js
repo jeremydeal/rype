@@ -114,7 +114,9 @@
                 };
 
                 $scope.setUserPreferredStore = function(storeId) {
-                    sessionService.set("PreferredStore", storeId);
+                    if (!!$scope.user) {
+                        sessionService.set("PreferredStore", storeId);
+                    }
                 };
 
             }]);
