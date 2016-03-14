@@ -92,13 +92,6 @@
                         })
                 }
 
-                //function getStoreById(id) {
-                //    storesService.getStoreById(id)
-                //        .success(function (data) {
-                //            $scope.store = data.store;
-                //        })
-                //}
-
                 // CURRENT USER
                 // populate user object from JS session
                 function populateUser() {
@@ -106,22 +99,15 @@
                 }
 
                 $scope.isUserLoggedIn = function() {
-                    // get promise to check server-side user auth
-                    var connected = loginService.checkLoginStatus();
-
-                    // ...check to see if the user has a session registered
-                    connected.then(function(response){
-                        // if not logged in, redirect to login
-                        return !!response.data;
-                    });
+                    sessionService.userExists();
                 };
 
-                $scope.isSelectedStore = function(storeId) {
-                    return sessionService.get("UserStore") != storeId;
+                $scope.isUserPreferredStore = function(storeId) {
+                    return sessionService.get("PreferredStore") != storeId;
                 };
 
                 $scope.setUserStore = function(storeId) {
-                    sessionService.set("UserStore", storeId);
+                    sessionService.set("PreferredStore", storeId);
                 };
 
 

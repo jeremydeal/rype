@@ -1,6 +1,7 @@
 <div class="container">
 
     <p>Current user id = {{ user.CustomerId }}</p>
+    <p>Preferred store id = {{ user.PreferredStore }}</p>
 
     <div id="map"></div>
 
@@ -11,12 +12,12 @@
                 <td><strong>{{ s.StoreName }}</strong></td>
                 <td>{{ s.Address }}<br />{{ s.City + ", " + s.State + " " + s.Zip }}</td>
                 <td>{{ "(" + s.Latitude + ", " + s.Longitude + ")" }}</td>
-                <!--<td ng-show="!isUserLoggedIn() || !isSelectedStore(s.StoreId)">-->
-                    <!--<button type="button" class="btn btn-primary"-->
-                        <!--ng-click="setUserStore(s.StoreId)">-->
-                        <!--Set Store-->
-                    <!--</button>-->
-                <!--</td>-->
+                <td ng-show="isUserLoggedIn() && !isUserPreferredStore(s.StoreId)">
+                    <button type="button" class="btn btn-primary"
+                        ng-click="setUserStore(s.StoreId)">
+                        Set Store
+                    </button>
+                </td>
             </tr>
         </table>
 

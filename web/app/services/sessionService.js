@@ -18,7 +18,7 @@
 		};
 
 		$sessionService.setUser = function (user) {
-			sessionStorage.setItem('uid', user.CustomerId);
+			sessionStorage.setItem('CustomerId', user.CustomerId);
 			sessionStorage.setItem('Username', user.Username);
 			sessionStorage.setItem('Email', user.Email);
 			sessionStorage.setItem('FirstName', user.FirstName);
@@ -28,7 +28,7 @@
 		$sessionService.getUser = function () {
 			var user = {};
 
-			user.CustomerId = sessionStorage.getItem('uid');
+			user.CustomerId = sessionStorage.getItem('CustomerId');
 			user.Username = sessionStorage.getItem('Username');
 			user.Email = sessionStorage.getItem('Email');
 			user.FirstName = sessionStorage.getItem('FirstName');
@@ -37,9 +37,13 @@
 			return user;
 		};
 
+		$sessionService.userExists = function () {
+			return !!sessionStorage.getItem('CustomerId');
+		};
+
 
 		$sessionService.destroyUser = function () {
-			sessionStorage.removeItem('uid');
+			sessionStorage.removeItem('CustomerId');
 			sessionStorage.removeItem('Username');
 			sessionStorage.removeItem('Email');
 			sessionStorage.removeItem('FirstName');
