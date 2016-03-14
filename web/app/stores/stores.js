@@ -21,7 +21,7 @@
                 ///////////////////////////////////// DATA INIT /////////////////////////////////////////////////////
                 function dataInit() {
                     getStores();
-                    getStoreById(2);
+                    //getStoreById(2);
                 }
 
 
@@ -45,32 +45,33 @@
 
                 var createMarker = function (store){
 
+                    var curStore = store;
+
                     // create marker
                     var marker = new google.maps.Marker({
                         map: $scope.map,
-                        position: new google.maps.LatLng(store.Latitude, store.Longitude),
-                        title: store.StoreName
+                        position: new google.maps.LatLng(curStore.Latitude, curStore.Longitude),
+                        title: curStore.StoreName
                     });
                     // add StoreId as metedata so we can respond to user click events
-                    marker.metadata = { StoreId: store.StoreId };
+                    marker.metadata = { StoreId: curStore.StoreId };
                     // fill info box that appears when user clicks a marker
-                    marker.content = '<h2>' + store.StoreName + '</h2>' +
+                    marker.content = '<h2>' + curStore.StoreName + '</h2>' +
                         '<div class="infoWindowContent">' +
-                        store.Address + " " + store.City + ", " +
-                        store.State + " " + store.Zip +
+                        curStore.Address + " " + curStore.City + ", " +
+                        curStore.State + " " + curStore.Zip +
                         '</div>';
 
                     // make info box appear on user click
                     google.maps.event.addListener(marker, 'click', function() {
                         infoWindow.setContent(marker.content);
-                        infoWindow.open($scope.map, marker);
+                        infoWindow.open($scope.map, marker)
+
+                        $scope.store = curStore;
                     });
 
                     $scope.markers.push(marker);
                 };
-
-                //createMarkers($scope.stores);
-                
 
 
                 ///////////////////////////////////////////// SERVICE CALLS /////////////////////////////////////////
@@ -83,12 +84,12 @@
                         })
                 }
 
-                function getStoreById(id) {
-                    storesService.getStoreById(id)
-                        .success(function (data) {
-                            $scope.store = data.store;
-                        })
-                }
+                //function getStoreById(id) {
+                //    storesService.getStoreById(id)
+                //        .success(function (data) {
+                //            $scope.store = data.store;
+                //        })
+                //}
 
                 // CURRENT USER
                 $scope.isUserLoggedIn = function() {
