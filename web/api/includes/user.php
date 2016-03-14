@@ -1,57 +1,5 @@
 <?php
 
-// GET /api/user/getUser/
-function getUsers() {
-
-    $users = null;
-
-    $sql = "SELECT * FROM customer";
-    try {
-        $db = getDB();
-        $stmt = $db->prepare($sql);
-        $stmt->execute();
-        $users = $stmt->fetchAll(PDO::FETCH_OBJ);
-        $db = null;
-    } catch (PDOException $e) {
-        // if DB error, leave $user null
-    }
-
-    echo '{"users": ' . json_encode($users) . '}';
-}
-
-
-// GET /api/user/getUser/
-function getCurrentUser() {
-    // generate session
-    // session_cache_limiter so that PHP will not contradict Slim's cache expiration headers
-    session_cache_limiter(false);
-    session_start();
-
-    $user = null;
-
-    if (isset($_SESSION['uid'])) {
-
-        // grab auth info from DB
-        $sql = "SELECT *
-                  FROM customer
-                  WHERE CustomerId = :customerId";
-        try {
-            $db = getDB();
-            $stmt = $db->prepare($sql);
-            $stmt->bindParam("customerId", $_SESSION['uid']);
-            $stmt->execute();
-            $user = $stmt->fetch(PDO::FETCH_OBJ);
-            $db = null;
-        } catch (PDOException $e) {
-            // if DB error, leave $user null
-        }
-
-        // if no session var, leave $user null
-    }
-
-    echo '{"user": ' . json_encode($user) . '}';
-}
-
 // GET /user/check/
 function check() {
     session_cache_limiter(false);
@@ -67,7 +15,7 @@ function login($user) {
     if ($user->Username && $user->Password) {
 
         // authenticate user in database
-        $sql = "SELECT CustomerId, Username, Password, FirstName, LastName, Email
+        $sql = "SELECT CustomerId, Username, Password, FirstName, LastName, Email, PreferredStore
                   FROM customer
                   WHERE Username = :username";
         try {
@@ -194,3 +142,57 @@ function createUser($user) {
         // DB access error; return nothing
     }
 }
+
+
+
+//// GET /api/user/getUser/
+//function getUsers() {
+//
+//    $users = null;
+//
+//    $sql = "SELECT * FROM customer";
+//    try {
+//        $db = getDB();
+//        $stmt = $db->prepare($sql);
+//        $stmt->execute();
+//        $users = $stmt->fetchAll(PDO::FETCH_OBJ);
+//        $db = null;
+//    } catch (PDOException $e) {
+//        // if DB error, leave $user null
+//    }
+//
+//    echo '{"users": ' . json_encode($users) . '}';
+//}
+//
+//
+//// GET /api/user/getUser/
+//function getCurrentUser() {
+//    // generate session
+//    // session_cache_limiter so that PHP will not contradict Slim's cache expiration headers
+//    session_cache_limiter(false);
+//    session_start();
+//
+//    $user = null;
+//
+//    if (isset($_SESSION['uid'])) {
+//
+//        // grab auth info from DB
+//        $sql = "SELECT *
+//                  FROM customer
+//                  WHERE CustomerId = :customerId";
+//        try {
+//            $db = getDB();
+//            $stmt = $db->prepare($sql);
+//            $stmt->bindParam("customerId", $_SESSION['uid']);
+//            $stmt->execute();
+//            $user = $stmt->fetch(PDO::FETCH_OBJ);
+//            $db = null;
+//        } catch (PDOException $e) {
+//            // if DB error, leave $user null
+//        }
+//
+//        // if no session var, leave $user null
+//    }
+//
+//    echo '{"user": ' . json_encode($user) . '}';
+//}
