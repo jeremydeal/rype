@@ -70,13 +70,7 @@
                 };
 
                 //createMarkers($scope.stores);
-
-                // add click event to browser;
-                // note: click event added to map in createMarker()
-                $scope.openInfoWindow = function(e, selectedMarker){
-                    e.preventDefault();
-                    google.maps.event.trigger(selectedMarker, 'click');
-                };
+                
 
 
                 ///////////////////////////////////////////// SERVICE CALLS /////////////////////////////////////////
