@@ -23,6 +23,8 @@
                 <h3>Other Info</h3>
                 <p ng-show="product.SeasonStart && product.SeasonEnd"><strong>Season</strong></p>
                 <p ng-show="product.SeasonStart && product.SeasonEnd">{{ (product.SeasonStart == "Year-round" ? "Year-round" : product.SeasonStart + " to " + product.SeasonEnd) }}</p>
+                <p ng-show="product.Storage"><strong>Storage</strong></p>
+                <p ng-show="product.Storage">{{ product.Storage}}</p>
             </div>
 
         </perfect-scrollbar>
