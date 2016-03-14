@@ -21,9 +21,7 @@
                 /////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////////
                 // populate user object from JS session
                 function populateUser() {
-                    $scope.user.Username = sessionService.get("Username");
-                    $scope.user.FirstName = sessionService.get("FirstName");
-                    $scope.user.LastName = sessionService.get("LastName");
+                    $scope.user = sessionService.getUser();
                 }
 
 

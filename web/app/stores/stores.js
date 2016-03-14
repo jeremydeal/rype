@@ -9,6 +9,7 @@
                 // CONTROLLER GLOBALS
                 $scope.stores = {};
                 $scope.store = {};
+                $scope.user = {};
 
                 // SORT AND FILTER VARS
                 $scope.search = {};
@@ -21,7 +22,7 @@
                 ///////////////////////////////////// DATA INIT /////////////////////////////////////////////////////
                 function dataInit() {
                     getStores();
-                    //getStoreById(2);
+                    populateUser();
                 }
 
 
@@ -99,6 +100,11 @@
                 //}
 
                 // CURRENT USER
+                // populate user object from JS session
+                function populateUser() {
+                    $scope.user = sessionService.getUser();
+                }
+
                 $scope.isUserLoggedIn = function() {
                     // get promise to check server-side user auth
                     var connected = loginService.checkLoginStatus();
