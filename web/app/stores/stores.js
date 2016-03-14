@@ -26,41 +26,8 @@
 
 
                 ///////////////////////////////////// GOOGLE MAPS API ///////////////////////////////////////////////
-                //var cities = [
-                //    {
-                //        city : 'Toronto',
-                //        desc : 'This is the best city in the world!',
-                //        lat : 43.7000,
-                //        long : -79.4000
-                //    },
-                //    {
-                //        city : 'New York',
-                //        desc : 'This city is aiiiiite!',
-                //        lat : 40.6700,
-                //        long : -73.9400
-                //    },
-                //    {
-                //        city : 'Chicago',
-                //        desc : 'This is the second best city in the world!',
-                //        lat : 41.8819,
-                //        long : -87.6278
-                //    },
-                //    {
-                //        city : 'Los Angeles',
-                //        desc : 'This city is live!',
-                //        lat : 34.0500,
-                //        long : -118.2500
-                //    },
-                //    {
-                //        city : 'Las Vegas',
-                //        desc : 'Sin City...\'nuff said!',
-                //        lat : 36.0800,
-                //        long : -115.1522
-                //    }
-                //];
-
                 var mapOptions = {
-                    zoom: 12,
+                    zoom: 14,
                     center: new google.maps.LatLng(41.7501203,-111.8315048)
                 };
 
@@ -90,8 +57,8 @@
                     marker.content = '<h2>' + store.StoreName + '</h2>' +
                         '<div class="infoWindowContent">' +
                         store.Address + " " + store.City + ", " +
-                        store.State + " " + store.Zip
-                        + '</div>';
+                        store.State + " " + store.Zip +
+                        '</div>';
 
                     // make info box appear on user click
                     google.maps.event.addListener(marker, 'click', function() {
