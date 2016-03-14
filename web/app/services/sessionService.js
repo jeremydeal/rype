@@ -24,7 +24,6 @@
 			sessionStorage.setItem('FirstName', user.FirstName);
 			sessionStorage.setItem('LastName', user.LastName);
 			sessionStorage.setItem('PreferredStore', user.PreferredStore);
-
 		};
 
 		$sessionService.getUser = function () {

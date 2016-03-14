@@ -7,8 +7,8 @@ $app = new \Slim\Slim();
 
 // LOGIN ROUTES
 $app->group('/user/', function() use ($app) {
-    $app->get('', 'getUsers');
-    $app->get('getCurrent/', 'getCurrentUser');
+//    $app->get('', 'getUsers');
+//    $app->get('getCurrent/', 'getCurrentUser');
     $app->post('login/', function() use ($app) {
         $user = json_decode($app->request->getBody());
         login($user);
