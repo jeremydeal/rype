@@ -103,7 +103,7 @@
                 //};
 
                 $scope.isUserPreferredStore = function(storeId) {
-                    return sessionService.get("PreferredStore") != storeId;
+                    return sessionService.get("PreferredStore") == storeId;
                 };
 
                 $scope.setUserPreferredStore = function(storeId) {
