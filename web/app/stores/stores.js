@@ -61,7 +61,7 @@
 
                 var mapOptions = {
                     zoom: 12,
-                    center: new google.maps.LatLng(41.7419787,-111.8274165)
+                    center: new google.maps.LatLng(41.7501203,-111.8315048)
                 };
 
                 $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
