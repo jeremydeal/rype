@@ -11,8 +11,8 @@ module.exports = function(config){
             'bower_components/**/*.js',
 
             // include js files
-            'app/*.js',
-            'app/**/*.js',
+            'app.js',
+            'src/*.js',
 
             // include unit test specs
             'spec/*.js'

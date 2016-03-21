@@ -22,8 +22,7 @@
             beforeEach(function() {
                 $scope = {};
                 controller = $controller('productsController', {
-                    $scope: $scope,
-
+                    $scope: $scope
                 });
             });
 
