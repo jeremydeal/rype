@@ -6,7 +6,7 @@ function getStores()
     $sql = "SELECT s.*,avg(sr.Rating) AS Rating
 	          FROM store AS s
               JOIN storerating AS sr  ON s.storeId = sr.storeid
-            GROUP BY s.StoreId;
+            GROUP BY s.StoreId
             ORDER BY Rating DESC";
     try {
         $db = getDB();
