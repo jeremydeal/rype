@@ -9,7 +9,7 @@
 
         var $filter,  FilterNAMe ;
         beforeEach(function () {
-            angular.mock.module("myApp.filter", function ($provide) {
+            angular.mock.module("myApp", function ($provide) {
                 $provide.value('loginService');
             });
         });
