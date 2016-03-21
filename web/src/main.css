@@ -13,7 +13,7 @@ body {
 
 
 /* NAVBAR */
-ul {
+/*ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -36,31 +36,7 @@ li a {
 li a:hover {
     background-color: #ff9933;
 }
-
-@media (max-width: 767px) {
-    navbar-position {
-    .navbar-fixed-top;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-    navbar-position {
-    .navbar-fixed-top;
-    }
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-    navbar-position {
-    .navbar-fixed-top;
-    }
-}
-
-@media (min-width: 1200px) {
-    navbar-position {
-    .navbar-fixed-top;
-    }
-}
-
+*/
 
 /* SCROLLBAR */
 .scrollable {
