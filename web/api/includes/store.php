@@ -24,7 +24,8 @@ function getStoreById($storeId)
     $sql = "SELECT s.*,avg(sr.Rating) AS rating
 	          FROM store AS s
               JOIN storerating AS sr  ON s.storeId = sr.storeid
-            GROUP BY s.StoreId;";
+            GROUP BY s.StoreId
+            WHERE s.StoreId = :storeId";
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
