@@ -3,11 +3,7 @@
     'use strict';
 
     describe('productsController', function() {
-        beforeEach(module('myApp', [
-            'ngRoute',
-            'perfect_scrollbar',
-            'slick'
-        ]));
+        beforeEach(module('myApp', []));
 
         var $controller;
 
@@ -21,7 +17,10 @@
 
             beforeEach(function() {
                 $scope = {};
-                controller = $controller('productsController', { $scope: $scope });
+                controller = $controller('productsController', {
+                    $scope: $scope,
+
+                });
             });
 
             it('sets the strength to "strong" if the password length is >8 chars', function() {
