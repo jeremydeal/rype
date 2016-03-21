@@ -69,7 +69,15 @@
 
 
         prettyPrintService.roundToTenth = function (num) {
-            return Math.round(num * 10)/10;
+            var floored = Math.floor(num);
+            var decimal = num - floored;
+            if (decimal > .75) {
+                return floored + 1;
+            } else if (decimal >= .25){
+                return floored + .5;
+            } else {
+                return floored;
+            }
         };
 
         return prettyPrintService;
