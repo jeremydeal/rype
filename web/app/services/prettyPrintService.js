@@ -67,7 +67,12 @@
             return months[parseInt(month)];
         };
 
-        return prettyPrintService
+
+        prettyPrintService.roundToTenth = function (num) {
+            return math.round(i * 10)/10;
+        };
+
+        return prettyPrintService;
     });
 
 })();

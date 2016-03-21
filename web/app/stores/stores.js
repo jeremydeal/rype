@@ -3,8 +3,8 @@
     'use strict';
 
     app.controller('storesController',
-        ['$scope', 'storesService', 'loginService', 'sessionService',
-            function ($scope, storesService, loginService, sessionService) {
+        ['$scope', 'storesService', 'loginService', 'sessionService', 'prettyPrintService',
+            function ($scope, storesService, loginService, sessionService, prettyPrintService) {
 
                 // CONTROLLER GLOBALS
                 $scope.stores = {};
@@ -119,6 +119,10 @@
                     if (Object.size($scope.user) > 0) {
                         sessionService.set("PreferredStore", storeId);
                     }
+                };
+
+                $scope.roundToTenth = function(num) {
+                    return prettyPrintService.roundToTenth(num);
                 };
 
             }]);
