@@ -7,7 +7,10 @@
         var $controllerConstructor;
         var scope;
 
-        beforeEach(module('myApp'));
+        beforeEach(function() {
+            module('myApp');
+            module('slick');
+        });
 
         //// register mock of ProductsService
         //beforeEach(angular.mock.module(function($provide) {
