@@ -4,7 +4,14 @@
 
     describe('productsFilter', function() {
         beforeEach(function() {
-            module('myApp')
+            angular.module('myApp')
+        });
+
+        var $filter,  FilterNAMe ;
+        beforeEach(function () {
+            angular.mock.module("myApp.filter", function ($provide) {
+                $provide.value('loginService');
+            });
         });
 
         it('check for filterProductsByClass', inject(function($filter) {
