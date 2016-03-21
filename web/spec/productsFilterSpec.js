@@ -4,19 +4,21 @@
 
     describe('productsFilter', function() {
         beforeEach(function() {
-            angular.module('myApp')
-        });
-
-        var $filter,  FilterNAMe ;
-        beforeEach(function () {
+            angular.module('myApp');
             angular.mock.module("myApp", function ($provide) {
                 $provide.value('loginService');
             });
         });
 
-        it('check for filterProductsByClass', inject(function($filter) {
+        it('checks for existence of filterProductsByClass', inject(function($filter) {
             expect($filter('filterProductsByClass')).not.toBeNull();
         }));
+
+        it('checks for existence of filterProductsByClass', inject(function(filterProductsByClass) {
+            expect([{ProduceClass:1}], 1).toBe([{ProduceClass:1}]);
+            expect([{ProduceClass:1}], 2).toBe();
+        }));
+
     });
 
 })();
