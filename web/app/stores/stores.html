@@ -11,7 +11,7 @@
             <tr ng-repeat="s in stores" ng-class="{true: 'selectedStore'}[s.StoreId === store.StoreId]">
                 <td><strong>{{ s.StoreName }}</strong></td>
                 <td>{{ s.Address }}<br />{{ s.City + ", " + s.State + " " + s.Zip }}</td>
-                <td>{{ (roundToTenth(s.Rating) }}</td>
+                <td>{{ roundToTenth(s.Rating) }}</td>
                 <td ng-show="!!user && !isUserPreferredStore(s.StoreId)">
                     <button type="button" class="btn btn-primary"
                         ng-click="setUserPreferredStore(s.StoreId)">
