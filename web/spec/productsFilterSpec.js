@@ -16,8 +16,8 @@
 
         it('checks for existence of filterProductsByClass', inject(function($filter) {
             var filterProductsByClass = $filter('filterProductsByClass');
-            expect(filterProductsByClass([{ProduceClass:1}], 1)).toBe([{ProduceClass:1}]);
-            expect(filterProductsByClass([{ProduceClass:1}], 2)).toBe([]);
+            expect(filterProductsByClass([{ProduceClass:1}], 1)).toEqual([{ProduceClass:1}]);
+            expect(filterProductsByClass([{ProduceClass:1}], 2)).toEqual([]);
         }));
 
     });
