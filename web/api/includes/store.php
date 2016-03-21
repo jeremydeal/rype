@@ -3,8 +3,10 @@
 // GET /api/store/
 function getStores()
 {
-    $sql = "SELECT s.*
-              FROM store AS s";
+    $sql = "SELECT s.*,avg(sr.Rating) AS rating
+	          FROM store AS s
+              JOIN storerating AS sr  ON s.storeId = sr.storeid
+            GROUP BY s.StoreId;";
     try {
         $db = getDB();
         $stmt = $db->query($sql);
@@ -34,6 +36,7 @@ function getStoreById($storeId)
         echo '{"error: { "text": ' . $e->getMessage() . '} }';
     }
 }
+
 
 //// GET /api/produce/byType/1
 //function getProduceByType($typeId)
