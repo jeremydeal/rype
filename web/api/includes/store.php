@@ -3,7 +3,7 @@
 // GET /api/store/
 function getStores()
 {
-    $sql = "SELECT s.*,avg(sr.Rating) AS rating
+    $sql = "SELECT s.*,avg(sr.Rating) AS Rating
 	          FROM store AS s
               JOIN storerating AS sr  ON s.storeId = sr.storeid
             GROUP BY s.StoreId;";
@@ -21,7 +21,7 @@ function getStores()
 // GET /api/store/byId/1
 function getStoreById($storeId)
 {
-    $sql = "SELECT s.*,avg(sr.Rating) AS rating
+    $sql = "SELECT s.*,avg(sr.Rating) AS Rating
 	          FROM store AS s
               JOIN storerating AS sr  ON s.storeId = sr.storeid
               WHERE s.StoreId = :storeId
