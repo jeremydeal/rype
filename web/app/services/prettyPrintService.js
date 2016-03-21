@@ -69,7 +69,7 @@
 
 
         prettyPrintService.roundToTenth = function (num) {
-            return math.round(i * 10)/10;
+            return Math.round(i * 10)/10;
         };
 
         return prettyPrintService;
