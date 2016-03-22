@@ -7,15 +7,34 @@
         var baseUrl = "../api/store/";
         var $storesService = {};
 
-
-        // get all products
+        // get all stores
         $storesService.getStores = function () {
             return $http.get(baseUrl);
         };
 
-        // get one product
+        // get one store
         $storesService.getStoreById = function (id) {
             return $http.get(baseUrl + "byId/" + id);
+        };
+
+        // rate a store
+        $storesService.rateStore = function (storeId, rating, userId) {
+            var data = {};
+            data.StoreId = storeId;
+            data.Rating = rating;
+            data.CustomerId = userId;
+
+            return $http.post(baseUrl + 'rate/', data)
+                .then(function (response) {
+
+                    // DID IT WORK
+                    if (!!response.data.user) {
+                        console.log("Rating $POST worked.");
+                    }
+                    else {
+                        console.log("Rating $POST did not work.");
+                    }
+                });
         };
 
         return $storesService;
