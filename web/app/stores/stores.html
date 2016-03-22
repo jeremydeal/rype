@@ -18,7 +18,6 @@
                 <td>{{ s.Address }}<br />{{ s.City + ", " + s.State + " " + s.Zip }}</td>
                 <td>{{ roundToTenth(s.Rating) }}</td>
                 <td>
-                    <form action="">
                         <select class="form-control" name="rating" ng-model="s.MyRating">
                             <option value="">--</option>
                             <option value="1">1</option>
@@ -29,12 +28,10 @@
                         </select>
                         <button type="button" class="btn btn-primary"
                                 ng-click="rateStore(s.StoreId, s.MyRating)">
-                            Set Store
+                            Rate This Store!
                         </button>
-                        <input type="submit" value="Rate This Store!"/>
-                    </form>
                 </td>
-                
+
                 <!--<td ng-show="!!user && !isUserPreferredStore(s.StoreId)">-->
                     <!--<button type="button" class="btn btn-primary"-->
                             <!--ng-click="setUserPreferredStore(s.StoreId)">-->
