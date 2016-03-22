@@ -9,7 +9,9 @@
 
         <table class="table">
             <tr>
-                <td>Store</td>
+                <td><strong>Store Name</strong></td>
+                <td><strong>Street Address</strong></td>
+                <td><strong>Store Rating</strong></td>
             </tr>
             <tr ng-repeat="s in stores" ng-class="{true: 'selectedStore'}[s.StoreId === store.StoreId]">
                 <td><strong>{{ s.StoreName }}</strong></td>
