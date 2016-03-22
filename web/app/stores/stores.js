@@ -92,6 +92,10 @@
                         })
                 }
 
+                $scope.rateStore = function(storeId, myRating) {
+                    console.log("storeID: " + storeId + ", myRating: " + myRating);
+                };
+
                 // CURRENT USER
                 // populate user object from JS session
                 function populateUser() {
