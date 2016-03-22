@@ -93,7 +93,8 @@
                 }
 
                 $scope.rateStore = function(storeId, myRating) {
-                    console.log("storeID: " + storeId + ", myRating: " + myRating);
+                    var customerId = $scope.user.CustomerId;
+                    console.log("storeID: " + storeId + ", myRating: " + myRating + ", customerId: " + customerId);
                 };
 
                 // CURRENT USER
