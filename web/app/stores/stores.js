@@ -98,7 +98,7 @@
                         console.log("storeID: " + storeId + ", myRating: " + myRating + ", customerId: " + customerId);
                     }
                     else {
-                        console.log("DAMN IT! EVERYTHING SUCKS!");
+                        console.log("storeID: " + storeId + ", myRating: " + myRating + ", customerId: DAMN IT! I SAID YOU HAVE TO LOG IN!");
                     }
                 };
 
