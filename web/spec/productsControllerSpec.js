@@ -3,7 +3,13 @@
     'use strict';
 
     describe('productsController', function() {
-        beforeEach(module('myApp'));
+        beforeEach(function() {
+            angular.module('myApp');
+            angular.mock.module("myApp", function ($provide) {
+                $provide.value('loginService');
+                $provide.value('prettyPrintService');
+            });
+        });
 
         var $controller;
 
