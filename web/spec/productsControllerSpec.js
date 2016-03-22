@@ -3,11 +3,7 @@
     'use strict';
 
     describe('productsController', function() {
-        beforeEach(module('myApp', [
-            'ngRoute',
-            'perfect_scrollbar',
-            'slick'
-        ]));
+        beforeEach(module('myApp'));
 
         var $controller;
 

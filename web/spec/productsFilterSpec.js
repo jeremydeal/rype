@@ -14,10 +14,14 @@
             expect($filter('filterProductsByClass')).not.toBeNull();
         }));
 
-        it('checks for existence of filterProductsByClass', inject(function($filter) {
+        it('tests that filterProductsByClass filters out non-matching classes', inject(function($filter) {
+            var filterProductsByClass = $filter('filterProductsByClass');
+            expect(filterProductsByClass([{ProduceClass:1}], 2)).toEqual([]);
+        }));
+
+        it('tests that filterProductsByClass does not filter out matching classes', inject(function($filter) {
             var filterProductsByClass = $filter('filterProductsByClass');
             expect(filterProductsByClass([{ProduceClass:1}], 1)).toEqual([{ProduceClass:1}]);
-            expect(filterProductsByClass([{ProduceClass:1}], 2)).toEqual([]);
         }));
 
     });
