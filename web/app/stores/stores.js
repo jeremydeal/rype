@@ -93,7 +93,10 @@
                 }
 
                 $scope.rateStore = function(storeId, myRating) {
-                    var customerId = $scope.user.CustomerId;
+                    var customerId = "";
+                    if (!!$scope.user.CustomerId) {
+                        customerId = $scope.user.CustomerId;
+                    }
                     console.log("storeID: " + storeId + ", myRating: " + myRating + ", customerId: " + customerId);
                 };
 
