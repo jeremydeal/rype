@@ -45,7 +45,7 @@
                         storesService.rateStore(storeId, myRating, customerId)
                             .then(function(response) {
                                 // DID IT WORK
-                                if (!!response.data.user) {
+                                if (!!response.data) {
                                     console.log("Rating $POST worked.");
                                 }
                                 else {
