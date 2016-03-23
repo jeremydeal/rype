@@ -40,6 +40,42 @@ function getStoreById($storeId)
     }
 }
 
+// POST /api/store/rate/
+function rateStore($rating) {
+    // store the new user in the DB
+    $sql = "INSERT INTO storerating (
+                      Rating,
+                      DateTime,
+                      CustomerId,
+                      StoreId
+                    ) VALUES (
+                      :storeRatingId,
+                      :rating,
+                      NOW(),
+                      :customerId,
+                      :storeId
+                    )";
+
+    try {
+        $db = getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("rating", $rating->Rating);
+        $stmt->bindParam("customerId", $rating->CustomerId);
+        $stmt->bindParam("storeId", $rating->StoreId);
+
+        // if INSERT succeeds, grab return the entered user and login
+        if ($stmt->execute() && $stmt->rowCount() > 0) {
+
+            $id = $db->lastInsertId();
+            echo 'Insert successful.';
+        }
+
+        $db = null;
+
+    } catch(PDOException $e) {
+        // DB access error; return nothing
+    }
+}
 
 //// GET /api/produce/byType/1
 //function getProduceByType($typeId)
