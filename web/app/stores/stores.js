@@ -96,12 +96,13 @@
 
                 ///////////////////////////////////// GOOGLE MAPS API ///////////////////////////////////////////////
 
-                google.maps.event.addDomListener(window, 'load', initialize);
-                google.maps.event.addDomListener(window, "resize", function() {
-                    var center = map.getCenter();
-                    google.maps.event.trigger(map, "resize");
-                    map.setCenter(center);
-                });
+                //http://stackoverflow.com/questions/18444161/google-maps-responsive-resize
+                // google.maps.event.addDomListener(window, 'load', initialize);
+                //google.maps.event.addDomListener(window, "resize", function() {
+                //    var center = map.getCenter();
+                //    google.maps.event.trigger(map, "resize");
+                //    map.setCenter(center);
+                //});
 
 
                 var mapOptions = {
