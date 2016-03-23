@@ -43,6 +43,10 @@ $app->group('/produceClass/', function() use ($app) {
 $app->group('/store/', function() use ($app) {
     $app->get('', 'getStores');
     $app->get('byId/:storeId', 'getStoreById');
+    $app->post('rate/', function() use ($app) {
+        $rating = json_decode($app->request->getBody());
+        rateStore($rating);
+    });
 });
 
 
