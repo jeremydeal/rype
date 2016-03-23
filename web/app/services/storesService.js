@@ -24,17 +24,7 @@
             data.Rating = rating;
             data.CustomerId = userId;
 
-            return $http.post(baseUrl + 'rate/', data)
-                .then(function (response) {
-
-                    // DID IT WORK
-                    if (!!response.data.user) {
-                        console.log("Rating $POST worked.");
-                    }
-                    else {
-                        console.log("Rating $POST did not work.");
-                    }
-                });
+            return $http.post(baseUrl + 'rate/', data);
         };
 
         return $storesService;
