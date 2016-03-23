@@ -39,7 +39,7 @@
                 }
 
                 $scope.rateStore = function(storeId, myRating) {
-                    if (!!$scope.user.CustomerId) {
+                    if (!!$scope.user.CustomerId && myRating.length > 0) {
                         var customerId = $scope.user.CustomerId;
 
                         storesService.rateStore(storeId, myRating, customerId)
