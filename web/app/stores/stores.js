@@ -95,10 +95,20 @@
 
 
                 ///////////////////////////////////// GOOGLE MAPS API ///////////////////////////////////////////////
+
+                google.maps.event.addDomListener(window, 'load', initialize);
+                google.maps.event.addDomListener(window, "resize", function() {
+                    var center = map.getCenter();
+                    google.maps.event.trigger(map, "resize");
+                    map.setCenter(center);
+                });
+
+
                 var mapOptions = {
                     zoom: 14,
                     center: new google.maps.LatLng(41.7501203,-111.8315048)
                 };
+
 
                 $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
