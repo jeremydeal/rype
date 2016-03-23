@@ -44,8 +44,8 @@ $app->group('/store/', function() use ($app) {
     $app->get('', 'getStores');
     $app->get('byId/:storeId', 'getStoreById');
     $app->post('rate/', function() use ($app) {
-        $rating = json_decode($app->request->getBody());
-        rateStore($rating);
+        $data = json_decode($app->request->getBody());
+        rateStore($data);
     });
 });
 
