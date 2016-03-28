@@ -8,40 +8,42 @@
 
     <perfect-scrollbar class="scrollable" suppress-scroll-x="true" wheel-propagation="true" wheel-speed="3" min-scrollbar-length="20">
 
-        <table class="table">
-            <tr>
-                <td><strong>Store Name</strong></td>
-                <td><strong>Street Address</strong></td>
-                <td><strong>Store Rating</strong></td>
-            </tr>
-            <tr ng-repeat="s in stores" ng-class="{true: 'selectedStore'}[s.StoreId === store.StoreId]">
-                <td><strong>{{ s.StoreName }}</strong></td>
-                <td>{{ s.Address }}<br />{{ s.City + ", " + s.State + " " + s.Zip }}</td>
-                <td>{{ roundToTenth(s.Rating) }}</td>
-                <td>
-                        <select class="form-control" name="rating" ng-model="s.MyRating">
-                            <option value="">--</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                        <button type="button" class="btn btn-primary"
-                                ng-click="rateStore(s.StoreId, s.MyRating)">
-                            Rate This Store!
-                        </button>
-                </td>
-
-                <!--<td ng-show="!!user && !isUserPreferredStore(s.StoreId)">-->
-                    <!--<button type="button" class="btn btn-primary"-->
-                            <!--ng-click="setUserPreferredStore(s.StoreId)">-->
-                        <!--Set Store-->
-                    <!--</button>-->
-                <!--</td>-->
-                <!-- -->
-            </tr>
-        </table>
+        <div class ="table-responsive">
+            <table class="table">
+                <tr>
+                    <td><strong>Store Name</strong></td>
+                    <td><strong>Street Address</strong></td>
+                    <td><strong>Store Rating</strong></td>
+                </tr>
+                <tr ng-repeat="s in stores" ng-class="{true: 'selectedStore'}[s.StoreId === store.StoreId]">
+                    <td><strong>{{ s.StoreName }}</strong></td>
+                    <td>{{ s.Address }}<br />{{ s.City + ", " + s.State + " " + s.Zip }}</td>
+                    <td>{{ roundToTenth(s.Rating) }}</td>
+                    <td>
+                            <select class="form-control" name="rating" ng-model="s.MyRating">
+                                <option value="">--</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <button type="button" class="btn btn-primary"
+                                    ng-click="rateStore(s.StoreId, s.MyRating)">
+                                Rate This Store!
+                            </button>
+                    </td>
+    
+                    <!--<td ng-show="!!user && !isUserPreferredStore(s.StoreId)">-->
+                        <!--<button type="button" class="btn btn-primary"-->
+                                <!--ng-click="setUserPreferredStore(s.StoreId)">-->
+                            <!--Set Store-->
+                        <!--</button>-->
+                    <!--</td>-->
+                    <!-- -->
+                </tr>
+            </table>
+        </div>
 
     </perfect-scrollbar>
 
