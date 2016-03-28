@@ -24,18 +24,18 @@
                 ///////////////////////////////////// DATA INIT /////////////////////////////////////////////////////
                 function dataInit() {
                     populateUser();
-                    initMap();
+                    getStores()
+                        .success(function(data) {
+                            initMap();
+                        })
+
                 }
 
 
                 ///////////////////////////////////////////// SERVICE CALLS /////////////////////////////////////////
                 // STORES
                 function getStores() {
-                    storesService.getStores()
-                        .success(function (data) {
-                            $scope.stores = data.stores;
-                            createMarkers($scope.stores);
-                        })
+                    storesService.getStores();
                 }
 
                 $scope.rateStore = function(storeId, myRating) {
@@ -112,7 +112,9 @@
 
                     $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-                    getStores();
+                    if (!!$scope.stores) {
+                        createMarkers($scope.stores);
+                    }
                 }
 
                 // responsive resizing for map
