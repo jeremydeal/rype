@@ -10,7 +10,7 @@
             <p ng-show="product.DescGeneral">{{ product.DescGeneral }}</p>
 
             <!-- TODO: table format -->
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 clearfix" ng-show="product.Variety">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right" ng-show="product.Variety">
                 <h3>Is it Ripe?</h3>
                 <p ng-show="product.DescLook"><strong>By Look</strong></p>
                 <p ng-show="product.Descook">{{ product.DescLook }}</p>
@@ -21,7 +21,7 @@
                 <p ng-show="product.SeasonStart && product.SeasonEnd"><strong>Season</strong></p>
                 <p ng-show="product.SeasonStart && product.SeasonEnd">{{ (product.SeasonStart == "Year-round" ? "Year-round" : product.SeasonStart + " to " + product.SeasonEnd) }}</p>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 clearfix" ng-show="product.Variety">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-left" ng-show="product.Variety">
                 <h3>Other Info</h3>
                 <p ng-show="product.Storage"><strong>Storage</strong></p>
                 <p ng-show="product.Storage">{{ product.Storage}}</p>
