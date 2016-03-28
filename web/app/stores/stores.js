@@ -28,8 +28,6 @@
                 }
 
 
-
-
                 ///////////////////////////////////////////// SERVICE CALLS /////////////////////////////////////////
                 // STORES
                 function getStores() {
@@ -99,22 +97,31 @@
                 ///////////////////////////////////// GOOGLE MAPS API ///////////////////////////////////////////////
 
                 //http://stackoverflow.com/questions/18444161/google-maps-responsive-resize
-                // google.maps.event.addDomListener(window, 'load', initialize);
+                //google.maps.event.addDomListener(window, "load", initialize);
                 //google.maps.event.addDomListener(window, "resize", function() {
                 //    var center = map.getCenter();
                 //    google.maps.event.trigger(map, "resize");
                 //    map.setCenter(center);
                 //});
+                function initMap() {
+                    var mapOptions = {
+                        zoom: 14,
+                        center: new google.maps.LatLng(41.7501203,-111.8315048),
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
 
+                    $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                }
 
-                var mapOptions = {
-                    zoom: 14,
-                    center: new google.maps.LatLng(41.7501203,-111.8315048)
-                };
+                // responsive resizing for map
+                google.maps.event.addDomListener(window, 'load', initMap);
+                google.maps.event.addDomListener(window, "resize", function() {
+                    var center = $scope.map.getCenter();
+                    google.maps.event.trigger($scope.map, "resize");
+                    $scope.map.setCenter(center);
+                });
 
-
-                $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
+                // add markers and set up pop-up windows for when a marker is selected
                 $scope.markers = [];
 
                 var infoWindow = new google.maps.InfoWindow();
