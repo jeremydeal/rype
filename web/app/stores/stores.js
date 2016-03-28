@@ -120,7 +120,7 @@
                 }
 
                 // responsive resizing for map
-                google.maps.event.addDomListener(window, 'load', initMap);
+                //google.maps.event.addDomListener(window, 'load', initMap);
                 google.maps.event.addDomListener(window, "resize", function() {
                     var center = $scope.map.getCenter();
                     google.maps.event.trigger($scope.map, "resize");
