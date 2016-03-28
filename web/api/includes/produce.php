@@ -21,10 +21,9 @@ function getProduce()
 // GET /api/produce/byId/1
 function getProduceById($produceId)
 {
-    $sql = "SELECT p.*, pt.*, nv.*
+    $sql = "SELECT p.*, pt.*
               FROM produce AS p
                 JOIN produceType AS pt ON p.produceTypeID = pt.produceTypeID
-                LEFT JOIN nutritionValue AS nv ON p.produceTypeID = nv.produceTypeID
                 WHERE p.produceId = :produceId";
     try {
         $db = getDB();
@@ -42,10 +41,9 @@ function getProduceById($produceId)
 // GET /api/produce/byType/1
 function getProduceByType($typeId)
 {
-    $sql = "SELECT p.*, pt.*, nv.*
+    $sql = "SELECT p.*, pt.*
               FROM produce AS p
                 JOIN produceType AS pt ON p.produceTypeID = pt.produceTypeID
-                LEFT JOIN nutritionValue AS nv ON p.produceTypeID = nv.produceTypeID
                 WHERE p.produceTypeId = :produceTypeId";
     try {
         $db = getDB();
