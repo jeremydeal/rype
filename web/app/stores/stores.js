@@ -132,13 +132,13 @@
 
                 var infoWindow = new google.maps.InfoWindow();
 
-                var createMarkers = function(storeList) {
+                function createMarkers(storeList) {
                     for (var i = 0; i < storeList.length; i++){
                         createMarker(storeList[i]);
                     }
-                };
+                }
 
-                var createMarker = function (store){
+                function createMarker(store){
 
                     var curStore = store;
 
@@ -163,7 +163,7 @@
                     });
 
                     $scope.markers.push(marker);
-                };
+                }
 
                 // onClick() event handler for user selecting a store within the map
                 $scope.openInfoWindow = function(e, selectedMarker) {
