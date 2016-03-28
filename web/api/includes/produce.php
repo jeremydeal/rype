@@ -26,10 +26,9 @@ function getProduceById($produceId)
                     pt.CommonName, pt.ProduceClass,
                     nv.Calories, nv.Totalfat, nv.Sat, nv.Trans, nv.Cholesterol, nv.TotalCarbohydrates,
                     nv.Sodium, nv.DietaryFiber, nv.Sugars, nv.Protein, nv.Vitamina, nv.Vitaminc, nv.Iron
-              FROM produce AS p
+              FROM produce AS p, nutritionValue AS nv
                 JOIN produceType AS pt ON p.ProduceTypeID = pt.ProduceTypeID
-                LEFT JOIN nutritionValue AS nv ON pt.ProduceTypeID = nv.ProduceTypeID
-                WHERE p.produceId = :produceId";
+                WHERE p.produceId = :produceId AND p.ProduceTypeID = nv.ProduceTypeID";
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
