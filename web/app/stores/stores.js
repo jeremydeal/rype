@@ -24,18 +24,19 @@
                 ///////////////////////////////////// DATA INIT /////////////////////////////////////////////////////
                 function dataInit() {
                     populateUser();
-                    getStores()
-                        .success(function(data) {
-                            initMap();
-                        })
-
+                    getStores();
                 }
 
 
                 ///////////////////////////////////////////// SERVICE CALLS /////////////////////////////////////////
                 // STORES
                 function getStores() {
-                    storesService.getStores();
+                    storesService.getStores()
+                        .success(function(data) {
+                            if (!!data) {
+                                initMap();
+                            }
+                        })
                 }
 
                 $scope.rateStore = function(storeId, myRating) {
