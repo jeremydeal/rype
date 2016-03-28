@@ -17,9 +17,6 @@
                 $scope.search = {};
                 $scope.search.query = "";
 
-                // MAP VARS
-                $scope.markers = [];
-
                 // DATA INIT
                 dataInit();
 
@@ -126,6 +123,8 @@
                 });
 
                 // add markers and set up pop-up windows for when a marker is selected
+                $scope.markers = [];
+
                 var infoWindow = new google.maps.InfoWindow();
 
                 var createMarkers = function(storeList) {
