@@ -3,7 +3,7 @@
 // GET /api/produce/
 function getProduce()
 {
-    $sql = "SELECT p.ProduceId, p.ProduceTypeId AS ProduceTypeId, p.Variety, p.ImgThumb, p.ImgGood, p.ImgBad,
+    $sql = "SELECT p.ProduceId, p.ProduceTypeID AS ProduceTypeID, p.Variety, p.ImgThumb, p.ImgGood, p.ImgBad,
                     p.DescSmell, p.DescLook, p.DescFeel, p.DescGeneral, p.Storage, p.Prep,
                     p.SeasonStart, p.SeasonEnd,
                     pt.CommonName, pt.ProduceClass,
