@@ -6,7 +6,7 @@ function getProduce()
     $sql = "SELECT p.*, pt.*, nv.*
               FROM produce AS p
                 JOIN produceType AS pt ON p.produceTypeID = pt.produceTypeID
-                JOIN nutritionValue AS nv ON p.produceTypeID = nv.produceTypeID";
+                LEFT JOIN nutritionValue AS nv ON p.produceTypeID = nv.produceTypeID";
     try {
         $db = getDB();
         $stmt = $db->query($sql);
@@ -24,7 +24,7 @@ function getProduceById($produceId)
     $sql = "SELECT p.*, pt.*, nv.*
               FROM produce AS p
                 JOIN produceType AS pt ON p.produceTypeID = pt.produceTypeID
-                JOIN nutritionValue AS nv ON p.produceTypeID = nv.produceTypeID
+                LEFT JOIN nutritionValue AS nv ON p.produceTypeID = nv.produceTypeID
                 WHERE p.produceId = :produceId";
     try {
         $db = getDB();
@@ -45,7 +45,7 @@ function getProduceByType($typeId)
     $sql = "SELECT p.*, pt.*, nv.*
               FROM produce AS p
                 JOIN produceType AS pt ON p.produceTypeID = pt.produceTypeID
-                JOIN nutritionValue AS nv ON p.produceTypeID = nv.produceTypeID
+                LEFT JOIN nutritionValue AS nv ON p.produceTypeID = nv.produceTypeID
                 WHERE p.produceTypeId = :produceTypeId";
     try {
         $db = getDB();
