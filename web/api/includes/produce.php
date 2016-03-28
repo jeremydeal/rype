@@ -10,8 +10,8 @@ function getProduce()
                     nv.Calories, nv.Totalfat, nv.Sat, nv.Trans, nv.Cholesterol, nv.TotalCarbohydrates,
                     nv.Sodium, nv.DietaryFiber, nv.Sugars, nv.Protein, nv.Vitamina, nv.Vitaminc, nv.Iron
               FROM produce AS p
-                JOIN produceType AS pt ON p.produceTypeID = pt.produceTypeID
-                LEFT JOIN nutritionValue AS nv ON p.produceTypeID = nv.produceTypeID";
+                JOIN produceType AS pt ON p.ProduceTypeID = pt.ProduceTypeID
+                LEFT JOIN nutritionValue AS nv ON p.ProduceTypeID = nv.ProduceTypeID";
     try {
         $db = getDB();
         $stmt = $db->query($sql);
@@ -33,8 +33,8 @@ function getProduceById($produceId)
                     nv.Calories, nv.Totalfat, nv.Sat, nv.Trans, nv.Cholesterol, nv.TotalCarbohydrates,
                     nv.Sodium, nv.DietaryFiber, nv.Sugars, nv.Protein, nv.Vitamina, nv.Vitaminc, nv.Iron
               FROM produce AS p
-                JOIN produceType AS pt ON p.produceTypeID = pt.produceTypeID
-                LEFT JOIN nutritionValue AS nv ON p.produceTypeID = nv.produceTypeID
+                JOIN produceType AS pt ON p.ProduceTypeID = pt.ProduceTypeID
+                LEFT JOIN nutritionValue AS nv ON p.ProduceTypeID = nv.ProduceTypeID
                 WHERE p.produceId = :produceId";
     try {
         $db = getDB();
@@ -59,8 +59,8 @@ function getProduceByType($typeId)
                     nv.Calories, nv.Totalfat, nv.Sat, nv.Trans, nv.Cholesterol, nv.TotalCarbohydrates,
                     nv.Sodium, nv.DietaryFiber, nv.Sugars, nv.Protein, nv.Vitamina, nv.Vitaminc, nv.Iron
               FROM produce AS p
-                JOIN produceType AS pt ON p.produceTypeID = pt.produceTypeID
-                LEFT JOIN nutritionValue AS nv ON p.produceTypeID = nv.produceTypeID
+                JOIN produceType AS pt ON p.ProduceTypeID = pt.ProduceTypeID
+                LEFT JOIN nutritionValue AS nv ON p.ProduceTypeID = nv.ProduceTypeID
                 WHERE p.produceTypeId = :produceTypeId";
     try {
         $db = getDB();
