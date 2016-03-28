@@ -112,6 +112,9 @@
                     };
 
                     $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                    if ($scope.markers.length == 0) {
+                        createMarkers($scope.stores);
+                    }
                 }
 
                 // responsive resizing for map
