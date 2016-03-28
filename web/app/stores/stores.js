@@ -2,6 +2,14 @@
 
     'use strict';
 
+    //Hopefully a fix for collapsing navigation bar once an item has been tapped. 
+    $(document).on('click','.navbar-collapse.in',function(e) {
+        if( $(e.target).is('a') && $(e.target).attr('class') != 'dropdown-toggle' ) {
+            $(this).collapse('hide');
+        }
+    });
+
+
     app.controller('storesController',
         ['$scope', 'storesService', 'loginService', 'sessionService', 'prettyPrintService',
             function ($scope, storesService, loginService, sessionService, prettyPrintService) {
