@@ -23,7 +23,6 @@
 
                 ///////////////////////////////////// DATA INIT /////////////////////////////////////////////////////
                 function dataInit() {
-                    getStores();
                     populateUser();
                     initMap();
                 }
@@ -112,6 +111,8 @@
                     };
 
                     $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+                    getStores();
                 }
 
                 // responsive resizing for map
