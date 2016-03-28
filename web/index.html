@@ -81,8 +81,14 @@
                             </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li ng-show="!currentUserId"><a href="#/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                            <li ng-show="!!currentUserId"><a href="#/dashboard">Dashboard</a></li>
+                            <li ng-show="!currentUserId">
+                                <a href="#/login" class="hidden-xs"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+                                <a href="#/login" class="visible-xs" data-toggle="collapse" data-target=".navbar-collapse"><span class="glyphicon glyphicon-log-in"></span>Login</a>
+                            </li>
+                            <li ng-show="!!currentUserId">
+                                <a href="#/dashboard" class="hidden-xs">Dashboard</a>
+                                <a href="#/dashboard" class="visible-xs" data-toggle="collapse" data-target=".navbar-collapse">Dashboard</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
