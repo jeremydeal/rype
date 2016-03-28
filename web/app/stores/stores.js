@@ -25,6 +25,7 @@
                 function dataInit() {
                     getStores();
                     populateUser();
+                    initMap();
                 }
 
 
