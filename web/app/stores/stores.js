@@ -23,8 +23,9 @@
 
                 ///////////////////////////////////// DATA INIT /////////////////////////////////////////////////////
                 function dataInit() {
-                    populateUser();
                     getStores();
+                    populateUser();
+                    initMap();
                 }
 
 
@@ -32,8 +33,9 @@
                 // STORES
                 function getStores() {
                     storesService.getStores()
-                        .success(function() {
-                                initMap();
+                        .success(function (data) {
+                            $scope.stores = data.stores;
+                            createMarkers($scope.stores);
                         })
                 }
 
@@ -110,10 +112,6 @@
                     };
 
                     $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-                    if (!!$scope.stores) {
-                        createMarkers($scope.stores);
-                    }
                 }
 
                 // responsive resizing for map
