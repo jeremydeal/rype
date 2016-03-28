@@ -20,15 +20,9 @@ function getProduce()
 // GET /api/produce/byId/1
 function getProduceById($produceId)
 {
-    $sql = "SELECT p.ProduceId, p.ProduceTypeID, p.Variety, p.ImgThumb, p.ImgGood, p.ImgBad,
-                    p.DescSmell, p.DescLook, p.DescFeel, p.DescGeneral, p.Storage, p.Prep,
-                    p.SeasonStart, p.SeasonEnd,
-                    pt.CommonName, pt.ProduceClass,
-                    nv.Calories, nv.Totalfat, nv.Sat, nv.Trans, nv.Cholesterol, nv.TotalCarbohydrates,
-                    nv.Sodium, nv.DietaryFiber, nv.Sugars, nv.Protein, nv.Vitamina, nv.Vitaminc, nv.Iron
+    $sql = "SELECT p.*, pt.*
               FROM produce AS p
                 JOIN produceType AS pt ON p.ProduceTypeID = pt.ProduceTypeID
-                LEFT JOIN nutritionValue AS nv ON p.ProduceTypeID = nv.ProduceTypeID
                 WHERE p.produceId = :produceId";
     try {
         $db = getDB();
