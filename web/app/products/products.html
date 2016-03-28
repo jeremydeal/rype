@@ -1,7 +1,7 @@
 <div class="container row">
 
     <!-- SELECTED PRODUCT -->
-    <div class="col-sm-8">
+    <div class="col-sm-8 col-xs-8">
         <perfect-scrollbar class="scrollable" suppress-scroll-x="true" wheel-propagation="true" wheel-speed="3" min-scrollbar-length="20">
 
             <h2 ng-show="product.Variety">{{ product.Variety + ' (' + product.CommonName + ')' }}</h2>
@@ -10,7 +10,7 @@
             <p ng-show="product.DescGeneral">{{ product.DescGeneral }}</p>
 
             <!-- TODO: table format -->
-            <div class="col-sm-6" ng-show="product.Variety">
+            <div class="col-sm-6 col-xs-8" ng-show="product.Variety">
                 <h3>Is it Ripe?</h3>
                 <p ng-show="product.DescLook"><strong>By Look</strong></p>
                 <p ng-show="product.DescLook">{{ product.DescLook }}</p>
