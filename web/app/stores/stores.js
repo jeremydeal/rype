@@ -25,7 +25,7 @@
 
                 ///////////////////////////////////// DATA INIT /////////////////////////////////////////////////////
                 function dataInit() {
-                    initMap();
+                    //initMap();
                     getStores();
                     populateUser();
                 }
