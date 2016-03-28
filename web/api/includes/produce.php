@@ -6,7 +6,7 @@ function getProduce()
     $sql = "SELECT p.*, pt.*, nv.*
               FROM produce AS p
                 JOIN produceType AS pt ON p.produceTypeID = pt.produceTypeID
-                LEFT JOIN nutritionValue AS nv ON p.produceTypeID = nv.produceTypeID";
+                JOIN nutritionValue AS nv ON p.produceTypeID = nv.produceTypeID";
     try {
         $db = getDB();
         $stmt = $db->query($sql);
