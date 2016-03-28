@@ -32,10 +32,8 @@
                 // STORES
                 function getStores() {
                     storesService.getStores()
-                        .success(function(data) {
-                            if (!!data) {
+                        .success(function() {
                                 initMap();
-                            }
                         })
                 }
 
