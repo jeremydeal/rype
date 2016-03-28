@@ -3,15 +3,9 @@
 // GET /api/produce/
 function getProduce()
 {
-    $sql = "SELECT p.ProduceId, p.ProduceTypeID AS ProduceTypeID, p.Variety, p.ImgThumb, p.ImgGood, p.ImgBad,
-                    p.DescSmell, p.DescLook, p.DescFeel, p.DescGeneral, p.Storage, p.Prep,
-                    p.SeasonStart, p.SeasonEnd,
-                    pt.CommonName, pt.ProduceClass,
-                    nv.Calories, nv.Totalfat, nv.Sat, nv.Trans, nv.Cholesterol, nv.TotalCarbohydrates,
-                    nv.Sodium, nv.DietaryFiber, nv.Sugars, nv.Protein, nv.Vitamina, nv.Vitaminc, nv.Iron
+    $sql = "SELECT p.*, pt.*
               FROM produce AS p
-                JOIN produceType AS pt ON p.ProduceTypeID = pt.ProduceTypeID
-                LEFT JOIN nutritionValue AS nv ON p.ProduceTypeID = nv.ProduceTypeID";
+                JOIN produceType AS pt ON p.ProduceTypeID = pt.ProduceTypeID";
     try {
         $db = getDB();
         $stmt = $db->query($sql);
@@ -52,15 +46,9 @@ function getProduceById($produceId)
 // GET /api/produce/byType/1
 function getProduceByType($typeId)
 {
-    $sql = "SELECT p.ProduceId, p.ProduceTypeId, p.Variety, p.ImgThumb, p.ImgGood, p.ImgBad,
-                    p.DescSmell, p.DescLook, p.DescFeel, p.DescGeneral, p.Storage, p.Prep,
-                    p.SeasonStart, p.SeasonEnd,
-                    pt.CommonName, pt.ProduceClass,
-                    nv.Calories, nv.Totalfat, nv.Sat, nv.Trans, nv.Cholesterol, nv.TotalCarbohydrates,
-                    nv.Sodium, nv.DietaryFiber, nv.Sugars, nv.Protein, nv.Vitamina, nv.Vitaminc, nv.Iron
+    $sql = "SELECT p.*, pt.*
               FROM produce AS p
                 JOIN produceType AS pt ON p.ProduceTypeID = pt.ProduceTypeID
-                LEFT JOIN nutritionValue AS nv ON p.ProduceTypeID = nv.ProduceTypeID
                 WHERE p.produceTypeId = :produceTypeId";
     try {
         $db = getDB();
