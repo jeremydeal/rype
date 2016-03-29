@@ -45,10 +45,11 @@ function calculateRatings($stores)
 
                 // get only the ratings for this store
                 foreach ($ratings as $rating) {
-                    if (!is_null($rating->DateDiff) && !is_null($rating->Rating) && $rating->StoreId == $storeId) {
+                    if (!is_null($rating->DateDiff) && !is_null($rating->Rating)
+                            && $rating->StoreId == $storeId) {
 
-                        $rate = intval($rating->Rating);
-                        $dd = intval($rating->DateDiff);
+                        $rate = floatval($rating->Rating);
+                        $dd = floatval($rating->DateDiff);
 
                         // if the rating pertains to this store,
                         // figure out the multiplier based on how old the rating is...
