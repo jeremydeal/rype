@@ -74,7 +74,7 @@ function calculateRatings($stores)
 
                 // set store rating
                 if ($totalPossible > 0) {
-                    $avgRating = round($totalRating / $totalPossible, 2);
+                    $avgRating = round((5 * $totalRating / $totalPossible), 2);
                 } else {
                     $avgRating = "";
                 }
