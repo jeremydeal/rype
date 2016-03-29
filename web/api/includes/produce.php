@@ -24,7 +24,8 @@ function getProduceById($produceId)
                       p.DescSmell, p.DescSmell, p.DescLook, p.DescFeel, p.DescGeneral,
                       p.Storage, p.Prep, p.SeasonStart, p.SeasonEnd,
                       pt.CommonName, pt.ProduceClass,
-                      nv.Calories, nv.Totalfat, nv.Sat, nv.Trans, nv.Cholesterol
+                      nv.Calories, nv.Totalfat, nv.Sat, nv.Trans, nv.Cholesterol,
+                      nv.TotalCarbohydrates, nv.Sodium, nv.DietaryFiber, nv.Sugars
               FROM produce AS p
                 JOIN produceType AS pt ON p.ProduceTypeID = pt.ProduceTypeID
                 JOIN nutritionValue AS nv ON p.ProduceTypeID = nv.ProduceTypeID
