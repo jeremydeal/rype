@@ -33,8 +33,6 @@ function calculateRatings($stores)
         $stmt->execute();
         $ratings = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-        return $ratings;
-
         // if we succeeded in pulling ratings...
         if ($stmt->rowCount() > 0) {
             foreach ($stores as $store) {
@@ -47,7 +45,7 @@ function calculateRatings($stores)
 
                 // get only the ratings for this store
                 foreach ($ratings as $rating) {
-                    if ($rating->StoreId == $storeId) {
+                    if (!is_null($rating->DateDiff) && !is_null($rating->Rating) && $rating->StoreId == $storeId) {
 
                         $rate = intval($rating->Rating);
                         $dd = intval($rating->DateDiff);
