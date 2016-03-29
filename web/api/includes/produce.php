@@ -20,7 +20,10 @@ function getProduce()
 // GET /api/produce/byId/1
 function getProduceById($produceId)
 {
-    $sql = "SELECT p.ProduceTypeID, pt.CommonName, nv.Calories
+    $sql = "SELECT p.ProduceId, p.ProduceTypeID, p.Variety, p.ImgThumb, p.ImgGood, p.ImgBad,
+                      p.DescSmell, p.DescSmell, p.DescLook, p.DescFeel, p.DescGeneral,
+                      pt.CommonName,
+                      nv.Calories
               FROM produce AS p
                 JOIN produceType AS pt ON p.ProduceTypeID = pt.ProduceTypeID
                 JOIN nutritionValue AS nv ON p.ProduceTypeID = nv.ProduceTypeID
