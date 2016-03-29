@@ -33,6 +33,8 @@ function calculateRatings($stores)
         $stmt->execute();
         $ratings = $stmt->fetchAll(PDO::FETCH_OBJ);
 
+        return $ratings;
+
         // if we succeeded in pulling ratings...
         if ($stmt->rowCount() > 0) {
             foreach ($stores as $store) {
