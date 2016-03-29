@@ -13,9 +13,10 @@
         <div class ="table-responsive">
             <table class="table col-xs-12">
                 <tr>
-                    <td><strong>Store Name</strong></td>
-                    <td><strong>Street Address</strong></td>
-                    <td><strong>Store Rating</strong></td>
+                    <th class="col-xs-3"><strong>Store Name</strong></th>
+                    <th class="col-xs-3"><strong>Street Address</strong></th>
+                    <th class="col-xs-3"><strong>Store Rating</strong></th>
+                    <th class="col-xs-3"><strong>Add Rating</strong></th>
                 </tr>
                 <tr ng-repeat="s in stores" ng-class="{true: 'selectedStore'}[s.StoreId === store.StoreId]">
                     <td><strong>{{ s.StoreName }}</strong></td>
