@@ -19,6 +19,9 @@ function getStores()
     }
 }
 
+
+
+
 // GET /api/store/byId/1
 function getStoreById($storeId)
 {
@@ -76,22 +79,4 @@ function rateStore($data) {
     }
 }
 
-//// GET /api/produce/byType/1
-//function getProduceByType($typeId)
-//{
-//    $sql = "SELECT p.*, pt.*
-//              FROM produce AS p
-//                JOIN produceType AS pt ON p.produceTypeID = pt.produceTypeID
-//                WHERE p.produceTypeId = :produceTypeId";
-//    try {
-//        $db = getDB();
-//        $stmt = $db->prepare($sql);
-//        $stmt->bindParam("produceTypeId", $typeId);
-//        $stmt->execute();
-//        $products = $stmt->fetchAll(PDO::FETCH_OBJ);
-//        $db = null;
-//        echo '{"products": ' . json_encode($products) . '}';
-//    } catch (PDOException $e) {
-//        echo '{"error: { "text": ' . $e->getMessage() . '} }';
-//    }
-//}
+
