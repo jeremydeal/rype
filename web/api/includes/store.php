@@ -35,20 +35,17 @@ function calculateRatings($stores)
 
         // if we succeeded in pulling ratings...
         if ($stmt->rowCount() > 0) {
-            foreach ($stores as $store) {
-                $storeId = $store->StoreId;
 
+            foreach ($stores as $store) {
                 $MULTIPLIERS = array("week"=>1.0,"month"=>0.7,"season"=>0.4,"year"=>0.2, "none"=>0.0);
 
                 $totalRating = 0.0;
                 $totalPossible = 0.0;
 
-                return $ratings;
-
                 // get only the ratings for this store
                 foreach ($ratings as $rating) {
-                    if (!is_null($rating->DateDiff) && !is_null($rating->Rating)
-                            && $rating->StoreId == $storeId) {
+                    if ($rating->DateDiff !== null && $rating->Rating !== null
+                            && $rating->StoreId == $store->StoreId) {
 
                         $rate = floatval($rating->Rating);
                         $dd = floatval($rating->DateDiff);
@@ -76,7 +73,7 @@ function calculateRatings($stores)
                 }
 
                 // set store rating
-                $avgRating = round($totalRating / $totalPossible, 2);
+                $avgRating = $totalRating / $totalPossible;
                 $store->Rating = $avgRating;
             }
         }
