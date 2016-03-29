@@ -68,13 +68,13 @@ function calculateRatings($stores)
 
                         // ...and add it to our current total rating
                         $totalRating += $rate * $multiplier;
-                        $totalPossible += 5.0 * $multiplier;
+                        $totalPossible += $multiplier;
                     }
                 }
 
                 // set store rating
                 if ($totalPossible > 0) {
-                    $avgRating = round((5 * $totalRating / $totalPossible), 2);
+                    $avgRating = round($totalRating / $totalPossible, 2);
                 } else {
                     $avgRating = "";
                 }
