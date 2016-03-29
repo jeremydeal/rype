@@ -71,3 +71,10 @@ li a:hover {
 .selectedStore {
     background-color: red;
 }
+
+
+/* STORES TABLE */
+.table-responsive
+{
+    overflow-x: auto;
+}
