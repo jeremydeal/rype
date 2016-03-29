@@ -43,6 +43,8 @@ function calculateRatings($stores)
                 $totalRating = 0.0;
                 $totalPossible = 0.0;
 
+                return $ratings;
+
                 // get only the ratings for this store
                 foreach ($ratings as $rating) {
                     if (!is_null($rating->DateDiff) && !is_null($rating->Rating)
