@@ -38,7 +38,7 @@ function calculateRatings($stores)
             foreach ($stores as $store) {
                 $storeId = $store->StoreId;
 
-                $MULTIPLIERS = array(1=>1.0,2=>0.7,3=>0.4,4=>0.2, 5=>0.0);
+                $MULTIPLIERS = array("week"=>1.0,"month"=>0.7,"season"=>0.4,"year"=>0.2, "none"=>0.0);
 
                 $totalRating = 0.0;
                 $totalPossible = 0.0;
@@ -54,15 +54,15 @@ function calculateRatings($stores)
                         // if the rating pertains to this store,
                         // figure out the multiplier based on how old the rating is...
                         if ($dd <= 7) {
-                            $multiplierCode = 1;
+                            $multiplierCode = "week";
                         } else if ($dd <= 30) {
-                            $multiplierCode = 2;
+                            $multiplierCode = "month";
                         } else if ($dd <= 90) {
-                            $multiplierCode = 3;
+                            $multiplierCode = "season";
                         } else if ($dd <= 365) {
-                            $multiplierCode = 4;
+                            $multiplierCode = "year";
                         } else {
-                            $multiplierCode = 5;
+                            $multiplierCode = "none";
                         }
 
                         $multiplier = $MULTIPLIERS[$multiplierCode];
