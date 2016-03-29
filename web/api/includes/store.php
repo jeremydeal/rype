@@ -142,8 +142,3 @@ function rateStore($data) {
         // DB access error; return nothing
     }
 }
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 424ff609586ee539c819bb69f9ecae079a98af2a
