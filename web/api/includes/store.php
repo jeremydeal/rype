@@ -174,7 +174,7 @@ function calculateHistoricalRatings($store, $numDays)
         if ($stmt->rowCount() > 0) {
             for ($i = 1; $i <= $numDays; $i++) {
                 // decrement age of all ratings by desired number
-                $ratings = getDecrementedRatings($ratings, $i);
+                $ratings = getDecrementedRatings($ratings);
 
                 // and add historical rating to store object
                 $store->{"RatingTMinus" . $i} = getAverageRatingForStore($ratings, $store->StoreId);
