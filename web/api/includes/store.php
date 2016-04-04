@@ -197,15 +197,7 @@ function getDecrementedRatings($ratings) {
         $rating->DateDiff = int($rating->DateDiff) - 1;
     }
 
-    // eliminate ratings that "haven't happened yet" (spooky!!!)
-    $strippedRatings = array();
-    foreach ($tempRatings as $rating) {
-        if ($rating->DateDiff > 0) {
-            array_push($strippedRatings, $rating);
-        }
-    }
-
-    return $strippedRatings;
+    return $tempRatings;
 }
 
 
@@ -227,7 +219,9 @@ function getAverageRatingForStore($ratings, $storeId) {
 
             // if the rating pertains to this store,
             // figure out the multiplier based on how old the rating is...
-            if ($dd <= 7) {
+            if ($dd < 0) {
+                $multiplierCode = "none";
+            } else if ($dd <= 7) {
                 $multiplierCode = "week";
             } else if ($dd <= 30) {
                 $multiplierCode = "month";
