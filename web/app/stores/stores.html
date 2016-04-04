@@ -22,7 +22,7 @@
                     <td>{{ s.Address }}<br />{{ s.City + ", " + s.State + " " + s.Zip }}</td>
                     <td>{{ roundToTenth(s.Rating) }}</td>
                     <td>
-                            <select class="form-control" name="rating" ng-model="s.MyRating">
+                            <select class="form-control col-md-2 col-sm-2 col-xs-2" name="rating" ng-model="s.MyRating">
                                 <option value="">--</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
