@@ -6,7 +6,10 @@
         ['$scope', 'productsService', 'prettyPrintService',
             function ($scope, productsService, prettyPrintService) {
 
-                // CONTROLLER GLOBALS
+                // STORE GLOBALS
+                $scope.storeId = 1;
+
+                // PRODUCT GLOBALS
                 $scope.products = {};
                 $scope.product = {};
                 $scope.productTypes = {};
