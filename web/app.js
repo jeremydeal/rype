@@ -7,6 +7,8 @@ var app = angular.module('myApp', [
     'slick'
 ]);
 
+var myapp = angular.module('myapp', ["highcharts-ng"]);
+
 app.config(['$routeProvider', function($routeProvider) {
 
     // ROUTING
