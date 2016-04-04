@@ -5,8 +5,8 @@
 
 
     app.controller('storesController',
-        ['$scope', 'storesService', 'loginService', 'sessionService', 'prettyPrintService',
-            function ($scope, storesService, loginService, sessionService, prettyPrintService) {
+        ['$scope', 'storesService', 'loginService', 'sessionService', 'prettyPrintService', '$location',
+            function ($scope, storesService, loginService, sessionService, prettyPrintService, $location) {
 
                 // CONTROLLER GLOBALS
                 $scope.stores = {};
@@ -29,6 +29,12 @@
                     getStores();
                     populateUser();
                 }
+
+
+                ///////////////////////////////////////////// UI CALLS //////////////////////////////////////////////
+                $scope.navigateToStore = function($storeId) {
+                    $location.path('/store/').search({storeId:$storeId});
+                };
 
 
                 ///////////////////////////////////////////// SERVICE CALLS /////////////////////////////////////////
