@@ -99,6 +99,10 @@ function rateStore($data) {
 }
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// HELPER FUNCTIONS
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 // This function takes a list of stores, calculates average store-wide ratings for those stores
 // (weighted by how old the rating is), adds those ratings to each store as $store->Rating,
 // and returns the list of stores.
@@ -189,7 +193,10 @@ function calculateHistoricalRatings($store, $numDays)
 }
 
 
-// TODO
+// This function decrements the datediffs for each rating passed in
+// and returns a new list of ratings. Note: this does not remove dates
+// that have not passed, because those dates are already handled
+// by getAverageRatingForStore().
 function getDecrementedRatings($ratings) {
     // decrement the datediffs for each rating
     $tempRatings = $ratings;
