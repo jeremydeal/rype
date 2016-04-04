@@ -49,9 +49,6 @@
                     zoomType: 'x'
                 }
             },
-            series: [{
-                data: [10, 15, 12, 8, 7, 1, 1, 19, 15, 10]
-            }],
             title: {
                 text: 'Store Rating',
                 x: -20 //center
