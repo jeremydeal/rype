@@ -3,8 +3,8 @@
     'use strict';
 
     app.controller('storeController',
-        ['$scope', 'productsService', 'prettyPrintService', '$routeParams',
-            function ($scope, productsService, prettyPrintService, $routeParams) {
+        ['$scope', 'productsService', 'prettyPrintService',
+            function ($scope, productsService, prettyPrintService) {
 
                 // STORE GLOBALS
                 $scope.storeId = 1;
