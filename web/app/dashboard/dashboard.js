@@ -45,7 +45,7 @@
 
 //LINE CHART FOR DASHBOARD
 $(function () {
-    $('#container').highcharts({
+    $('#chart').highcharts({
         title: {
             text: 'Store Rating',
             x: -20 //center
