@@ -7,7 +7,7 @@
             function ($scope, productsService, prettyPrintService, $routeParams) {
 
                 // STORE GLOBALS
-                $scope.storeId = $routeParams.storeId;
+                $scope.storeId = 1;
 
                 // PRODUCT GLOBALS
                 $scope.products = {};
