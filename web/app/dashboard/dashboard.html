@@ -1,22 +1,6 @@
 <div>
 
     <p>Howdy, {{ user.Username + "!" }} Welcome!</p>
-
-    <!-- Store Charts -->
-    <div ng-app="myapp">
-        <div ng-controller="myctrl">
-            <div class="span12">
-                <form class="form">Min: <input type="number" ng-model="chartConfig.xAxis.currentMin">
-                    Max: <input type="number" ng-model="chartConfig.xAxis.currentMax">
-                </form>
-                <br/>
-            </div>
-            <div class="row">
-                <highchart id="chart1" config="chartConfig" class="span10"></highchart>
-            </div>
-        </div>
-    </div>
-
     <button type="button" class="btn btn-primary" ng-click="logout()">Log out</button>
 
 </div>
