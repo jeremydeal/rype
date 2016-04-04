@@ -53,19 +53,12 @@
 
 
         <!--for xs screens-->
-        <ul class="visible-xs" data-role="listview" data-split-icon="star" data-theme="d">
+        <ul class="visible-xs" data-role="listview" data-theme="d">
             <li ng-repeat="s in stores" ng-class="{true: 'selectedStore'}[s.StoreId === store.StoreId]">
                     <h3>{{ s.StoreName }}<span ID="r0"></span></h3>
                     <p>{{ s.Address }}<br />{{ s.City + ", " + s.State + " " + s.Zip }}</p>
                 </a>
                 <a href="#" class="showRating" mID="0">Rate Store</a>
-            </li>
-            <li>
-                <a href="http://www.imdb.com/title/tt0105323/">
-                    <h3>Another Row Test <span ID="r1"></span></h3>
-                    <p>IF needed?</p>
-                </a>
-                <a href="#" class="showRating" mID="1">Rate Store</a>
             </li>
         </ul>
 
