@@ -41,7 +41,10 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: 'app/stores/stores.html',
             controller: 'storesController'
         })
-
+        .when('/store', {
+            templateUrl: 'app/store/store.html',
+            controller: 'storeController'
+        })
         .otherwise({
             redirectTo: '/home'
         });
