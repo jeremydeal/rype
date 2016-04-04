@@ -104,49 +104,7 @@ function calculateRatings($stores)
         if ($stmt->rowCount() > 0) {
 
             foreach ($stores as $store) {
-                $MULTIPLIERS = array("week"=>1.0,"month"=>0.7,"season"=>0.4,"year"=>0.2, "none"=>0.0);
-
-                $totalRating = 0.0;
-                $totalPossible = 0.0;
-
-                // get only the ratings for this store
-                foreach ($ratings as $rating) {
-                    if ($rating->DateDiff !== null && $rating->Rating !== null
-                        && $rating->StoreId == $store->StoreId) {
-
-                        $rate = floatval($rating->Rating);
-                        $dd = floatval($rating->DateDiff);
-
-                        // if the rating pertains to this store,
-                        // figure out the multiplier based on how old the rating is...
-                        if ($dd <= 7) {
-                            $multiplierCode = "week";
-                        } else if ($dd <= 30) {
-                            $multiplierCode = "month";
-                        } else if ($dd <= 90) {
-                            $multiplierCode = "season";
-                        } else if ($dd <= 365) {
-                            $multiplierCode = "year";
-                        } else {
-                            $multiplierCode = "none";
-                        }
-
-                        $multiplier = $MULTIPLIERS[$multiplierCode];
-
-                        // ...and add it to our current total rating
-                        $totalRating += $rate * $multiplier;
-                        $totalPossible += $multiplier;
-                    }
-                }
-
-                // set store rating
-                if ($totalPossible > 0) {
-                    $avgRating = round($totalRating / $totalPossible, 2);
-                } else {
-                    $avgRating = "";
-                }
-
-                $store->Rating = $avgRating;
+                $store->Rating = getAverageRatingForStore($ratings, $store->StoreId);
             }
         }
 
@@ -170,50 +128,7 @@ function calculateRating($store)
 
         // if we succeeded in pulling ratings...
         if ($stmt->rowCount() > 0) {
-
-            $MULTIPLIERS = array("week"=>1.0,"month"=>0.7,"season"=>0.4,"year"=>0.2, "none"=>0.0);
-
-            $totalRating = 0.0;
-            $totalPossible = 0.0;
-
-            // get only the ratings for this store
-            foreach ($ratings as $rating) {
-                if ($rating->DateDiff !== null && $rating->Rating !== null
-                    && $rating->StoreId == $store->StoreId) {
-
-                    $rate = floatval($rating->Rating);
-                    $dd = floatval($rating->DateDiff);
-
-                    // if the rating pertains to this store,
-                    // figure out the multiplier based on how old the rating is...
-                    if ($dd <= 7) {
-                        $multiplierCode = "week";
-                    } else if ($dd <= 30) {
-                        $multiplierCode = "month";
-                    } else if ($dd <= 90) {
-                        $multiplierCode = "season";
-                    } else if ($dd <= 365) {
-                        $multiplierCode = "year";
-                    } else {
-                        $multiplierCode = "none";
-                    }
-
-                    $multiplier = $MULTIPLIERS[$multiplierCode];
-
-                    // ...and add it to our current total rating
-                    $totalRating += $rate * $multiplier;
-                    $totalPossible += $multiplier;
-                }
-            }
-
-            // set store rating
-            if ($totalPossible > 0) {
-                $avgRating = round($totalRating / $totalPossible, 2);
-            } else {
-                $avgRating = "";
-            }
-
-            $store->Rating = $avgRating;
+            $store->Rating = getAverageRatingForStore($ratings, $store->StoreId);
         }
 
         return $store;
@@ -222,4 +137,54 @@ function calculateRating($store)
         return "";
     }
 }
+
+
+function getAverageRatingForStore($ratings, $storeId) {
+    $MULTIPLIERS = array("week"=>1.0,"month"=>0.7,"season"=>0.4,"year"=>0.2, "none"=>0.0);
+
+    $totalRating = 0.0;
+    $totalPossible = 0.0;
+
+    // get only the ratings for this store
+    foreach ($ratings as $rating) {
+        if ($rating->DateDiff !== null && $rating->Rating !== null
+            && $rating->StoreId == $storeId) {
+
+            $rate = floatval($rating->Rating);
+            $dd = floatval($rating->DateDiff);
+
+            // if the rating pertains to this store,
+            // figure out the multiplier based on how old the rating is...
+            if ($dd <= 7) {
+                $multiplierCode = "week";
+            } else if ($dd <= 30) {
+                $multiplierCode = "month";
+            } else if ($dd <= 90) {
+                $multiplierCode = "season";
+            } else if ($dd <= 365) {
+                $multiplierCode = "year";
+            } else {
+                $multiplierCode = "none";
+            }
+
+            $multiplier = $MULTIPLIERS[$multiplierCode];
+
+            // ...and add it to our current total rating
+            $totalRating += $rate * $multiplier;
+            $totalPossible += $multiplier;
+        }
+    }
+
+    // set store rating
+    if ($totalPossible > 0) {
+        $avgRating = round($totalRating / $totalPossible, 2);
+    } else {
+        $avgRating = "";
+    }
+
+    return $avgRating;
+}
+
+
+
 
