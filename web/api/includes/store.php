@@ -172,13 +172,12 @@ function calculateHistoricalRatings($store, $numDays)
 
         // if we succeeded in pulling ratings...
         if ($stmt->rowCount() > 0) {
-
-            for ($i = 1; $i < $numDays; $i++) {
+            for ($i = 1; $i <= $numDays; $i++) {
                 // decrement age of all ratings by desired number
-                $tempRatings = getDecrementedRatings($ratings, $i);
+                $ratings = getDecrementedRatings($ratings, $i);
 
                 // and add historical rating to store object
-                $store->{"RatingTMinus" . $i} = getAverageRatingForStore($tempRatings, $store->StoreId);
+                $store->{"RatingTMinus" . $i} = getAverageRatingForStore($ratings, $store->StoreId);
             }
         }
 
@@ -195,18 +194,10 @@ function getDecrementedRatings($ratings, $decrementor) {
     // decrement the datediffs for each rating
     $tempRatings = $ratings;
     foreach ($tempRatings as $rating) {
-        $rating->DateDiff = int($rating->DateDiff) - $decrementor;
+        $rating->DateDiff = intval($rating->DateDiff) - $decrementor;
     }
 
-    // eliminate ratings that "haven't happened yet" (spooky!!!)
-    $strippedRatings = array();
-    foreach ($tempRatings as $rating) {
-        if ($rating->DateDiff > 0) {
-            array_push($strippedRatings, $rating);
-        }
-    }
-
-    return $strippedRatings;
+    return $tempRatings;
 }
 
 
@@ -228,7 +219,9 @@ function getAverageRatingForStore($ratings, $storeId) {
 
             // if the rating pertains to this store,
             // figure out the multiplier based on how old the rating is...
-            if ($dd <= 7) {
+            if ($dd < 0) {
+                $multiplierCode = "none";
+            } else if ($dd <= 7) {
                 $multiplierCode = "week";
             } else if ($dd <= 30) {
                 $multiplierCode = "month";
