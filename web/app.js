@@ -4,10 +4,10 @@
 var app = angular.module('myApp', [
     'ngRoute',
     'perfect_scrollbar',
-    'slick'
+    'slick',
+    'highcharts-ng'
 ]);
 
-var myapp = angular.module('myapp', ["highcharts-ng"]);
 
 app.config(['$routeProvider', function($routeProvider) {
 
@@ -41,7 +41,7 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: 'app/stores/stores.html',
             controller: 'storesController'
         })
-        .when('/store', {
+        .when('/store/:storeId', {
             templateUrl: 'app/store/store.html',
             controller: 'storeController'
         })
