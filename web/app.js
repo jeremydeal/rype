@@ -4,8 +4,7 @@
 var app = angular.module('myApp', [
     'ngRoute',
     'perfect_scrollbar',
-    'slick',
-    'highcharts-ng'
+    'slick'
 ]);
 
 
