@@ -4,10 +4,14 @@
 
     app.controller('storeController',
         ['$scope', 'productsService', 'prettyPrintService', '$routeParams',
-            function ($scope, productsService, prettyPrintService, $routeParams) {
+            function ($scope, productsService, storesService, loginService, sessionService, prettyPrintService, $routeParams) {
 
                 // STORE GLOBALS
                 $scope.storeId = $routeParams.storeId;
+                $scope.store = {};
+
+                // USER GLOBALS
+                $scope.user = {};
 
                 // PRODUCT GLOBALS
                 $scope.products = {};
@@ -32,6 +36,10 @@
                     getProductById(2);
                     getProductTypes();
                     getProductClasses();
+
+                    getStore($scope.storeId);
+
+                    populateUser();
                 }
 
 
@@ -71,6 +79,27 @@
                     productsService.getProductClasses()
                         .success(function (data) {
                             $scope.productClasses = data.classes;
+                        })
+                }
+
+                // CURRENT USER
+                // populate user object from JS session
+                function populateUser() {
+                    // check if user is logged in server side...
+                    loginService.checkLoginStatus()
+                        .then(function(response){
+                            // if logged in, populate user from sessionStorage
+                            if (!!response.data) {
+                                $scope.user = sessionService.getUser();
+                            }
+                        });
+                }
+
+                // STORES
+                function getStore(storeId) {
+                    storesService.getStoreById(storeId)
+                        .success(function (data) {
+                            $scope.store = data.store;
                         })
                 }
 
