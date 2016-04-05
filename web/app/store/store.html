@@ -58,8 +58,10 @@
                                             filterProductsByClass:search.class |
                                             filterProductsByType:search.type">
                 <td>
-                    <p><strong>{{ p.Variety + " (" + p.CommonName + ")" }}</strong></p>
                     <img class="product-image" style="width: 100px" ng-src="../../src/images/{{ p.ImgThumb }}" ng-click="getProduct(p.ProduceId)" />
+                </td>
+                <td>
+                    <p><strong>{{ p.Variety + " (" + p.CommonName + ")" }}</strong></p>
                 </td>
             </tr>
         </table>
