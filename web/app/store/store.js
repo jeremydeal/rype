@@ -3,7 +3,7 @@
     'use strict';
 
     app.controller('storeController',
-        ['$scope', 'productsService', 'prettyPrintService', '$routeParams',
+        ['$scope', 'productsService', 'storesService', 'loginService', 'sessionService', 'prettyPrintService', '$routeParams',
             function ($scope, productsService, storesService, loginService, sessionService, prettyPrintService, $routeParams) {
 
                 // STORE GLOBALS
