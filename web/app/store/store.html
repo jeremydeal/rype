@@ -53,6 +53,11 @@
 
         <!-- PRODUCE LIST -->
         <table class="table-condensed">
+            <tr>
+                <td></td>
+                <td><strong>Common Name</strong></td>
+                <td><strong>Variety</strong></td>
+            </tr>
             <tr ng-repeat="p in products | filterProductsBySearch:search.query |
                                             filterProductsByWhetherInSeason:search.inSeason |
                                             filterProductsByClass:search.class |
@@ -61,7 +66,10 @@
                     <img class="product-image" style="width: 100px" ng-src="../../src/images/{{ p.ImgThumb }}" ng-click="getProduct(p.ProduceId)" />
                 </td>
                 <td>
-                    <p><strong>{{ p.Variety + " (" + p.CommonName + ")" }}</strong></p>
+                    <p><strong>{{ p.CommonName }}</strong></p>
+                </td>
+                <td>
+                    <p><strong>{{ p.Variety }}</strong></p>
                 </td>
             </tr>
         </table>
