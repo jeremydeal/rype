@@ -54,7 +54,7 @@ function getStoreById($storeId)
         }
 
         $db = null;
-        echo '{"product": ' . json_encode($store) . '}';
+        echo '{"store": ' . json_encode($store) . '}';
     } catch (PDOException $e) {
         echo '{"error: { "text": ' . $e->getMessage() . '} }';
     }
