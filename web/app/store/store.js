@@ -181,6 +181,9 @@
                     title: {
                         text: '10-Day Ratings Trend'
                     },
+                    legend: {
+                        enabled: false
+                    },
                     loading: false
                 }
 
