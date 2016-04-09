@@ -1,8 +1,5 @@
 <div class="container">
 
-    <p>Current user id = {{ user.CustomerId }}</p>
-    <p>Preferred store id = {{ user.PreferredStore }}</p>
-
     <!-- Google Map -->
     <div class="col-md-12 col-sm-12 col-xs-12 map centered">
     <div id="map"></div>
@@ -21,6 +18,9 @@
                     <td><strong><a ng-click="navigateToStore(s.StoreId)">{{ s.StoreName }}</a></strong></td>
                     <td>{{ s.Address }}<br />{{ s.City + ", " + s.State + " " + s.Zip }}</td>
                     <td>{{ roundToTenth(s.Rating) }}</td>
+                    <td>
+                        <star-rating-directive score="s.Rating" max="5"></div>
+                    </td>
                     <td>
                         <div class="col-md-3 col-sm-4 col-xs-8">
                             <select class="form-control" name="rating" ng-model="s.MyRating">
