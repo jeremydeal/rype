@@ -1,67 +1,61 @@
-< class="container">
+<div class="container">
 
     <!-- Google Map -->
     <div class="col-md-12 col-sm-12 col-xs-12 map centered">
-    <div id="map"></div>
+        <div id="map"></div>
     </div>
 
-    <perfect-scrollbar class="scrollable" suppress-scroll-x="true" wheel-propagation="true" wheel-speed="3" min-scrollbar-length="20">
-
       <!-- This table is hidden for extra small screens, code below is for extra small screens-->
-            <table style="width:100%" class="hidden-xs">
-                <tr>
-                    <th><strong>Store Name</strong></th>
-                    <th><strong>Street Address</strong></th>
-                    <th colspan="2"><strong>Store Rating</strong></th>
-                </tr>
-                <tr ng-repeat="s in stores" ng-class="{true: 'selectedStore'}[s.StoreId === store.StoreId]">
-                    <td><strong><a ng-click="navigateToStore(s.StoreId)">{{ s.StoreName }}</a></strong></td>
-                    <td>{{ s.Address }}<br />{{ s.City + ", " + s.State + " " + s.Zip }}</td>
-                    <td>
-                        <star-rating-directive score="roundToTenth(s.Rating)" max="5"></star-rating-directive>
-                    </td>
-                    <!--<td>-->
-                        <!--<div class="col-md-3 col-sm-4 col-xs-8">-->
-                            <!--<select class="form-control" name="rating" ng-model="s.MyRating">-->
-                                <!--<option value="">&#45;&#45;</option>-->
-                                <!--<option value="1">1</option>-->
-                                <!--<option value="2">2</option>-->
-                                <!--<option value="3">3</option>-->
-                                <!--<option value="4">4</option>-->
-                                <!--<option value="5">5</option>-->
-                            <!--</select>-->
-                        <!--</div>-->
+        <table style="width:100%" class="hidden-xs">
+            <tr>
+                <th><strong>Store Name</strong></th>
+                <th><strong>Street Address</strong></th>
+                <th colspan="2"><strong>Store Rating</strong></th>
+            </tr>
+            <tr ng-repeat="s in stores" ng-class="{true: 'selectedStore'}[s.StoreId === store.StoreId]">
+                <td><strong><a ng-click="navigateToStore(s.StoreId)">{{ s.StoreName }}</a></strong></td>
+                <td>{{ s.Address }}<br />{{ s.City + ", " + s.State + " " + s.Zip }}</td>
+                <td>
+                    <star-rating-directive score="roundToTenth(s.Rating)" max="5"></star-rating-directive>
+                </td>
+                <!--<td>-->
+                    <!--<div class="col-md-3 col-sm-4 col-xs-8">-->
+                        <!--<select class="form-control" name="rating" ng-model="s.MyRating">-->
+                            <!--<option value="">&#45;&#45;</option>-->
+                            <!--<option value="1">1</option>-->
+                            <!--<option value="2">2</option>-->
+                            <!--<option value="3">3</option>-->
+                            <!--<option value="4">4</option>-->
+                            <!--<option value="5">5</option>-->
+                        <!--</select>-->
+                    <!--</div>-->
 
-                        <!--<div class="col-md-2 col-sm-2 col-xs-2">-->
-                            <!--<button type="button" class="btn btn-primary"-->
-                                    <!--ng-click="rateStore(s.StoreId, s.MyRating)">-->
-                                <!--Rate This Store!-->
-                            <!--</button>-->
-                        <!--</div>-->
-                    <!--</td>-->
-
-                    <!--<td ng-show="!!user && !isUserPreferredStore(s.StoreId)">-->
+                    <!--<div class="col-md-2 col-sm-2 col-xs-2">-->
                         <!--<button type="button" class="btn btn-primary"-->
-                                <!--ng-click="setUserPreferredStore(s.StoreId)">-->
-                            <!--Set Store-->
+                                <!--ng-click="rateStore(s.StoreId, s.MyRating)">-->
+                            <!--Rate This Store!-->
                         <!--</button>-->
-                    <!--</td>-->
-                    <!-- -->
-                </tr>
-            </table>
+                    <!--</div>-->
+                <!--</td>-->
+
+                <!--<td ng-show="!!user && !isUserPreferredStore(s.StoreId)">-->
+                    <!--<button type="button" class="btn btn-primary"-->
+                            <!--ng-click="setUserPreferredStore(s.StoreId)">-->
+                        <!--Set Store-->
+                    <!--</button>-->
+                <!--</td>-->
+                <!-- -->
+            </tr>
+        </table>
 
 
-        <!--for xs screens-->
-        <ul class="visible-xs" data-role="listview" data-split-icon="star" data-theme="d">
-            <li ng-repeat="s in stores" ng-class="{true: 'selectedStore'}[s.StoreId === store.StoreId]">
-                    <h3>{{ s.StoreName }}<span ID="r0"></span></h3>
-                    <p>{{ s.Address }}<br />{{ s.City + ", " + s.State + " " + s.Zip }}</p>
-                </a>
-                <a href="#" class="showRating" mID="0">Rate Store</a>
-            </li>
-        </ul>
-
-
-    </perfect-scrollbar>
+    <!--for xs screens-->
+    <ul class="visible-xs" data-role="listview" data-split-icon="star" data-theme="d">
+        <li ng-repeat="s in stores" ng-class="{true: 'selectedStore'}[s.StoreId === store.StoreId]">
+            <h3>{{ s.StoreName }}<span ID="r0"></span></h3>
+            <p>{{ s.Address }}<br />{{ s.City + ", " + s.State + " " + s.Zip }}</p>
+            <a href="#" class="showRating" mID="0">Rate Store</a>
+        </li>
+    </ul>
 
 </div>
