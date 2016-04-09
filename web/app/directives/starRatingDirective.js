@@ -56,6 +56,7 @@
             scope.setRating = function(index) {
                 scope.score = index + 1;
                 scope.stopHover();
+                console.log("Rating is now " + str(scope.score));
                 scope.$apply(attrs.ratingFunction);
             };
 
