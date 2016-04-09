@@ -132,7 +132,9 @@
                             type: 'line'
                         }
                     },
-                    series: $scope.historicalRatings,
+                    series: [{
+                        data: $scope.historicalRatings
+                    }],
                     title: {
                         text: '10-Day Ratings Trend'
                     },
