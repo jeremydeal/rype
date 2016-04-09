@@ -187,14 +187,16 @@ function getDecrementedRatings($ratings) {
 // This function takes a list of products at specific stores, calculates average ratings for each product
 // (weighted by how old the rating is), adds those ratings to each product as $product->Rating,
 // and returns the list of stores.
-function calculateProduceRatings($products)
+function calculateProduceRatings($products, $storeId)
 {
     // pull all store-wide ratings from DB
     $sql = "SELECT StoreId, ProduceId, Rating, DATEDIFF(NOW(), DateTime) AS DateDiff
-                  FROM produceRatings";
+                  FROM produceRatings
+                  WHERE StoreId = :storeId";
     try {
         $db = getDB();
-        $stmt = $db->query($sql);
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("storeId", $storeId);
         $stmt->execute();
         $ratings = $stmt->fetchAll(PDO::FETCH_OBJ);
 
@@ -203,7 +205,7 @@ function calculateProduceRatings($products)
 
             // add ratings to each store object
             foreach ($products as $product) {
-                $product->Rating = getAverageRating($ratings, $product->StoreId, $product->ProductId);
+                $product->Rating = getAverageRating($ratings, $storeId, $product->ProductId);
             }
         }
 
