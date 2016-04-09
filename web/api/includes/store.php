@@ -16,7 +16,7 @@ function getStores()
         // if we get back at least one store,
         // iterate through the stores and add ratings
         if ($stmt->rowCount() > 0) {
-            $stores = calculateRatings($stores);
+            $stores = calculateStoreRatings($stores);
         }
 
         $db = null;
@@ -49,7 +49,7 @@ function getStoreById($storeId)
         // if we get back at least a store,
         // add rating
         if ($stmt->rowCount() > 0) {
-            $store = calculateRating($store);
+            $store = calculateStoreRating($store);
             $store = calculateHistoricalRatings($store, 10);
         }
 

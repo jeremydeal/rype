@@ -34,7 +34,6 @@
                 ///////////////////////////////////// DATA INIT /////////////////////////////////////////////////////
                 function dataInit() {
                     getProducts();
-                    getProductById(2);
                     getProductTypes();
                     getProductClasses();
 

@@ -25,6 +25,10 @@
             return $http.get(baseUrl + "byType/" + typeId);
         };
 
+        // get products by store (including ratings for those products at that store)
+        productsService.getProductsByStore = function (storeId) {
+            return $http.get(baseUrl + "byStore/" + storeId);
+        };
 
         //////////////////////////////////// SUPPLEMENTARY //////////////////////////////////////
         // get product types

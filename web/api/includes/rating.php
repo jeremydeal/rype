@@ -82,7 +82,7 @@ function rateProduce($data) {
 // This function takes a list of stores, calculates average store-wide ratings for those stores
 // (weighted by how old the rating is), adds those ratings to each store as $store->Rating,
 // and returns the list of stores.
-function calculateRatings($stores)
+function calculateStoreRatings($stores)
 {
     // pull all store-wide ratings from DB
     $sql = "SELECT sr.StoreId, sr.Rating, DATEDIFF(NOW(), sr.DateTime) AS DateDiff
@@ -98,7 +98,7 @@ function calculateRatings($stores)
 
             // add ratings to each store object
             foreach ($stores as $store) {
-                $store->Rating = getAverageRatingForStore($ratings, $store->StoreId);
+                $store->Rating = getAverageRating($ratings, $store->StoreId);
             }
         }
 
@@ -111,7 +111,7 @@ function calculateRatings($stores)
 
 // This function takes a single store, calculates average store-wide rating, adds the rating
 // as $store->Rating, and returns the store.
-function calculateRating($store)
+function calculateStoreRating($store)
 {
     // grab ratings from DB
     $sql = "SELECT sr.StoreId, sr.Rating, DATEDIFF(NOW(), sr.DateTime) AS DateDiff
@@ -125,7 +125,7 @@ function calculateRating($store)
         // if we succeeded in pulling ratings...
         if ($stmt->rowCount() > 0) {
             // ...add rating to store object
-            $store->Rating = getAverageRatingForStore($ratings, $store->StoreId);
+            $store->Rating = getAverageRating($ratings, $store->StoreId);
         }
 
         return $store;
@@ -157,7 +157,7 @@ function calculateHistoricalRatings($store, $numDays)
                 $tempRatings = getDecrementedRatings($ratings);
 
                 // and add historical rating to store object
-                $store->{"RatingTMinus" . $i} = getAverageRatingForStore($tempRatings, $store->StoreId);
+                $store->{"RatingTMinus" . $i} = getAverageRating($tempRatings, $store->StoreId);
             }
         }
 
@@ -184,8 +184,39 @@ function getDecrementedRatings($ratings) {
 }
 
 
+// This function takes a list of products at specific stores, calculates average ratings for each product
+// (weighted by how old the rating is), adds those ratings to each product as $product->Rating,
+// and returns the list of stores.
+function calculateProduceRatings($products)
+{
+    // pull all store-wide ratings from DB
+    $sql = "SELECT StoreId, ProduceId, Rating, DATEDIFF(NOW(), DateTime) AS DateDiff
+                  FROM produceRatings";
+    try {
+        $db = getDB();
+        $stmt = $db->query($sql);
+        $stmt->execute();
+        $ratings = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        // if we succeeded in pulling ratings...
+        if ($stmt->rowCount() > 0) {
+
+            // add ratings to each store object
+            foreach ($products as $product) {
+                $product->Rating = getAverageRating($ratings, $product->StoreId, $product->ProductId);
+            }
+        }
+
+        return $products;
+
+    } catch (PDOException $e) {
+        return "";
+    }
+}
+
+
 // This function calculates an average rating for a given store.
-function getAverageRatingForStore($ratings, $storeId) {
+function getAverageRating($ratings, $storeId, $produceId=0) {
     // These are the weights we apply, based on how old each rating is.
     $MULTIPLIERS = array("week"=>1.0,"month"=>0.7,"season"=>0.4,"year"=>0.2, "none"=>0.0);
 
@@ -195,7 +226,8 @@ function getAverageRatingForStore($ratings, $storeId) {
     // get only the ratings for this store, with valid timestamps
     foreach ($ratings as $rating) {
         if ($rating->DateDiff !== null && $rating->Rating !== null
-            && $rating->StoreId == $storeId) {
+            && $rating->StoreId == $storeId
+            && ($produceId == 0 || $rating->produceId == $produceId)) {
 
             $rate = floatval($rating->Rating);
             $dd = floatval($rating->DateDiff);
@@ -233,4 +265,3 @@ function getAverageRatingForStore($ratings, $storeId) {
 
     return $avgRating;
 }
-
