@@ -17,7 +17,9 @@
                 <td>{{ s.Address }}<br />{{ s.City + ", " + s.State + " " + s.Zip }}</td>
                 <td>
                     <star-rating-directive score="roundToTenth(s.Rating)" max="5"
-                        style="vertical-align: middle;"></star-rating-directive>
+                                           ratingFunction="rateStore(s.StoreId, s.Rating)"
+                                           style="vertical-align: middle;">
+                    </star-rating-directive>
                 </td>
                 <!--<td>-->
                     <!--<div class="col-md-3 col-sm-4 col-xs-8">-->

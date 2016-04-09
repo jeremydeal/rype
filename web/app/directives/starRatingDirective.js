@@ -18,7 +18,7 @@
 
         directive.templateUrl = "app/directives/starRatingDirective.html";
 
-        directive.link = function(scope, elements, attr) {
+        directive.link = function(scope, element, attr) {
 
             scope.updateStars = function() {
                 scope.stars = [];
@@ -56,6 +56,7 @@
             scope.setRating = function(index) {
                 scope.score = index + 1;
                 scope.stopHover();
+                scope.$apply(attrs.ratingFunction);
             };
 
             scope.$watch('score', function(newValue, oldValue) {
