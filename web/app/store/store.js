@@ -109,7 +109,7 @@
                     var date = new Date();
                     $scope.historicalRatings.push(
                         [prettyPrintService.printDate(date), parseFloat($scope.store.Rating)]);
-                    
+
                     date.setDate(date.getDate() - 1);
                     $scope.historicalRatings.push(
                         [prettyPrintService.printDate(date), parseFloat($scope.store.RatingTMinus1)]);
@@ -146,10 +146,11 @@
                     date.setDate(date.getDate() - 1);
                     $scope.historicalRatings.push(
                         [prettyPrintService.printDate(date), parseFloat($scope.store.RatingTMinus9)]);
-                    
+
                     date.setDate(date.getDate() - 1);
                     $scope.historicalRatings.push(
                         [prettyPrintService.printDate(date), parseFloat($scope.store.RatingTMinus10)]);
+                }
 
 
                 ///////////////////////////////////////////// USER DATA CALLS /////////////////////////////////////////////
