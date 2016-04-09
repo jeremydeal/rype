@@ -181,13 +181,11 @@
                         min: 1.0
                     },
                     series: [{
-                        data: $scope.historicalRatings
+                        data: $scope.historicalRatings,
+                        showInLegend: false
                     }],
                     title: {
                         text: '10-Day Ratings Trend'
-                    },
-                    legend: {
-                        enabled: false
                     },
                     loading: false
                 }
