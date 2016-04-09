@@ -13,7 +13,8 @@
         // isolate the scope; two-way binding for both vars
         directive.scope = {
             score: '=score',
-            max: '=max'
+            max: '=max',
+            ratingFunction: "&rating-function"
         };
 
         directive.templateUrl = "app/directives/starRatingDirective.html";
