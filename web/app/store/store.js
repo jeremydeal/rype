@@ -108,47 +108,47 @@
                 function populateHistoricalRatings() {
                     var date = new Date();
                     $scope.historicalRatings.push(
-                        [date.getDate(), parseFloat($scope.store.Rating)]);
+                        [date.getTime(), parseFloat($scope.store.Rating)]);
 
                     date.setDate(date.getDate() - 1);
                     $scope.historicalRatings.push(
-                        [date.getDate(), parseFloat($scope.store.RatingTMinus1)]);
+                        [date.getTime(), parseFloat($scope.store.RatingTMinus1)]);
 
                     date.setDate(date.getDate() - 1);
                     $scope.historicalRatings.push(
-                        [date.getDate(), parseFloat($scope.store.RatingTMinus2)]);
+                        [date.getTime(), parseFloat($scope.store.RatingTMinus2)]);
 
                     date.setDate(date.getDate() - 1);
                     $scope.historicalRatings.push(
-                        [date.getDate(), parseFloat($scope.store.RatingTMinus3)]);
+                        [date.getTime(), parseFloat($scope.store.RatingTMinus3)]);
 
                     date.setDate(date.getDate() - 1);
                     $scope.historicalRatings.push(
-                        [date.getDate(), parseFloat($scope.store.RatingTMinus4)]);
+                        [date.getTime(), parseFloat($scope.store.RatingTMinus4)]);
 
                     date.setDate(date.getDate() - 1);
                     $scope.historicalRatings.push(
-                        [date.getDate(), parseFloat($scope.store.RatingTMinus5)]);
+                        [date.getTime(), parseFloat($scope.store.RatingTMinus5)]);
 
                     date.setDate(date.getDate() - 1);
                     $scope.historicalRatings.push(
-                        [date.getDate(), parseFloat($scope.store.RatingTMinus6)]);
+                        [date.getTime(), parseFloat($scope.store.RatingTMinus6)]);
 
                     date.setDate(date.getDate() - 1);
                     $scope.historicalRatings.push(
-                        [date.getDate(), parseFloat($scope.store.RatingTMinus7)]);
+                        [date.getTime(), parseFloat($scope.store.RatingTMinus7)]);
 
                     date.setDate(date.getDate() - 1);
                     $scope.historicalRatings.push(
-                        [date.getDate(), parseFloat($scope.store.RatingTMinus8)]);
+                        [date.getTime(), parseFloat($scope.store.RatingTMinus8)]);
 
                     date.setDate(date.getDate() - 1);
                     $scope.historicalRatings.push(
-                        [date.getDate(), parseFloat($scope.store.RatingTMinus9)]);
+                        [date.getTime(), parseFloat($scope.store.RatingTMinus9)]);
 
                     date.setDate(date.getDate() - 1);
                     $scope.historicalRatings.push(
-                        [date.getDate(), parseFloat($scope.store.RatingTMinus10)]);
+                        [date.getTime(), parseFloat($scope.store.RatingTMinus10)]);
                 }
 
 
