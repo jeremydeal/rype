@@ -205,7 +205,7 @@ function calculateProduceRatings($products, $storeId)
 
             // add ratings to each store object
             foreach ($products as $product) {
-//                $product->Rating = getAverageRating($ratings, $storeId, $product->ProductId);
+                $product->Rating = getAverageRating($ratings, $storeId, $product->ProductId);
             }
         }
 
