@@ -9,7 +9,7 @@
                 // STORE GLOBALS
                 $scope.storeId = $routeParams.storeId;
                 $scope.store = {};
-                $scope.historicalRatings = {};
+                $scope.historicalRatings = [];
 
                 // USER GLOBALS
                 $scope.user = {};
@@ -107,49 +107,49 @@
 
                 function populateHistoricalRatings() {
                     var date = new Date();
-                    $scope.historicalRatings[prettyPrintService.printDate(date)] =
-                        parseFloat($scope.store.Rating);
+                    $scope.historicalRatings.push(
+                        [prettyPrintService.printDate(date), parseFloat($scope.store.Rating)]);
                     
                     date.setDate(date.getDate() - 1);
-                    $scope.historicalRatings[prettyPrintService.printDate(date)] =
-                        parseFloat($scope.store.RatingTMinus1);
+                    $scope.historicalRatings.push(
+                        [prettyPrintService.printDate(date), parseFloat($scope.store.RatingTMinus1)]);
+
+                    date.setDate(date.getDate() - 1);
+                    $scope.historicalRatings.push(
+                        [prettyPrintService.printDate(date), parseFloat($scope.store.RatingTMinus2)]);
+
+                    date.setDate(date.getDate() - 1);
+                    $scope.historicalRatings.push(
+                        [prettyPrintService.printDate(date), parseFloat($scope.store.RatingTMinus3)]);
+
+                    date.setDate(date.getDate() - 1);
+                    $scope.historicalRatings.push(
+                        [prettyPrintService.printDate(date), parseFloat($scope.store.RatingTMinus4)]);
+
+                    date.setDate(date.getDate() - 1);
+                    $scope.historicalRatings.push(
+                        [prettyPrintService.printDate(date), parseFloat($scope.store.RatingTMinus5)]);
+
+
+                    date.setDate(date.getDate() - 1);
+                    $scope.historicalRatings.push(
+                        [prettyPrintService.printDate(date), parseFloat($scope.store.RatingTMinus6)]);
+
+                    date.setDate(date.getDate() - 1);
+                    $scope.historicalRatings.push(
+                        [prettyPrintService.printDate(date), parseFloat($scope.store.RatingTMinus7)]);
+
+                    date.setDate(date.getDate() - 1);
+                    $scope.historicalRatings.push(
+                        [prettyPrintService.printDate(date), parseFloat($scope.store.RatingTMinus8)]);
+
+                    date.setDate(date.getDate() - 1);
+                    $scope.historicalRatings.push(
+                        [prettyPrintService.printDate(date), parseFloat($scope.store.RatingTMinus9)]);
                     
                     date.setDate(date.getDate() - 1);
-                    $scope.historicalRatings[prettyPrintService.printDate(date)] =
-                        parseFloat($scope.store.RatingTMinus2);
-
-                    date.setDate(date.getDate() - 1);
-                    $scope.historicalRatings[prettyPrintService.printDate(date)] =
-                        parseFloat($scope.store.RatingTMinus3);
-
-                    date.setDate(date.getDate() - 1);
-                    $scope.historicalRatings[prettyPrintService.printDate(date)] =
-                        parseFloat($scope.store.RatingTMinus4);
-
-                    date.setDate(date.getDate() - 1);
-                    $scope.historicalRatings[prettyPrintService.printDate(date)] =
-                        parseFloat($scope.store.RatingTMinus5);
-
-                    date.setDate(date.getDate() - 1);
-                    $scope.historicalRatings[prettyPrintService.printDate(date)] =
-                        parseFloat($scope.store.RatingTMinus6);
-
-                    date.setDate(date.getDate() - 1);
-                    $scope.historicalRatings[prettyPrintService.printDate(date)] =
-                        parseFloat($scope.store.RatingTMinus7);
-
-                    date.setDate(date.getDate() - 1);
-                    $scope.historicalRatings[prettyPrintService.printDate(date)] =
-                        parseFloat($scope.store.RatingTMinus8);
-
-                    date.setDate(date.getDate() - 1);
-                    $scope.historicalRatings[prettyPrintService.printDate(date)] =
-                        parseFloat($scope.store.RatingTMinus9);
-                    
-                    date.setDate(date.getDate() - 1);
-                    $scope.historicalRatings[prettyPrintService.printDate(date)] =
-                        parseFloat($scope.store.RatingTMinus10);
-                }
+                    $scope.historicalRatings.push(
+                        [prettyPrintService.printDate(date), parseFloat($scope.store.RatingTMinus10)]);
 
 
                 ///////////////////////////////////////////// USER DATA CALLS /////////////////////////////////////////////
