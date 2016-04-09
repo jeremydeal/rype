@@ -33,7 +33,6 @@
 
                 ///////////////////////////////////// DATA INIT /////////////////////////////////////////////////////
                 function dataInit() {
-                    getProducts();
                     getProductTypes();
                     getProductClasses();
 
@@ -54,17 +53,10 @@
 
 
                 ///////////////////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////
-                function getProducts() {
-                    productsService.getProducts()
+                function getProducts(storeId) {
+                    productsService.getProductsByStore(storeId)
                         .success(function (data) {
                             $scope.products = data.products;
-                        })
-                }
-
-                function getProductById(id) {
-                    productsService.getProductById(id)
-                        .success(function (data) {
-                            $scope.product = data.product;
                         })
                 }
 
@@ -100,6 +92,7 @@
                     storesService.getStoreById(storeId)
                         .success(function (data) {
                             $scope.store = data.store;
+                            getProducts($scope.store.StoreId);
                             populateHistoricalRatings();
                         })
                 }
