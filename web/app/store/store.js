@@ -151,6 +151,10 @@
                             day: '%d/%m'
                         }
                     },
+                    yAxis: {
+                        max: 5.0,
+                        min: 1.0
+                    },
                     series: [{
                         data: $scope.historicalRatings
                     }],
