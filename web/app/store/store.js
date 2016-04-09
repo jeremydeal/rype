@@ -108,48 +108,47 @@
                 function populateHistoricalRatings() {
                     var date = new Date();
                     $scope.historicalRatings.push(
-                        [prettyPrintService.printDate(date), parseFloat($scope.store.Rating)]);
+                        [date, parseFloat($scope.store.Rating)]);
 
                     date.setDate(date.getDate() - 1);
                     $scope.historicalRatings.push(
-                        [prettyPrintService.printDate(date), parseFloat($scope.store.RatingTMinus1)]);
+                        [date, parseFloat($scope.store.RatingTMinus1)]);
 
                     date.setDate(date.getDate() - 1);
                     $scope.historicalRatings.push(
-                        [prettyPrintService.printDate(date), parseFloat($scope.store.RatingTMinus2)]);
+                        [date, parseFloat($scope.store.RatingTMinus2)]);
 
                     date.setDate(date.getDate() - 1);
                     $scope.historicalRatings.push(
-                        [prettyPrintService.printDate(date), parseFloat($scope.store.RatingTMinus3)]);
+                        [date, parseFloat($scope.store.RatingTMinus3)]);
 
                     date.setDate(date.getDate() - 1);
                     $scope.historicalRatings.push(
-                        [prettyPrintService.printDate(date), parseFloat($scope.store.RatingTMinus4)]);
+                        [date, parseFloat($scope.store.RatingTMinus4)]);
 
                     date.setDate(date.getDate() - 1);
                     $scope.historicalRatings.push(
-                        [prettyPrintService.printDate(date), parseFloat($scope.store.RatingTMinus5)]);
-
-
-                    date.setDate(date.getDate() - 1);
-                    $scope.historicalRatings.push(
-                        [prettyPrintService.printDate(date), parseFloat($scope.store.RatingTMinus6)]);
+                        [date, parseFloat($scope.store.RatingTMinus5)]);
 
                     date.setDate(date.getDate() - 1);
                     $scope.historicalRatings.push(
-                        [prettyPrintService.printDate(date), parseFloat($scope.store.RatingTMinus7)]);
+                        [date, parseFloat($scope.store.RatingTMinus6)]);
 
                     date.setDate(date.getDate() - 1);
                     $scope.historicalRatings.push(
-                        [prettyPrintService.printDate(date), parseFloat($scope.store.RatingTMinus8)]);
+                        [date, parseFloat($scope.store.RatingTMinus7)]);
 
                     date.setDate(date.getDate() - 1);
                     $scope.historicalRatings.push(
-                        [prettyPrintService.printDate(date), parseFloat($scope.store.RatingTMinus9)]);
+                        [date, parseFloat($scope.store.RatingTMinus8)]);
 
                     date.setDate(date.getDate() - 1);
                     $scope.historicalRatings.push(
-                        [prettyPrintService.printDate(date), parseFloat($scope.store.RatingTMinus10)]);
+                        [date, parseFloat($scope.store.RatingTMinus9)]);
+
+                    date.setDate(date.getDate() - 1);
+                    $scope.historicalRatings.push(
+                        [date, parseFloat($scope.store.RatingTMinus10)]);
                 }
 
 
@@ -166,16 +165,22 @@
                             type: 'line'
                         }
                     },
+                    xAxis: {
+                        type: 'datetime',
+                        labels: {
+                            formatter: function() {
+                                return Highcharts.dateFormat('%a %d %b', this.value);
+                        }
+                    },
                     series: [{
                         data: $scope.historicalRatings
                     }],
                     title: {
                         text: '10-Day Ratings Trend'
                     },
-
                     loading: false
                 }
 
-            }]);
 
+            }]);
 })();
