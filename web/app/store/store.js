@@ -169,7 +169,7 @@
                         type: 'datetime',
                         labels: {
                             formatter: function () {
-                                return Highcharts.dateFormat('%a %d %b', this.value);
+                                return Highcharts.dateFormat('%d/%m', this.value);
                             }
                         }
                     },
