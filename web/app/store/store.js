@@ -9,6 +9,7 @@
                 // STORE GLOBALS
                 $scope.storeId = $routeParams.storeId;
                 $scope.store = {};
+                $scope.historicalRatings = [];
 
                 // USER GLOBALS
                 $scope.user = {};
@@ -100,7 +101,21 @@
                     storesService.getStoreById(storeId)
                         .success(function (data) {
                             $scope.store = data.store;
+                            populateHistoricalRatings();
                         })
+                }
+
+                function populateHistoricalRatings() {
+                    $scope.historicalRatings.append(parseFloat($scope.store.Rating));
+                    $scope.historicalRatings.append(parseFloat($scope.store.RatingTMinus1));
+                    $scope.historicalRatings.append(parseFloat($scope.store.RatingTMinus2));
+                    $scope.historicalRatings.append(parseFloat($scope.store.RatingTMinus3));
+                    $scope.historicalRatings.append(parseFloat($scope.store.RatingTMinus4));
+                    $scope.historicalRatings.append(parseFloat($scope.store.RatingTMinus5));
+                    $scope.historicalRatings.append(parseFloat($scope.store.RatingTMinus6));
+                    $scope.historicalRatings.append(parseFloat($scope.store.RatingTMinus7));
+                    $scope.historicalRatings.append(parseFloat($scope.store.RatingTMinus8));
+                    $scope.historicalRatings.append(parseFloat($scope.store.RatingTMinus9));
                 }
 
 
@@ -110,6 +125,21 @@
                 };
 
 
+                ///////////////////////////////////////////// HIGH CHARTS /////////////////////////////////////////////////
+                $scope.chartConfig = {
+                    options: {
+                        chart: {
+                            type: 'line'
+                        }
+                    },
+                    series: $scope.historicalRatings,
+                    title: {
+                        text: '10-Day Ratings Trend'
+                    },
+
+                    loading: false
+                }
+
             }]);
 
-})()
+})();
