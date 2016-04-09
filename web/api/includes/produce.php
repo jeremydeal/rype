@@ -79,7 +79,7 @@ function getProduceByStore($storeId)
 
         // if we get back any products, add ratings for them
         if ($stmt->rowCount() > 0) {
-            $products = calculateProduceRatings($products, $storeId);
+//            $products = calculateProduceRatings($products, $storeId);
         }
 
         $db = null;
