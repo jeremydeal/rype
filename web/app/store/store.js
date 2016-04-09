@@ -110,7 +110,7 @@
                     var date = new Date();
                     date.setHours(0,0,0,0);
                     var HOUR = 60 * 60 * 1000;      // ms
-                    date = new Date(date.getTime() - (HOUR * 3));
+                    date = new Date(date.getTime() - (HOUR * 6));
 
                     // add dates as X values, ratings as Y values,
                     // decrementing the date as we move back in time
