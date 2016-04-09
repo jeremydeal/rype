@@ -168,7 +168,7 @@
                     xAxis: {
                         type: 'datetime',
                         dateTimeLabelFormats: {
-                            day: '%d/%m'
+                            day: '%b %e'
                         }
                     },
                     yAxis: {
