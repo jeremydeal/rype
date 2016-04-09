@@ -58,7 +58,7 @@ $app->group('/rating/', function() use ($app) {
     $app->post('byProduce/', function() use ($app) {
         $data = json_decode($app->request->getBody());
         rateProduce($data);
-    })
+    });
 });
 
 
