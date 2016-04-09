@@ -190,7 +190,7 @@ function getDecrementedRatings($ratings) {
 function calculateProduceRatings($products, $storeId)
 {
     // pull all store-wide ratings from DB
-    $sql = "SELECT StoreId, ProduceId, Rating, DATEDIFF(NOW(), DateTime) AS DateDiff
+    $sql = "SELECT ProduceId, Rating, DATEDIFF(NOW(), DateTime) AS DateDiff
                   FROM produceRating
                   WHERE StoreId = :storeId";
     try {
@@ -205,7 +205,7 @@ function calculateProduceRatings($products, $storeId)
 
             // add ratings to each store object
             foreach ($products as $product) {
-                $product->Rating = getAverageProduceRating($ratings, $product->ProductId);
+                $product->Rating = getAverageProduceRating($ratings, $product->ProduceId);
             }
         }
 
@@ -218,7 +218,7 @@ function calculateProduceRatings($products, $storeId)
 
 
 // This function calculates an average rating for a given store.
-function getAverageStoreRating($ratings, $storeId, $produceId=0) {
+function getAverageStoreRating($ratings, $storeId) {
     // These are the weights we apply, based on how old each rating is.
     $MULTIPLIERS = array("week"=>1.0,"month"=>0.7,"season"=>0.4,"year"=>0.2, "none"=>0.0);
 
@@ -228,8 +228,7 @@ function getAverageStoreRating($ratings, $storeId, $produceId=0) {
     // get only the ratings for this store, with valid timestamps
     foreach ($ratings as $rating) {
         if ($rating->DateDiff !== null && $rating->Rating !== null
-            && $rating->StoreId == $storeId
-            && ($produceId == 0 || $rating->ProduceId == $produceId)) {
+            && $rating->StoreId == $storeId) {
 
             $rate = floatval($rating->Rating);
             $dd = floatval($rating->DateDiff);
@@ -268,7 +267,7 @@ function getAverageStoreRating($ratings, $storeId, $produceId=0) {
     return $avgRating;
 }
 
-// This function calculates an average rating for a given store.
+// This function calculates an average rating for a given product.
 function getAverageProduceRating($ratings, $produceId) {
     // These are the weights we apply, based on how old each rating is.
     $MULTIPLIERS = array("week"=>1.0,"month"=>0.7,"season"=>0.4,"year"=>0.2, "none"=>0.0);
