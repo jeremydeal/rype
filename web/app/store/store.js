@@ -158,11 +158,28 @@
                         [date.getTime(), parseFloat($scope.store.RatingTMinus10)]);
                 }
 
+                $scope.rateProduce = function(storeId, produceId, myRating) {
+                    if (!!$scope.user.CustomerId && !!storeId && !!produceId && !!myRating) {
+                        var customerId = $scope.user.CustomerId;
 
-                ///////////////////////////////////////////// USER DATA CALLS /////////////////////////////////////////////
-                $scope.getProduct = function (id) {
-                    getProductById(id);
+                        storesService.rateProduce(storeId, produceId, customerId, myRating)
+                            .then(function(response) {
+                                // DID IT WORK
+                                if (!!response.data) {
+                                    console.log("Rating $POST worked.");
+                                }
+                                else {
+                                    console.log("Rating $POST did not work.");
+                                }
+                            });
+
+                        console.log("storeID: " + storeId + ", produceId: " + produceId + ", customerId: " + customerId + ", myRating: " + myRating);
+                    }
+                    else {
+                        console.log("storeID: " + storeId + ", produceId: " + produceId + ", customerId: DAMN IT! LOG IN!, myRating: " + myRating);
+                    }
                 };
+
 
 
                 ///////////////////////////////////////////// HIGH CHARTS /////////////////////////////////////////////////

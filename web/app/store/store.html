@@ -67,13 +67,29 @@
                                             filterProductsByClass:search.class |
                                             filterProductsByType:search.type">
                 <td>
-                    <img class="product-image" style="width: 100px" ng-src="../../src/images/{{ p.ImgThumb }}" ng-click="getProduct(p.ProduceId)" />
+                    <img class="product-image" style="width: 100px" ng-src="../../src/images/{{ p.ImgThumb }}" />
                 </td>
                 <td>
                     <p>{{ p.CommonName }}</p>
                 </td>
                 <td>
                     <p>{{ p.Variety }}</p>
+                </td>
+                <td>
+                    <select class="form-control" name="rating" ng-model="p.MyRating">
+                        <option value="">--</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary"
+                            ng-click="rateProduce(store.StoreId, p.ProduceId, p.MyRating)">
+                        Rate
+                    </button>
                 </td>
             </tr>
         </table>
