@@ -98,7 +98,7 @@ function calculateStoreRatings($stores)
 
             // add ratings to each store object
             foreach ($stores as $store) {
-                $store->Rating = getAverageRating($ratings, $store->StoreId);
+                $store->Rating = getAverageStoreRating($ratings, $store->StoreId);
             }
         }
 
@@ -125,7 +125,7 @@ function calculateStoreRating($store)
         // if we succeeded in pulling ratings...
         if ($stmt->rowCount() > 0) {
             // ...add rating to store object
-            $store->Rating = getAverageRating($ratings, $store->StoreId);
+            $store->Rating = getAverageStoreRating($ratings, $store->StoreId);
         }
 
         return $store;
@@ -157,7 +157,7 @@ function calculateHistoricalRatings($store, $numDays)
                 $tempRatings = getDecrementedRatings($ratings);
 
                 // and add historical rating to store object
-                $store->{"RatingTMinus" . $i} = getAverageRating($tempRatings, $store->StoreId);
+                $store->{"RatingTMinus" . $i} = getAverageStoreRating($tempRatings, $store->StoreId);
             }
         }
 
@@ -205,7 +205,7 @@ function calculateProduceRatings($products, $storeId)
 
             // add ratings to each store object
             foreach ($products as $product) {
-                $product->Rating = getAverageRating($ratings, $storeId, $product->ProductId);
+                $product->Rating = getAverageProduceRating($ratings, $product->ProductId);
             }
         }
 
@@ -218,7 +218,7 @@ function calculateProduceRatings($products, $storeId)
 
 
 // This function calculates an average rating for a given store.
-function getAverageRating($ratings, $storeId, $produceId=0) {
+function getAverageStoreRating($ratings, $storeId, $produceId=0) {
     // These are the weights we apply, based on how old each rating is.
     $MULTIPLIERS = array("week"=>1.0,"month"=>0.7,"season"=>0.4,"year"=>0.2, "none"=>0.0);
 
@@ -229,7 +229,57 @@ function getAverageRating($ratings, $storeId, $produceId=0) {
     foreach ($ratings as $rating) {
         if ($rating->DateDiff !== null && $rating->Rating !== null
             && $rating->StoreId == $storeId
-            && ($produceId == 0 || $rating->produceId == $produceId)) {
+            && ($produceId == 0 || $rating->ProduceId == $produceId)) {
+
+            $rate = floatval($rating->Rating);
+            $dd = floatval($rating->DateDiff);
+
+            // if the rating pertains to this store,
+            // figure out the multiplier based on how old the rating is...
+            if ($dd < 0) {
+                $multiplierCode = "none";
+            } else if ($dd <= 7) {
+                $multiplierCode = "week";
+            } else if ($dd <= 30) {
+                $multiplierCode = "month";
+            } else if ($dd <= 90) {
+                $multiplierCode = "season";
+            } else if ($dd <= 365) {
+                $multiplierCode = "year";
+            } else {
+                $multiplierCode = "none";
+            }
+
+            $multiplier = $MULTIPLIERS[$multiplierCode];
+
+            // ...and add it to our current total rating
+            $totalRating += $rate * $multiplier;
+            $totalPossible += $multiplier;
+        }
+    }
+
+    // set store rating
+    if ($totalPossible > 0) {
+        $avgRating = round($totalRating / $totalPossible, 2);
+    } else {
+        $avgRating = "";
+    }
+
+    return $avgRating;
+}
+
+// This function calculates an average rating for a given store.
+function getAverageProduceRating($ratings, $produceId) {
+    // These are the weights we apply, based on how old each rating is.
+    $MULTIPLIERS = array("week"=>1.0,"month"=>0.7,"season"=>0.4,"year"=>0.2, "none"=>0.0);
+
+    $totalRating = 0.0;
+    $totalPossible = 0.0;
+
+    // get only the ratings for this store, with valid timestamps
+    foreach ($ratings as $rating) {
+        if ($rating->DateDiff !== null && $rating->Rating !== null
+            && $rating->ProduceId == $produceId) {
 
             $rate = floatval($rating->Rating);
             $dd = floatval($rating->DateDiff);
