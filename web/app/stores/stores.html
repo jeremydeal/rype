@@ -16,7 +16,8 @@
                 <td><strong><a ng-click="navigateToStore(s.StoreId)">{{ s.StoreName }}</a></strong></td>
                 <td>{{ s.Address }}<br />{{ s.City + ", " + s.State + " " + s.Zip }}</td>
                 <td>
-                    <star-rating-directive score="roundToTenth(s.Rating)" max="5"></star-rating-directive>
+                    <star-rating-directive score="roundToTenth(s.Rating)" max="5"
+                        style="vertical-align: middle;"></star-rating-directive>
                 </td>
                 <!--<td>-->
                     <!--<div class="col-md-3 col-sm-4 col-xs-8">-->
