@@ -191,7 +191,7 @@ function calculateProduceRatings($products, $storeId)
 {
     // pull all store-wide ratings from DB
     $sql = "SELECT StoreId, ProduceId, Rating, DATEDIFF(NOW(), DateTime) AS DateDiff
-                  FROM productRatings
+                  FROM produceRating
                   WHERE StoreId = :storeId";
     try {
         $db = getDB();
