@@ -109,6 +109,8 @@
                     // get today's date and strip the time off
                     var date = new Date();
                     date.setHours(0,0,0,0);
+                    var HOUR = 60 * 60 * 1000;      // ms
+                    date = new Date(date.getTime() - (HOUR * 3));
 
                     // add dates as X values, ratings as Y values,
                     // decrementing the date as we move back in time
