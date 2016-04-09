@@ -57,12 +57,6 @@ function getProduceByType($typeId)
         $stmt->bindParam("produceTypeId", $typeId);
         $stmt->execute();
         $products = $stmt->fetchAll(PDO::FETCH_OBJ);
-
-        // if we get back any products, add ratings for them
-        if ($stmt->rowCount() > 0) {
-            $products = calculateProductRatings($products);
-        }
-
         $db = null;
         echo '{"products": ' . json_encode($products) . '}';
     } catch (PDOException $e) {
@@ -82,6 +76,12 @@ function getProduceByStore($storeId)
         $stmt->bindParam("storeId", $storeId);
         $stmt->execute();
         $products = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        // if we get back any products, add ratings for them
+        if ($stmt->rowCount() > 0) {
+            $products = calculateProductRatings($products);
+        }
+
         $db = null;
         echo '{"products": ' . json_encode($products) . '}';
     } catch (PDOException $e) {
