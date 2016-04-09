@@ -78,6 +78,7 @@ li a:hover {
 
 .rating > a {
     text-decoration: none;
+    float: left;
 }
 
 .rating .rating-highlight, .rating.rating-highlight:hover {
