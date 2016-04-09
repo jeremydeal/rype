@@ -106,7 +106,12 @@
                 }
 
                 function populateHistoricalRatings() {
+                    // get today's date and strip the time off
                     var date = new Date();
+                    date.setHours(0,0,0,0);
+
+                    // add dates as X values, ratings as Y values,
+                    // decrementing the date as we move back in time
                     $scope.historicalRatings.push(
                         [date.getTime(), parseFloat($scope.store.Rating)]);
 
