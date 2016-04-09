@@ -25,8 +25,45 @@ function rateStore($data) {
 
         // if INSERT succeeds, grab return the entered user and login
         if ($stmt->execute() && $stmt->rowCount() > 0) {
+            echo 'Insert successful.';
+        }
 
-//            $id = $db->lastInsertId();
+        $db = null;
+
+    } catch(PDOException $e) {
+        // DB access error; return nothing
+    }
+}
+
+
+// POST /api/store/rate/
+// This function adds a new store-wide rating.
+function rateProduce($data) {
+    // store the new user in the DB
+    $sql = "INSERT INTO ProduceRating (
+                      Rating,
+                      DateTime,
+                      CustomerId,
+                      StoreId,
+                      ProduceId
+                    ) VALUES (
+                      :rating,
+                      NOW(),
+                      :customerId,
+                      :storeId,
+                      :produceId
+                    )";
+
+    try {
+        $db = getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("rating", $data->Rating);
+        $stmt->bindParam("customerId", $data->CustomerId);
+        $stmt->bindParam("storeId", $data->StoreId);
+        $stmt->bindParam("produceId", $data->ProduceId);
+
+        // if INSERT succeeds, grab return the entered user and login
+        if ($stmt->execute() && $stmt->rowCount() > 0) {
             echo 'Insert successful.';
         }
 

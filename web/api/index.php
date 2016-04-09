@@ -49,6 +49,18 @@ $app->group('/store/', function() use ($app) {
     });
 });
 
+// RATING ROUTES
+$app->group('/rating/', function() use ($app) {
+    $app->post('byStore/', function() use ($app) {
+        $data = json_decode($app->request->getBody());
+        rateStore($data);
+    });
+    $app->post('byProduce/', function() use ($app) {
+        $data = json_decode($app->request->getBody());
+        rateProduce($data);
+    })
+});
+
 
 $app->run();
 
