@@ -106,16 +106,16 @@
                 }
 
                 function populateHistoricalRatings() {
-                    $scope.historicalRatings.append(parseFloat($scope.store.Rating));
-                    $scope.historicalRatings.append(parseFloat($scope.store.RatingTMinus1));
-                    $scope.historicalRatings.append(parseFloat($scope.store.RatingTMinus2));
-                    $scope.historicalRatings.append(parseFloat($scope.store.RatingTMinus3));
-                    $scope.historicalRatings.append(parseFloat($scope.store.RatingTMinus4));
-                    $scope.historicalRatings.append(parseFloat($scope.store.RatingTMinus5));
-                    $scope.historicalRatings.append(parseFloat($scope.store.RatingTMinus6));
-                    $scope.historicalRatings.append(parseFloat($scope.store.RatingTMinus7));
-                    $scope.historicalRatings.append(parseFloat($scope.store.RatingTMinus8));
-                    $scope.historicalRatings.append(parseFloat($scope.store.RatingTMinus9));
+                    $scope.historicalRatings.push(parseFloat($scope.store.Rating));
+                    $scope.historicalRatings.push(parseFloat($scope.store.RatingTMinus1));
+                    $scope.historicalRatings.push(parseFloat($scope.store.RatingTMinus2));
+                    $scope.historicalRatings.push(parseFloat($scope.store.RatingTMinus3));
+                    $scope.historicalRatings.push(parseFloat($scope.store.RatingTMinus4));
+                    $scope.historicalRatings.push(parseFloat($scope.store.RatingTMinus5));
+                    $scope.historicalRatings.push(parseFloat($scope.store.RatingTMinus6));
+                    $scope.historicalRatings.push(parseFloat($scope.store.RatingTMinus7));
+                    $scope.historicalRatings.push(parseFloat($scope.store.RatingTMinus8));
+                    $scope.historicalRatings.push(parseFloat($scope.store.RatingTMinus9));
                 }
 
 
