@@ -167,10 +167,8 @@
                     },
                     xAxis: {
                         type: 'datetime',
-                        labels: {
-                            formatter: function () {
-                                return Highcharts.dateFormat('%d/%m', this.value);
-                            }
+                        dateTimeLabelFormats: {
+                            day: '%d/%m'
                         }
                     },
                     series: [{
