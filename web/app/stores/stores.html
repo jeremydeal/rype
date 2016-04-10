@@ -20,8 +20,14 @@
                 <td>
                     <star-rating-directive score="s.Rating" max="5"
                                            on-rate="rateStore(s.StoreId, rating)"
-                                           style="vertical-align: middle;">
+                                           style="vertical-align: middle;"
+                                           ng-show="user.CustomerId.length > 0">
                     </star-rating-directive>
+                    <static-star-rating-directive score="s.Rating" max="5"
+                                                  style="vertical-align: middle;"
+                                                  ng-show="user.CustomerId === undefined">
+                    </static-star-rating-directive>
+
                 </td>
 
             </tr>
