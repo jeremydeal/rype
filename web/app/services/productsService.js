@@ -30,10 +30,21 @@
             return $http.get(baseUrl + "byStore/" + storeId);
         };
 
+
+        //////////////////////////////////// SHOPPING LIST /////////////////////////////////////
         // get products by store (including ratings for those products at that store)
         productsService.getProductsByShoppingList = function (customerId) {
             return $http.get(baseUrl + "getShoppingList/" + customerId);
         };
+
+        productsService.addToShoppingList = function(customerId, produceId) {
+            return $http.get(baseUrl + "addToShoppingList/" + customerId + "/" + produceId);
+        };
+
+        productsService.removeFromShoppingList = function(customerId, produceId) {
+            return $http.get(baseUrl + "removeFromShoppingList/" + customerId + "/" + produceId);
+        };
+
 
         //////////////////////////////////// SUPPLEMENTARY //////////////////////////////////////
         // get product types

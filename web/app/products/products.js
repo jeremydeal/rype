@@ -6,11 +6,15 @@
         ['$scope', 'productsService', 'prettyPrintService',
             function ($scope, productsService, prettyPrintService) {
 
-                // CONTROLLER GLOBALS
+                // PRODUCTS GLOBALS
                 $scope.products = {};
                 $scope.product = {};
                 $scope.productTypes = {};
                 $scope.productClasses = {};
+
+                // USER GLOBALS
+                $scope.user = {};
+                $scope.shoppingListIds = [];
 
                 // SORT AND FILTER VARS
                 $scope.search = {};
@@ -29,6 +33,9 @@
                     getProductById(2);
                     getProductTypes();
                     getProductClasses();
+
+                    // get current user and user's shopping list
+                    populateUser();
                 }
 
 
@@ -70,6 +77,41 @@
                             $scope.productClasses = data.classes;
                         })
                 }
+
+                $scope.addToShoppingList = function(produceId) {
+                    productsService.addToShoppingList($scope.user.CustomerId, produceId);
+                };
+
+                $scope.removeFromShoppingList = function(produceId) {
+                    productsService.removeFromShoppingList($scope.user.CustomerId, produceId);
+                };
+
+                // CURRENT USER
+                // populate user object from JS session
+                function populateUser() {
+                    // check if user is logged in server side...
+                    loginService.checkLoginStatus()
+                        .then(function(response){
+                            // if logged in, populate user from sessionStorage
+                            if (!!response.data) {
+                                $scope.user = sessionService.getUser();
+                                populateShoppingList();
+                            }
+                        });
+                }
+
+                function populateShoppingList() {
+                    productsService.getProductsByShoppingList($scope.user.CustomerId)
+                        .success(function (data) {
+                            $scope.shoppingListIds = [];
+                            var products = data.products;
+                            angular.forEach(products, function(obj) {
+                                $scope.shoppingListIds.push(obj.ProduceId);
+                            });
+                        })
+                }
+
+
 
 
                 ///////////////////////////////////////////// USER DATA CALLS /////////////////////////////////////////////
