@@ -59,7 +59,7 @@
                 scope.score = index + 1;
                 scope.stopHover();
                 console.log("Rating is now " + scope.score);
-                scope.onRate({ rating: score });
+                scope.onRate({ rating: scope.score });
             };
 
             scope.$watch('score', function(newValue, oldValue) {
