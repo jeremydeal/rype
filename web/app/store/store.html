@@ -63,7 +63,8 @@
                 <td><strong>Variety</strong></td>
                 <td><strong>Rating</strong></td>
             </tr>
-            <tr ng-repeat="p in products | filterProductsBySearch:search.query |
+            <tr ng-repeat="p in products | orderBy: '-Rating'
+                                            filterProductsBySearch:search.query |
                                             filterProductsByWhetherInSeason:search.inSeason |
                                             filterProductsByClass:search.class |
                                             filterProductsByType:search.type">
@@ -80,20 +81,10 @@
                     <p>{{ p.Rating }}</p>
                 </td>
                 <td>
-                    <select class="form-control" name="rating" ng-model="p.MyRating">
-                        <option value="">--</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                </td>
-                <td>
-                    <button type="button" class="btn btn-primary"
-                            ng-click="rateProduce(store.StoreId, p.ProduceId, p.MyRating)">
-                        Rate
-                    </button>
+                    <star-rating-directive score="s.Rating" max="5"
+                                           on-rate="rateProduce(store.StoreId, p.ProduceId, p.MyRating)"
+                                           style="vertical-align: middle;">
+                    </star-rating-directive>
                 </td>
             </tr>
         </table>
