@@ -117,7 +117,7 @@
             var filtered = [];
 
             angular.forEach(products, function (p) {
-                if (p.ProduceId in shoppingListIds) {
+                if (shoppingListIds.indexOf(p.ProduceId) > -1) {
                     filtered.unshift(p);
                 } else {
                     filtered.push(p);
