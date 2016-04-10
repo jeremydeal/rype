@@ -84,6 +84,8 @@ function rateProduce($data) {
 // and returns the list of stores.
 function calculateStoreRatings($stores)
 {
+    $INCORPORATE_PRODUCE = false;
+
     // pull all store-wide ratings from DB
     $sql = "SELECT sr.StoreId, sr.Rating, DATEDIFF(NOW(), sr.DateTime) AS DateDiff
                   FROM storeRating AS sr";
@@ -91,14 +93,38 @@ function calculateStoreRatings($stores)
         $db = getDB();
         $stmt = $db->query($sql);
         $stmt->execute();
-        $ratings = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $storeRatings = $stmt->fetchAll(PDO::FETCH_OBJ);
 
         // if we succeeded in pulling ratings...
         if ($stmt->rowCount() > 0) {
 
+            // grab produce ratings from DB
+            $sql = "SELECT pr.StoreId, pr.ProduceId, pr.Rating, DATEDIFF(NOW(), pr.DateTime) AS DateDiff
+                  FROM produceRating AS pr";
+            try {
+                $db = getDB();
+                $stmt = $db->query($sql);
+                $stmt->execute();
+                $produceRatings = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                // if we succeeded in pulling ratings...
+                if ($stmt->rowCount() > 0) {
+                    $INCORPORATE_PRODUCE = true;
+                }
+            } catch (PDOException $e) {}
+
+
             // add ratings to each store object
             foreach ($stores as $store) {
-                $store->Rating = getAverageRatingByStore($ratings, $store->StoreId);
+                $storeRating = 0.0;
+                $produceRating = 0.0;
+
+                $storeRating = getAverageRatingByStore($storeRatings, $store->StoreId);
+                if ($INCORPORATE_PRODUCE) {
+                    $produceRating = getAverageRatingByStore($produceRatings, $store->StoreId);
+                }
+
+                $store->Rating = combineStoreAndProduceRatings($storeRating, $produceRating);
             }
         }
 
