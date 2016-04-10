@@ -107,4 +107,23 @@
         };
     });
 
+    app.filter('bringShoppingListItemsToTop', function () {
+        return function (products, shoppingListIds) {
+            if (!products) return products;
+            if (!shoppingListIds) return shoppingListIds;
+
+            var filtered = [];
+
+            angular.forEach(products, function (p) {
+                if (p.ProduceId in shoppingListIds) {
+                    filtered.unshift(p);
+                } else {
+                    filtered.push(p);
+                }
+            });
+
+            return filtered;
+        };
+    });
+
 })();
