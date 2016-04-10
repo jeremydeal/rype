@@ -63,6 +63,10 @@
             </tr>
         </table>
 
+    </div>
+
+    <div class="container row">
+
         <!-- PRODUCE LIST -->
         <table class="table" style="width:100%;">
             <tr>
@@ -95,7 +99,7 @@
                     </star-rating-directive>
                     <static-star-rating-directive score="p.Rating" max="5"
                                            style="vertical-align: middle;"
-                                           ng-show="user.CustomerId.length == 0">
+                                           ng-show="user.CustomerId.length <= 0">
                     </static-star-rating-directive>
                 </td>
             </tr>
