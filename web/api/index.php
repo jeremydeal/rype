@@ -5,7 +5,7 @@ require 'includes/init.php';
 
 $app = new \Slim\Slim();
 
-// LOGIN ROUTES
+// USER ROUTES
 $app->group('/user/', function() use ($app) {
 //    $app->get('', 'getUsers');
 //    $app->get('getCurrent/', 'getCurrentUser');
@@ -18,6 +18,10 @@ $app->group('/user/', function() use ($app) {
     $app->post('create/', function() use ($app) {
         $user = json_decode($app->request->getBody());
         createUser($user);
+    });
+    $app->post('setPreferredStore/', function() use ($app) {
+        $user = json_decode($app->request->getBody());
+        setPreferredStore($user);
     });
 });
 

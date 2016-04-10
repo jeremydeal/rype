@@ -144,6 +144,28 @@ function createUser($user) {
 }
 
 
+// POST /api/user/setPreferredStore/
+function setPreferredStore($user) {
+    $sql = "UPDATE customer
+                SET PreferredStore = :storeId
+                WHERE CustomerId = :customerId";
+    try {
+        $db = getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("customerId", $user->CustomerId);
+        $stmt->bindParam("storeId", $user->StoreId);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            echo "success";
+        }
+
+        $db = null;
+    } catch(PDOException $e) {
+        // DB access error; return nothing
+    }
+}
+
 
 //// GET /api/user/getUser/
 //function getUsers() {

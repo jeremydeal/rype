@@ -99,7 +99,11 @@
                     console.log("storeId: " + storeId);
 
                     if (Object.size($scope.user) > 0) {
-                        sessionService.set("PreferredStore", storeId);
+                        $scope.user.PreferredStore = storeId;
+                        loginService.setPreferredStore($scope.user)
+                            .success(function(response) {
+                                sessionService.set("PreferredStore", storeId);
+                            });
                     }
                 };
 

@@ -81,6 +81,10 @@
 				});
 
 		};
+		
+		$loginService.setPreferredStore = function (user) {
+			return $http.post(baseUrl + 'setPreferredStore/', user);
+		};
 
 		return $loginService;
 
