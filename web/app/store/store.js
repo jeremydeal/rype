@@ -97,12 +97,14 @@
                 $scope.setUserPreferredStore = function(storeId) {
                     console.log(Object.size($scope.user));
                     console.log("storeId: " + storeId);
+                    console.log("user object: " + $scope.user);
 
                     if (Object.size($scope.user) > 0) {
                         $scope.user.PreferredStore = storeId;
                         loginService.setPreferredStore($scope.user)
                             .success(function(response) {
                                 sessionService.set("PreferredStore", storeId);
+                                console.log("API call succeeded");
                             });
                     }
                 };
