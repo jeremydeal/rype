@@ -93,8 +93,8 @@
                 //    sessionService.userExists();
                 //};
 
-                $scope.isUserPreferredStore = function(storeId) {
-                    return sessionService.get("PreferredStore") == storeId;
+                $scope.getUserPreferredStore = function() {
+                    return sessionService.get("PreferredStore");
                 };
 
                 $scope.roundToTenth = function(num) {

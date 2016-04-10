@@ -12,7 +12,7 @@
                 <th><strong>Street Address</strong></th>
                 <th colspan="2"><strong>Store Rating</strong></th>
             </tr>
-            <tr ng-repeat="s in stores | orderBy: '-Rating'" ng-class="{true: 'selectedStore'}[s.StoreId === store.StoreId]">
+            <tr ng-repeat="s in stores | orderBy: '-Rating' | bringPreferredStoreToTop:getUserPreferredStore()" ng-class="{true: 'selectedStore'}[s.StoreId === store.StoreId]">
                 <td><strong><a ng-click="navigateToStore(s.StoreId)">{{ s.StoreName }}</a></strong></td>
                 <td>{{ s.Address }}<br />{{ s.City + ", " + s.State + " " + s.Zip }}</td>
 
