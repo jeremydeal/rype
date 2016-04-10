@@ -63,7 +63,7 @@
                 <td><strong>Variety</strong></td>
                 <td><strong>Rating</strong></td>
             </tr>
-            <tr ng-repeat="p in products | orderBy: '-Rating'
+            <tr ng-repeat="p in products | orderBy: '-Rating' |
                                             filterProductsBySearch:search.query |
                                             filterProductsByWhetherInSeason:search.inSeason |
                                             filterProductsByClass:search.class |
