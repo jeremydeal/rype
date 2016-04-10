@@ -47,11 +47,11 @@
                         })
                 }
 
-                $scope.rateStore = function(storeId, myRating) {
-                    if (!!$scope.user.CustomerId && !!storeId && !!myRating) {
+                $scope.rateStore = function(storeId, rating) {
+                    if (!!$scope.user.CustomerId && !!storeId && !!rating) {
                         var customerId = $scope.user.CustomerId;
 
-                        storesService.rateStore(storeId, myRating, customerId)
+                        storesService.rateStore(storeId, rating, customerId)
                             .then(function(response) {
                                 // DID IT WORK
                                 if (!!response.data) {
@@ -62,10 +62,10 @@
                                 }
                             });
 
-                        console.log("storeID: " + storeId + ", myRating: " + myRating + ", customerId: " + customerId);
+                        console.log("storeID: " + storeId + ", rating: " + rating + ", customerId: " + customerId);
                     }
                     else {
-                        console.log("storeID: " + storeId + ", myRating: " + myRating + ", customerId: DAMN IT! I SAID YOU HAVE TO LOG IN!");
+                        console.log("storeID: " + storeId + ", rating: " + rating + ", customerId: DAMN IT! I SAID YOU HAVE TO LOG IN!");
                     }
                 };
 
