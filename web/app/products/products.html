@@ -157,7 +157,7 @@
                     <td>
                         <p><strong>{{ p.Variety + " (" + p.CommonName + ")" }}</strong></p>
                         <button type="button" class="btn btn-success"
-                                ng-show="shoppingListIds != [] || shoppingListIds.indexOf(p.ProduceId) == -1"
+                                ng-show="shoppingListIds != [] && shoppingListIds.indexOf(p.ProduceId) == -1"
                                 ng-click="addToShoppingList(p.ProduceId)">
                             Add to Shopping List
                         </button>
