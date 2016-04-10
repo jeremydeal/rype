@@ -12,9 +12,9 @@
 
         // isolate the scope; two-way binding for both vars
         directive.scope = {
-            score: '=score',
-            max: '=max',
-            ratingFunction: "&ratingFunction"
+            score: '=',
+            max: '=',
+            onRate: "&"
         };
 
         directive.templateUrl = "app/directives/starRatingDirective.html";
@@ -59,7 +59,7 @@
                 scope.score = index + 1;
                 scope.stopHover();
                 console.log("Rating is now " + scope.score);
-                scope.$apply(attrs.ratingFunction);
+                scope.onRate();
             };
 
             scope.$watch('score', function(newValue, oldValue) {
