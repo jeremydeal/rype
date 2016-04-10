@@ -14,7 +14,7 @@
         directive.scope = {
             score: '=score',
             max: '=max',
-            ratingFunction: "&rating-function"
+            ratingFunction: "&ratingFunction"
         };
 
         directive.templateUrl = "app/directives/starRatingDirective.html";
