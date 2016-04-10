@@ -98,7 +98,7 @@ function calculateStoreRatings($stores)
 
             // add ratings to each store object
             foreach ($stores as $store) {
-                $store->Rating = getAverageStoreRating($ratings, $store->StoreId);
+                $store->Rating = getAverageRatingByStore($ratings, $store->StoreId);
             }
         }
 
@@ -115,17 +115,19 @@ function calculateStoreRating($store)
 {
     // grab ratings from DB
     $sql = "SELECT sr.StoreId, sr.Rating, DATEDIFF(NOW(), sr.DateTime) AS DateDiff
-                  FROM storeRating AS sr";
+                  FROM storeRating AS sr
+                  WHERE sr.StoreId = :storeId";
     try {
         $db = getDB();
-        $stmt = $db->query($sql);
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("storeId", $store->StoreId);
         $stmt->execute();
         $ratings = $stmt->fetchAll(PDO::FETCH_OBJ);
 
         // if we succeeded in pulling ratings...
         if ($stmt->rowCount() > 0) {
             // ...add rating to store object
-            $store->Rating = getAverageStoreRating($ratings, $store->StoreId);
+            $store->Rating = getAverageRatingByStore($ratings, $store->StoreId);
         }
 
         return $store;
@@ -157,7 +159,7 @@ function calculateHistoricalRatings($store, $numDays)
                 $tempRatings = getDecrementedRatings($ratings);
 
                 // and add historical rating to store object
-                $store->{"RatingTMinus" . $i} = getAverageStoreRating($tempRatings, $store->StoreId);
+                $store->{"RatingTMinus" . $i} = getAverageRatingByStore($tempRatings, $store->StoreId);
             }
         }
 
@@ -205,7 +207,7 @@ function calculateProduceRatings($products, $storeId)
 
             // add ratings to each store object
             foreach ($products as $product) {
-                $product->Rating = getAverageProduceRating($ratings, $product->ProduceId);
+                $product->Rating = getAverageRatingByProduct($ratings, $product->ProduceId);
             }
         }
 
@@ -216,9 +218,8 @@ function calculateProduceRatings($products, $storeId)
     }
 }
 
-
 // This function calculates an average rating for a given store.
-function getAverageStoreRating($ratings, $storeId) {
+function getAverageRatingByStore($ratings, $storeId) {
     $totalRating = 0.0;
     $totalPossible = 0.0;
 
@@ -249,7 +250,7 @@ function getAverageStoreRating($ratings, $storeId) {
 }
 
 // This function calculates an average rating for a given product.
-function getAverageProduceRating($ratings, $produceId) {
+function getAverageRatingByProduct($ratings, $produceId) {
     $totalRating = 0.0;
     $totalPossible = 0.0;
 
