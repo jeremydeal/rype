@@ -150,14 +150,8 @@ function calculateStoreRating($store)
                 }
             } catch (PDOException $e) {}
 
-
-            // combine the two ratings
-            $avgRating = $storeRating;
-            if ($produceRating > 0.0) {
-                $avgRating = $storeRating * 0.4 + $produceRating * 0.6;
-            }
-
-            $store->Rating = $avgRating;
+            // combine the two ratings and add to the store object
+            $store->Rating = combineStoreAndProduceRatings($storeRating, $produceRating);
         }
 
         return $store;
@@ -308,6 +302,15 @@ function getAverageRatingByProduct($ratings, $produceId) {
     }
 
     return $avgRating;
+}
+
+
+function combineStoreAndProduceRatings($storeRating, $produceRating) {
+    $rating = $storeRating;
+    if ($produceRating > 0.0) {
+        $rating = round($storeRating * 0.4 + $produceRating * 0.6, 2);
+    }
+    return $rating;
 }
 
 
