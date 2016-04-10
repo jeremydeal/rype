@@ -47,16 +47,17 @@
                 $scope.printDate = function (date) {
                     return prettyPrintService.printDate(date);
                 };
-                $scope.printYesOrNo = function (bit) {
-                    return prettyPrintService.printYesOrNo(bit);
-                };
-
 
                 ///////////////////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////
                 function getProducts(storeId) {
                     productsService.getProductsByStore(storeId)
                         .success(function (data) {
                             $scope.products = data.products;
+                            angular.forEach($scope.products, function(obj) {
+                                if (!obj.Rating) {
+                                    obj.Rating = 0;
+                                }
+                            });
                         })
                 }
 
