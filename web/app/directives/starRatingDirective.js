@@ -2,7 +2,6 @@
 
     'use strict';
 
-
     app.directive('starRatingDirective', function () {
 
         var directive = {};
@@ -60,6 +59,11 @@
                 scope.stopHover();
                 console.log("Rating is now " + scope.score);
                 scope.onRate({ rating: scope.score });
+
+                // disable any further ratings
+                $timeout(function() {
+                    element.attr('disabled', true);
+                }, 0);      // timeout of 0 = as soon as the click has processed
             };
 
             scope.$watch('score', function(newValue, oldValue) {
@@ -67,7 +71,6 @@
                     scope.updateStars();
                 }
             });
-
         };
 
         return directive;
