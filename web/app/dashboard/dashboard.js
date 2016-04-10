@@ -32,6 +32,7 @@
                     $scope.user.Username = sessionService.get("Username");
                     $scope.user.FirstName = sessionService.get("FirstName");
                     $scope.user.LastName = sessionService.get("LastName");
+                    $scope.user.PreferredStore = sessionService.get("PreferredStore");
                 }
 
 
