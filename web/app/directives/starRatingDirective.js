@@ -64,7 +64,8 @@
                 console.log("Rating is now " + scope.score);
                 scope.onRate({ rating: scope.score });
 
-                // disable for future ratings
+                // refresh and then disable for future ratings
+                scope.updateStars();
                 rated = true;
             };
 
