@@ -125,7 +125,7 @@
                 }
             });
 
-            angular.foreach(shoppingList, function(p) {
+            angular.forEach(shoppingList, function(p) {
                 filtered.unshift(p);
             });
 
