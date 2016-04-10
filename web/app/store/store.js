@@ -53,11 +53,11 @@
                     productsService.getProductsByStore(storeId)
                         .success(function (data) {
                             $scope.products = data.products;
-                            // angular.forEach($scope.products, function(obj) {
-                            //     if (!obj.Rating) {
-                            //         obj.Rating = 0;
-                            //     }
-                            // });
+                            angular.forEach($scope.products, function(obj) {
+                                if (!obj.Rating) {
+                                    obj.Rating = 0;
+                                }
+                            });
                         })
                 }
 
