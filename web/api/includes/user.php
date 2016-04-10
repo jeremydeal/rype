@@ -152,7 +152,7 @@ function setPreferredStore($user) {
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
-        $stmt->bindParam("storeId", $user->StoreId);
+        $stmt->bindParam("storeId", $user->PreferredStore);
         $stmt->bindParam("customerId", $user->CustomerId);
 
         if ($stmt->execute() && $stmt->rowCount() > 0) {
