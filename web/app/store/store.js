@@ -53,6 +53,8 @@
                     productsService.getProductsByStore(storeId)
                         .success(function (data) {
                             $scope.products = data.products;
+
+                            // replace blank Rating fields with 0 so orderBy will work
                             angular.forEach($scope.products, function(obj) {
                                 if (!obj.Rating) {
                                     obj.Rating = 0;

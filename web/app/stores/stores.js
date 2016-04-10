@@ -44,6 +44,13 @@
                         .success(function (data) {
                             $scope.stores = data.stores;
                             createMarkers($scope.stores);
+
+                            // replace blank Rating fields with 0 so orderBy will work
+                            angular.forEach($scope.stores, function(obj) {
+                                if (!obj.Rating) {
+                                    obj.Rating = 0;
+                                }
+                            });
                         })
                 }
 
