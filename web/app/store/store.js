@@ -95,9 +95,9 @@
                 };
 
                 $scope.setUserPreferredStore = function(storeId) {
-                    console.log(Object.size($scope.user));
                     console.log("storeId: " + storeId);
                     console.log("user object: " + $scope.user);
+                    console.log("customer id: " + $scope.user.CustomerId);
 
                     if (Object.size($scope.user) > 0) {
                         $scope.user.PreferredStore = storeId;
