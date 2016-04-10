@@ -31,7 +31,7 @@ $app->group('/produce/', function() use ($app) {
     $app->get('byId/:produceId', 'getProduceById');
     $app->get('byType/:produceTypeId', 'getProduceByType');
     $app->get('byStore/:storeId', 'getProduceByStore');
-    $app->get('byShoppingList/:customerId', 'getProduceByShoppingList');
+    $app->get('getShoppingList/:customerId', 'getShoppingList');
 });
 
 // PRODUCE TYPE ROUTES
