@@ -4,7 +4,7 @@
 
 <!-- set preferred store -->
 <button type="button" class="btn btn-primary"
-        ng-show="!!user && !isUserPreferredStore(store.StoreId)"
+        ng-show="user.CustomerId.length > 0 && !isUserPreferredStore(store.StoreId)"
         ng-click="setUserPreferredStore(store.StoreId)">
     Set Store
 </button>
