@@ -219,9 +219,6 @@ function calculateProduceRatings($products, $storeId)
 
 // This function calculates an average rating for a given store.
 function getAverageStoreRating($ratings, $storeId) {
-    // These are the weights we apply, based on how old each rating is.
-    $MULTIPLIERS = array("week"=>1.0,"month"=>0.7,"season"=>0.4,"year"=>0.2, "none"=>0.0);
-
     $totalRating = 0.0;
     $totalPossible = 0.0;
 
@@ -233,23 +230,7 @@ function getAverageStoreRating($ratings, $storeId) {
             $rate = floatval($rating->Rating);
             $dd = floatval($rating->DateDiff);
 
-            // if the rating pertains to this store,
-            // figure out the multiplier based on how old the rating is...
-            if ($dd < 0) {
-                $multiplierCode = "none";
-            } else if ($dd <= 7) {
-                $multiplierCode = "week";
-            } else if ($dd <= 30) {
-                $multiplierCode = "month";
-            } else if ($dd <= 90) {
-                $multiplierCode = "season";
-            } else if ($dd <= 365) {
-                $multiplierCode = "year";
-            } else {
-                $multiplierCode = "none";
-            }
-
-            $multiplier = $MULTIPLIERS[$multiplierCode];
+            $multiplier = getRatingMultiplier($dd);
 
             // ...and add it to our current total rating
             $totalRating += $rate * $multiplier;
@@ -269,9 +250,6 @@ function getAverageStoreRating($ratings, $storeId) {
 
 // This function calculates an average rating for a given product.
 function getAverageProduceRating($ratings, $produceId) {
-    // These are the weights we apply, based on how old each rating is.
-    $MULTIPLIERS = array("week"=>1.0,"month"=>0.7,"season"=>0.4,"year"=>0.2, "none"=>0.0);
-
     $totalRating = 0.0;
     $totalPossible = 0.0;
 
@@ -283,23 +261,7 @@ function getAverageProduceRating($ratings, $produceId) {
             $rate = floatval($rating->Rating);
             $dd = floatval($rating->DateDiff);
 
-            // if the rating pertains to this store,
-            // figure out the multiplier based on how old the rating is...
-            if ($dd < 0) {
-                $multiplierCode = "none";
-            } else if ($dd <= 7) {
-                $multiplierCode = "week";
-            } else if ($dd <= 30) {
-                $multiplierCode = "month";
-            } else if ($dd <= 90) {
-                $multiplierCode = "season";
-            } else if ($dd <= 365) {
-                $multiplierCode = "year";
-            } else {
-                $multiplierCode = "none";
-            }
-
-            $multiplier = $MULTIPLIERS[$multiplierCode];
+            $multiplier = getRatingMultiplier($dd);
 
             // ...and add it to our current total rating
             $totalRating += $rate * $multiplier;
@@ -315,4 +277,28 @@ function getAverageProduceRating($ratings, $produceId) {
     }
 
     return $avgRating;
+}
+
+
+function getRatingMultiplier($dateDiff) {
+    // These are the weights we apply, based on how old each rating is.
+    $MULTIPLIERS = array("week"=>1.0,"month"=>0.7,"season"=>0.4,"year"=>0.2, "none"=>0.0);
+
+    // if the rating pertains to this store,
+    // figure out the multiplier based on how old the rating is...
+    if ($dateDiff < 0) {
+        $multiplierCode = "none";
+    } else if ($dateDiff <= 7) {
+        $multiplierCode = "week";
+    } else if ($dateDiff <= 30) {
+        $multiplierCode = "month";
+    } else if ($dateDiff <= 90) {
+        $multiplierCode = "season";
+    } else if ($dateDiff <= 365) {
+        $multiplierCode = "year";
+    } else {
+        $multiplierCode = "none";
+    }
+
+    return $MULTIPLIERS[$multiplierCode];
 }
