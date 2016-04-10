@@ -58,13 +58,13 @@
             scope.setRating = function(index) {
                 scope.score = index + 1;
                 scope.stopHover();
+                console.log("Rating is now " + scope.score);
+                scope.$apply(attrs.ratingFunction);
             };
 
             scope.$watch('score', function(newValue, oldValue) {
                 if (newValue !== null && newValue !== undefined) {
                     scope.updateStars();
-                    console.log("Rating is now " + scope.score);
-                    scope.$apply(attrs.ratingFunction);
                 }
             });
 
