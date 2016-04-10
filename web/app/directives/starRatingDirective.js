@@ -47,6 +47,7 @@
             };
 
             scope.starClass = function(/* Star */ star, /* Integer */ index) {
+                // add FontAwesome classes to the <i> tags to generate full/empty stars
                 var starClass = 'fa-star-o';
                 if (star.full || index <= scope.hoverIndex) {
                     starClass = 'fa-star';
@@ -59,6 +60,7 @@
                 scope.stopHover();
                 console.log("Rating is now " + scope.score);
                 scope.$apply(attrs.ratingFunction);
+                console.log("Rating is still " + scope.score);
             };
 
             scope.$watch('score', function(newValue, oldValue) {
