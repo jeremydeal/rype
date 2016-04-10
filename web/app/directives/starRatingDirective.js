@@ -2,7 +2,7 @@
 
     'use strict';
 
-    app.directive('starRatingDirective', function () {
+    app.directive('starRatingDirective', function ($timeout) {
 
         var directive = {};
 
