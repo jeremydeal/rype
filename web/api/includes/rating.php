@@ -193,6 +193,8 @@ function calculateStoreRating($store)
 // and returns the store object.
 function calculateHistoricalRatings($store, $numDays)
 {
+    $INCORPORATE_PRODUCE = false;
+
     // grab ratings from DB
     $sql = "SELECT sr.StoreId, sr.Rating, DATEDIFF(NOW(), sr.DateTime) AS DateDiff
                   FROM storeRating AS sr";
@@ -200,16 +202,43 @@ function calculateHistoricalRatings($store, $numDays)
         $db = getDB();
         $stmt = $db->query($sql);
         $stmt->execute();
-        $ratings = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $storeRatings = $stmt->fetchAll(PDO::FETCH_OBJ);
 
         // if we succeeded in pulling ratings...
         if ($stmt->rowCount() > 0) {
+
+            // grab produce ratings from DB
+            $sql = "SELECT pr.StoreId, pr.ProduceId, pr.Rating, DATEDIFF(NOW(), pr.DateTime) AS DateDiff
+                  FROM produceRating AS pr";
+            try {
+                $db = getDB();
+                $stmt = $db->query($sql);
+                $stmt->execute();
+                $produceRatings = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                // if we succeeded in pulling ratings...
+                if ($stmt->rowCount() > 0) {
+                    $INCORPORATE_PRODUCE = true;
+                }
+            } catch (PDOException $e) {}
+
+            // get store ratings
             for ($i = 1; $i <= $numDays; $i++) {
-                // decrement age of all ratings by desired number
-                $tempRatings = getDecrementedRatings($ratings);
+                $storeRating = 0.0;
+                $produceRating = 0.0;
+
+                // decrement age of store ratings
+                $tempStoreRatings = getDecrementedRatings($storeRatings);
+                $storeRating = getAverageRatingByStore($tempStoreRatings, $store->StoreId);
+
+                // decrement age of produce ratings
+                if ($INCORPORATE_PRODUCE) {
+                    $tempProduceRatings = getDecrementedRatings($produceRatings);
+                    $produceRating = getAverageRatingByStore($tempProduceRatings, $store->StoreId);
+                }
 
                 // and add historical rating to store object
-                $store->{"RatingTMinus" . $i} = getAverageRatingByStore($tempRatings, $store->StoreId);
+                $store->{"RatingTMinus" . $i} = combineStoreAndProduceRatings($storeRating, $produceRating);
             }
         }
 
