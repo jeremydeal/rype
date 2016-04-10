@@ -112,6 +112,8 @@
             if (!products) return products;
             if (!shoppingListIds) return shoppingListIds;
 
+            console.log(shoppingListIds);
+
             var filtered = [];
 
             angular.forEach(products, function (p) {
