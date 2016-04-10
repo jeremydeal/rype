@@ -21,3 +21,51 @@ function getShoppingList($customerId)
         echo '{"error: { "text": ' . $e->getMessage() . '} }';
     }
 }
+
+// GET /api/produce/addToShoppingList/1/2
+function addToShoppingList($customerId, $produceId)
+{
+    $sql = "INSERT INTO shoppingList (ProduceId, CustomerId)
+                VALUES (:produceId, :customerId)";
+    try {
+        $db = getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("customerId", $customerId);
+        $stmt->bindParam("produceId", $produceId);
+
+        if ($stmt->execute() && $stmt->rowCount() > 0) {
+            echo "success";
+        } else {
+            echo "failure";
+        }
+
+        $db = null;
+
+    } catch (PDOException $e) {
+        echo '{"error: { "text": ' . $e->getMessage() . '} }';
+    }
+}
+
+// GET /api/produce/removeFromShoppingList/1/2
+function removeFromShoppingList($customerId, $produceId)
+{
+    $sql = "DELETE FROM shoppingList
+                WHERE ProduceId = :produceId AND CustomerId = :customerId";
+    try {
+        $db = getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("customerId", $customerId);
+        $stmt->bindParam("produceId", $produceId);
+
+        if ($stmt->execute() && $stmt->rowCount() > 0) {
+            echo "success";
+        } else {
+            echo "failure";
+        }
+
+        $db = null;
+
+    } catch (PDOException $e) {
+        echo '{"error: { "text": ' . $e->getMessage() . '} }';
+    }
+}

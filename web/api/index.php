@@ -32,6 +32,8 @@ $app->group('/produce/', function() use ($app) {
     $app->get('byType/:produceTypeId', 'getProduceByType');
     $app->get('byStore/:storeId', 'getProduceByStore');
     $app->get('getShoppingList/:customerId', 'getShoppingList');
+    $app->get('addToShoppingList/:customerId/:produceId', 'addToShoppingList');
+    $app->get('removeFromShoppingList/:customerId/:produceId', 'removeFromShoppingList');
 });
 
 // PRODUCE TYPE ROUTES
