@@ -91,11 +91,11 @@
                     <star-rating-directive score="p.Rating" max="5"
                                            on-rate="rateProduce(store.StoreId, p.ProduceId, rating)"
                                            style="vertical-align: middle;"
-                                           ng-show="user !== {}">
+                                           ng-show="!isEmpty(user)">
                     </star-rating-directive>
                     <static-star-rating-directive score="p.Rating" max="5"
                                            style="vertical-align: middle;"
-                                           ng-show="user !== {}">
+                                           ng-show="isEmpty(user)">
                     </static-star-rating-directive>
                 </td>
             </tr>
