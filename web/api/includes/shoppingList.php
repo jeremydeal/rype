@@ -6,7 +6,8 @@ function getShoppingList($customerId)
     $sql = "SELECT p.*, pt.*
               FROM produce AS p
                 JOIN produceType AS pt ON p.ProduceTypeID = pt.ProduceTypeID
-                JOIN shoppingList AS sl ON p.ProduceID = sl.ProduceID";
+                JOIN shoppingList AS sl ON p.ProduceID = sl.ProduceID
+                WHERE s1.CustomerId = :customerId";
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
