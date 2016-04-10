@@ -125,7 +125,7 @@
                 }
             });
 
-            filtered.unshift().apply(shoppingList);
+            filtered.unshift.apply(shoppingList);
 
             return filtered;
         };
