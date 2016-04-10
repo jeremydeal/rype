@@ -90,6 +90,20 @@
                         });
                 }
 
+                $scope.isUserPreferredStore = function(storeId) {
+                    return sessionService.get("PreferredStore") == storeId;
+                };
+
+                $scope.setUserPreferredStore = function(storeId) {
+                    console.log(Object.size($scope.user));
+                    console.log("storeId: " + storeId);
+
+                    if (Object.size($scope.user) > 0) {
+                        sessionService.set("PreferredStore", storeId);
+                    }
+                };
+
+
                 // STORES
                 function getStore(storeId) {
                     storesService.getStoreById(storeId)

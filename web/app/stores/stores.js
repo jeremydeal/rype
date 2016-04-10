@@ -97,15 +97,6 @@
                     return sessionService.get("PreferredStore") == storeId;
                 };
 
-                $scope.setUserPreferredStore = function(storeId) {
-                    console.log(Object.size($scope.user));
-                    console.log("storeId: " + storeId);
-
-                    if (Object.size($scope.user) > 0) {
-                        sessionService.set("PreferredStore", storeId);
-                    }
-                };
-
                 $scope.roundToTenth = function(num) {
                     return prettyPrintService.roundToTenth(num);
                 };

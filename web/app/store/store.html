@@ -2,6 +2,14 @@
 <p>{{ store.Address }}</p>
 <p>{{ store.City + ", " + store.State + " " + store.Zip }}</p>
 
+<!-- set preferred store -->
+<button type="button" class="btn btn-primary"
+        ng-show="!!user && !isUserPreferredStore(s.StoreId)"
+        ng-click="setUserPreferredStore(s.StoreId)">
+    Set Store
+</button>
+
+
 <br/>
 
 <highchart id="historicalRatingsChart" config="chartConfig"></highchart>
