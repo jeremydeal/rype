@@ -19,90 +19,88 @@
 
 <div class="container row">
 
-        <!-- FILTER SEARCH -->
-        <table class="table-condensed">
-            <tr>
-                <td colspan="2">
-                    <form class="" role="search">
-                        <div class="form-group">
-                            <input id="search-bar" ng-model="search.query" type="text" class="form-control" placeholder="Search Produce">
-                        </div>
-                    </form>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Produce Class</label>
-                </td>
-                <td>
-                    <select name="filterClass" ng-model="search.class" ng-options="c.ProduceClass as c.ProduceClass for c in productClasses">
-                        <option value="" selected>----</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Produce Type</label>
-                </td>
-                <td>
-                    <select name="filterType" ng-model="search.type"
-                            ng-options="t.ProduceTypeId as t.CommonName for t in productTypes | filterProductsByClass:search.class">
-                        <option value="" selected>----</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>In Season</label>
-                </td>
-                <td>
-                    <label class="checkbox-inline">
-                        <input type="checkbox" ng-model="search.inSeason" />
-                    </label>
-                </td>
-            </tr>
-        </table>
+    <!-- FILTER SEARCH -->
+    <table class="table-condensed">
+        <tr>
+            <td colspan="2">
+                <form class="" role="search">
+                    <div class="form-group">
+                        <input id="search-bar" ng-model="search.query" type="text" class="form-control" placeholder="Search Produce">
+                    </div>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Produce Class</label>
+            </td>
+            <td>
+                <select name="filterClass" ng-model="search.class" ng-options="c.ProduceClass as c.ProduceClass for c in productClasses">
+                    <option value="" selected>----</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Produce Type</label>
+            </td>
+            <td>
+                <select name="filterType" ng-model="search.type"
+                        ng-options="t.ProduceTypeId as t.CommonName for t in productTypes | filterProductsByClass:search.class">
+                    <option value="" selected>----</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>In Season</label>
+            </td>
+            <td>
+                <label class="checkbox-inline">
+                    <input type="checkbox" ng-model="search.inSeason" />
+                </label>
+            </td>
+        </tr>
+    </table>
 
-    </div>
+    <br>
 
-    <div class="container row">
-
-        <!-- PRODUCE LIST -->
-        <table class="table" style="width:100%;">
-            <tr>
-                <td></td>
-                <td><strong>Common Name</strong></td>
-                <td><strong>Variety</strong></td>
-                <td><strong>Rating</strong></td>
-            </tr>
-            <tr ng-repeat="p in products | orderBy: '-Rating' |
-                                            filterProductsBySearch:search.query |
-                                            filterProductsByWhetherInSeason:search.inSeason |
-                                            filterProductsByClass:search.class |
-                                            filterProductsByType:search.type |
-                                            bringShoppingListItemsToTop:shoppingListIds"
-                ng-class="{shoppingList: shoppingListIds.indexOf(p.ProduceId) > -1}">
-                <td>
-                    <img class="product-image" style="width: 100px" ng-src="../../src/images/{{ p.ImgThumb }}" />
-                </td>
-                <td>
-                    <p>{{ p.CommonName }}</p>
-                </td>
-                <td>
-                    <p>{{ p.Variety }}</p>
-                </td>
-                <td>
-                    <star-rating-directive score="p.Rating" max="5"
-                                           on-rate="rateProduce(store.StoreId, p.ProduceId, rating)"
-                                           style="vertical-align: middle;"
-                                           ng-show="user.CustomerId.length > 0">
-                    </star-rating-directive>
-                    <static-star-rating-directive score="p.Rating" max="5"
-                                           style="vertical-align: middle;"
-                                           ng-show="user.CustomerId.length <= 0">
-                    </static-star-rating-directive>
-                </td>
-            </tr>
-        </table>
+    <!-- PRODUCE LIST -->
+    <table class="table" style="width:100%;">
+        <tr>
+            <td></td>
+            <td><strong>Common Name</strong></td>
+            <td><strong>Variety</strong></td>
+            <td><strong>Rating</strong></td>
+        </tr>
+        <tr ng-repeat="p in products | orderBy: '-Rating' |
+                                        filterProductsBySearch:search.query |
+                                        filterProductsByWhetherInSeason:search.inSeason |
+                                        filterProductsByClass:search.class |
+                                        filterProductsByType:search.type |
+                                        bringShoppingListItemsToTop:shoppingListIds"
+            ng-class="{shoppingList: shoppingListIds.indexOf(p.ProduceId) > -1}">
+            <td>
+                <img class="product-image" style="width: 100px" ng-src="../../src/images/{{ p.ImgThumb }}" />
+            </td>
+            <td>
+                <p>{{ p.CommonName }}</p>
+            </td>
+            <td>
+                <p>{{ p.Variety }}</p>
+            </td>
+            <td>
+                <star-rating-directive score="p.Rating" max="5"
+                                       on-rate="rateProduce(store.StoreId, p.ProduceId, rating)"
+                                       style="vertical-align: middle;"
+                                       ng-show="user.CustomerId.length > 0">
+                </star-rating-directive>
+                <static-star-rating-directive score="p.Rating" max="5"
+                                       style="vertical-align: middle;"
+                                       ng-show="user.CustomerId === undefined">
+                </static-star-rating-directive>
+            </td>
+        </tr>
+    </table>
 
 </div>
