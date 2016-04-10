@@ -152,12 +152,13 @@ function setPreferredStore($user) {
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
-        $stmt->bindParam("customerId", $user->CustomerId);
         $stmt->bindParam("storeId", $user->StoreId);
-        $stmt->execute();
+        $stmt->bindParam("customerId", $user->CustomerId);
 
-        if ($stmt->rowCount() > 0) {
+        if ($stmt->execute() && $stmt->rowCount() > 0) {
             echo "success";
+        } else {
+            echo "failure";
         }
 
         $db = null;
