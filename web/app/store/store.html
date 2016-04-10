@@ -76,7 +76,8 @@
                                             filterProductsByWhetherInSeason:search.inSeason |
                                             filterProductsByClass:search.class |
                                             filterProductsByType:search.type |
-                                            bringShoppingListItemsToTop:shoppingListIds">
+                                            bringShoppingListItemsToTop:shoppingListIds"
+                ng-class="{shoppingList: shoppingListIds.indexOf(p.ProduceId) > -1}">
                 <td>
                     <img class="product-image" style="width: 100px" ng-src="../../src/images/{{ p.ImgThumb }}" />
                 </td>
