@@ -115,14 +115,17 @@
             console.log(shoppingListIds);
 
             var filtered = [];
+            var shoppingList = [];
 
             angular.forEach(products, function (p) {
                 if (shoppingListIds.indexOf(p.ProduceId) > -1) {
-                    filtered.unshift(p);
+                    shoppingList.push(p);
                 } else {
                     filtered.push(p);
                 }
             });
+
+            filtered.unshift().apply(shoppingList);
 
             return filtered;
         };
