@@ -156,6 +156,16 @@
                                                 filterProductsByType:search.type">
                     <td>
                         <p><strong>{{ p.Variety + " (" + p.CommonName + ")" }}</strong></p>
+                        <button type="button" class="btn btn-success"
+                                ng-show="!shoppingListIds || shoppingListIds.indexOf(p.ProduceId) == -1"
+                                ng-click="addToShoppingList(p.ProduceId)">
+                            Add to Shopping List
+                        </button>
+                        <button type="button" class="btn btn-danger"
+                                ng-show="shoppingListIds.indexOf(p.ProduceId) > -1"
+                                ng-click="removeFromShoppingList(p.ProduceId)">
+                            Remove from Shopping List
+                        </button>
                         <img class="product-image" style="width: 100px" ng-src="../../src/images/{{ p.ImgThumb }}" ng-click="getProduct(p.ProduceId)" />
                     </td>
                 </tr>

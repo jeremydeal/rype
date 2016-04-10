@@ -79,11 +79,17 @@
                 }
 
                 $scope.addToShoppingList = function(produceId) {
-                    productsService.addToShoppingList($scope.user.CustomerId, produceId);
+                    productsService.addToShoppingList($scope.user.CustomerId, produceId)
+                        .success(function(response) {
+                            populateShoppingList();
+                        })
                 };
 
                 $scope.removeFromShoppingList = function(produceId) {
-                    productsService.removeFromShoppingList($scope.user.CustomerId, produceId);
+                    productsService.removeFromShoppingList($scope.user.CustomerId, produceId)
+                        .success(function(response) {
+                            populateShoppingList();
+                        })
                 };
 
                 // CURRENT USER
