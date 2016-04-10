@@ -30,6 +30,11 @@
             return $http.get(baseUrl + "byStore/" + storeId);
         };
 
+        // get products by store (including ratings for those products at that store)
+        productsService.getProductsByShoppingList = function (customerId) {
+            return $http.get(baseUrl + "byShoppingList/" + customerId);
+        };
+
         //////////////////////////////////// SUPPLEMENTARY //////////////////////////////////////
         // get product types
         productsService.getProductTypes = function () {

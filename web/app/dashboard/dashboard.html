@@ -1,7 +1,32 @@
 <div>
-
+    <button type="button" class="btn btn-primary" ng-click="logout()">Log out</button>
     <p>Howdy, {{ user.Username + "!" }} Welcome!</p>
     <p>Preferred Store: {{ user.PreferredStore }}</p>
-    <button type="button" class="btn btn-primary" ng-click="logout()">Log out</button>
+
+    <!-- SHOPPING LIST -->
+    <h2>Shopping List</h2>
+    <table class="table-condensed" style="width:100%;">
+        <tr>
+            <td></td>
+            <td><strong>Common Name</strong></td>
+            <td><strong>Variety</strong></td>
+        </tr>
+        <tr ng-repeat="p in products | orderBy: '-Rating' |
+                                            filterProductsBySearch:search.query |
+                                            filterProductsByWhetherInSeason:search.inSeason |
+                                            filterProductsByClass:search.class |
+                                            filterProductsByType:search.type">
+            <td>
+                <img class="product-image" style="width: 100px" ng-src="../../src/images/{{ p.ImgThumb }}" />
+            </td>
+            <td>
+                <p>{{ p.CommonName }}</p>
+            </td>
+            <td>
+                <p>{{ p.Variety }}</p>
+            </td>
+        </tr>
+    </table>
+
 
 </div>

@@ -3,11 +3,12 @@
     'use strict';
 
     app.controller('dashboardController',
-        ['$scope', 'loginService', 'sessionService',
-            function ($scope, loginService, sessionService) {
+        ['$scope', 'loginService', 'sessionService', 'productsService',
+            function ($scope, loginService, sessionService, productsService) {
 
-                // scope variables for login
+                // scope vars
                 $scope.user = {};
+                $scope.products = {};
 
                 dataInit();
 
@@ -19,21 +20,29 @@
 
 
                 /////////////////////////////// SERVICE CALLS ///////////////////////////////////////////////////
+                // populate user object from JS session
+                function populateUser() {
+                    // check if user is logged in server side...
+                    loginService.checkLoginStatus()
+                        .then(function(response) {
+                            // if logged in, populate user from sessionStorage
+                            if (!!response.data) {
+                                $scope.user = sessionService.getUser();
+                                populateShoppingList();
+                            }
+                        });
+                }
+
+                function populateShoppingList() {
+                    productsService.getProductsByShoppingList($scope.user.CustomerId)
+                        .success(function (data) {
+                            $scope.products = data.products;
+                        })
+                }
+
                 $scope.logout = function () {
                     loginService.logout();
                 };
-
-                $scope.checkLoginStatus = function () {
-                    loginService.checkLoginStatus();
-                };
-
-                // populate user object from JS session
-                function populateUser() {
-                    $scope.user.Username = sessionService.get("Username");
-                    $scope.user.FirstName = sessionService.get("FirstName");
-                    $scope.user.LastName = sessionService.get("LastName");
-                    $scope.user.PreferredStore = sessionService.get("PreferredStore");
-                }
 
 
                 /////////////////////////////// HELPER METHODS //////////////////////////////////////////////////
