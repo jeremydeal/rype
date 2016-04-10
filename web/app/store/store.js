@@ -13,6 +13,7 @@
 
                 // USER GLOBALS
                 $scope.user = {};
+                $scope.shoppingListIds = [];
 
                 // PRODUCT GLOBALS
                 $scope.products = {};
@@ -86,8 +87,20 @@
                             // if logged in, populate user from sessionStorage
                             if (!!response.data) {
                                 $scope.user = sessionService.getUser();
+                                populateShoppingList();
                             }
                         });
+                }
+
+                function populateShoppingList() {
+                    productsService.getProductsByShoppingList($scope.user.CustomerId)
+                        .success(function (data) {
+                            $scope.shoppingListIds = [];
+                            var products = data.products;
+                            angular.forEach(products, function(obj) {
+                                $scope.shoppingListIds.push(obj.ProduceId);
+                            });
+                        })
                 }
 
                 $scope.isUserPreferredStore = function(storeId) {
