@@ -3,8 +3,8 @@
     'use strict';
 
     app.controller('productsController',
-        ['$scope', 'productsService', 'prettyPrintService',
-            function ($scope, productsService, prettyPrintService) {
+        ['$scope', 'productsService', 'loginService', 'prettyPrintService',
+            function ($scope, productsService, loginService, prettyPrintService) {
 
                 // PRODUCTS GLOBALS
                 $scope.products = {};
