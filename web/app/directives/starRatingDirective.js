@@ -20,12 +20,16 @@
 
         directive.link = function(scope, element, attrs) {
 
+            var rated = false;
+
             scope.updateStars = function() {
-                scope.stars = [];
-                for (var starId = 0; starId < scope.max; starId += 1) {
-                    scope.stars.push({
-                        full: scope.score > starId
-                    });
+                if (!rated) {
+                    scope.stars = [];
+                    for (var starId = 0; starId < scope.max; starId += 1) {
+                        scope.stars.push({
+                            full: scope.score > starId
+                        });
+                    }
                 }
             };
 
@@ -39,7 +43,7 @@
 
             scope.starColor = function(/* Integer */ index) {
                 var starClass = 'rating-normal';
-                if (index <= scope.hoverIndex) {
+                if (rated || index <= scope.hoverIndex) {
                     starClass = 'rating-highlight';
                 }
                 return starClass;
@@ -48,7 +52,7 @@
             scope.starClass = function(/* Star */ star, /* Integer */ index) {
                 // add FontAwesome classes to the <i> tags to generate full/empty stars
                 var starClass = 'fa-star-o';
-                if (star.full || index <= scope.hoverIndex) {
+                if (star.full || (!rated && index <= scope.hoverIndex)) {
                     starClass = 'fa-star';
                 }
                 return starClass;
@@ -60,10 +64,8 @@
                 console.log("Rating is now " + scope.score);
                 scope.onRate({ rating: scope.score });
 
-                // disable any further ratings
-                $timeout(function() {
-                    element.attr('disabled', true);
-                }, 0);      // timeout of 0 = as soon as the click has processed
+                // disable for future ratings
+                rated = true;
             };
 
             scope.$watch('score', function(newValue, oldValue) {
