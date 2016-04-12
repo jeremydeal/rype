@@ -68,6 +68,8 @@ app.run(function($rootScope, $location, loginService){
         {
             // ...check to see if the user has a session registered
             connected.then(function(response){
+                $rootScope.isLoggedIn = !!response.data;
+
                 // if not logged in, redirect to login
                 if (!response.data) $location.path('/login');
             });
@@ -76,6 +78,8 @@ app.run(function($rootScope, $location, loginService){
         {
             // ...check session
             connected.then(function(response){
+                $rootScope.isLoggedIn = !!response.data;
+
                 // if logged in, redirect to dashboard
                 if (!!response.data) $location.path('/dashboard');
             });

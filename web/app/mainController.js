@@ -3,9 +3,14 @@
     'use strict';
 
     app.controller('mainController',
-        ['$scope', '$rootScope',
-            function ($scope, $rootScope) {
-
+        ['$scope', '$loginService', '$rootScope',
+            function ($scope, $loginService, $rootScope) {
+                // $loginService.checkLoginStatus()
+                //     .then(function successCallback(response) {
+                //         $rootScope.isLoggedIn = !!response.data;
+                //     }, function errorCallback(response) {
+                //         $rootScope.isLoggedIn = false;
+                //     });
             }]);
 
 })();
