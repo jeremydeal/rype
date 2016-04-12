@@ -94,10 +94,6 @@ li a:hover {
 }
 
 /* NUTRITION FACTS */
-#nutrition {
-    padding-top: 20px;
-}
-
 .zebra tbody tr:nth-child(odd) {
     background-color: #ccc;
 }
