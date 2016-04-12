@@ -98,6 +98,6 @@ li a:hover {
     padding-top: 50px;
 }
 
-tbody tr:nth-child(odd) {
+.zebra tbody tr:nth-child(odd) {
     background-color: #ccc;
 }
