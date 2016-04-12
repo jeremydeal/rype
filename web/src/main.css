@@ -41,10 +41,11 @@ li a:hover {
 }
 */
 
+
 /* SCROLLBAR */
 .scrollable {
     white-space: pre-line;
-    height: 800px;
+    height: 560px;
     overflow-y: hidden;
     position: relative;
     padding: 20px;
@@ -58,6 +59,12 @@ li a:hover {
 
 .element {
     .center-block();
+}
+
+/* PRODUCTS PAGE */
+.centerme {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* STORES MAP */
