@@ -164,12 +164,12 @@
                         <strong>{{ p.Variety + " (" + p.CommonName + ")" }}</strong>
                         <img class="product-image" style="width: 100px" ng-src="../../src/images/{{ p.ImgThumb }}" ng-click="getProduct(p.ProduceId)" />
                         <button type="button" class="btn btn-success"
-                                ng-show="user.customerId.length > 0 && shoppingListIds.indexOf(p.ProduceId) == -1"
+                                ng-show="user.CustomerId.length > 0 && shoppingListIds.indexOf(p.ProduceId) == -1"
                                 ng-click="addToShoppingList(p.ProduceId)">
                             Add to Shopping List
                         </button>
                         <button type="button" class="btn btn-danger"
-                                ng-show="user.customerId.length > 0 && shoppingListIds.indexOf(p.ProduceId) > -1"
+                                ng-show="user.CustomerId.length > 0 && shoppingListIds.indexOf(p.ProduceId) > -1"
                                 ng-click="removeFromShoppingList(p.ProduceId)">
                             Remove from Shopping List
                         </button>
