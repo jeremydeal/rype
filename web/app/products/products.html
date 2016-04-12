@@ -126,7 +126,7 @@
                 </td>
                 <td>
                     <select name="filterClass" ng-model="search.class" ng-options="c.ProduceClass as c.ProduceClass for c in productClasses">
-                        <option value="" selected>All</option>
+                        <option value="" selected>-All-</option>
                     </select>
                 </td>
             </tr>
@@ -137,7 +137,7 @@
                 <td>
                     <select name="filterType" ng-model="search.type"
                             ng-options="t.ProduceTypeId as t.CommonName for t in productTypes | filterProductsByClass:search.class">
-                        <option value="" selected>All</option>
+                        <option value="" selected>-All-</option>
                     </select>
                 </td>
             </tr>
