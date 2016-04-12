@@ -97,3 +97,7 @@ li a:hover {
 #nutrition {
     padding-top: 50px;
 }
+
+tbody tr:nth-child(odd) {
+    background-color: #ccc;
+}
