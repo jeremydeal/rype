@@ -43,16 +43,17 @@ li a:hover {
 
 
 /* SCROLLBAR */
+.perscroll {
+    position: relative;
+    height: 100%; /* Or whatever you want (eg. 400px) */
+}
+
 .scrollable {
     white-space: pre-line;
     height: 560px;
     overflow-y: hidden;
     position: relative;
     padding: 20px;
-}
-.perscroll {
-    position: relative;
-    height: 100%; /* Or whatever you want (eg. 400px) */
 }
 
 /* HOMEPAGE TABLES */
