@@ -1,7 +1,7 @@
 <div class="container row">
 
     <!-- SELECTED PRODUCT -->
-    <div class="col-sm-8 col-xs-8">
+    <div class=" col-lg-6 col-sm-8 col-xs-8">
         <!-- <perfect-scrollbar class="scrollable" suppress-scroll-x="true" wheel-propagation="true" wheel-speed="3" min-scrollbar-length="20"> -->
 
             <h2 ng-show="product.Variety">{{ product.Variety + ' (' + product.CommonName + ')' }}</h2>
@@ -26,82 +26,86 @@
                 <p ng-show="product.Storage"><strong>Storage</strong></p>
                 <p ng-show="product.Storage">{{ product.Storage}}</p>
 
-                <!-- NUTRITIONAL FACTS:
-                    Calories
-                    Totalfat
-                    Sat
-                    Trans
-                    Cholesterol
-                    TotalCarbohydrates
-                    Sodium
-                    DietaryFiber
-                    Sugars
-                    Protein
-                    Vitamina
-                    Vitaminc
-                    Iron
-                -->
-                <table class="table-condensed" ng-show="product.Calories">
-                    <tr>
-                        <td><strong>Calories</strong></td>
-                        <td>{{ product.Calories }}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Total Fat</strong></td>
-                        <td>{{ product.Totalfat }}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Saturated Fat</strong></td>
-                        <td>{{ product.Sat }}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Trans Fat</strong></td>
-                        <td>{{ product.Trans }}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Cholesterol</strong></td>
-                        <td>{{ product.Cholesterol }}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Total Carbohydrates</strong></td>
-                        <td>{{ product.Carbs }}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Sodium</strong></td>
-                        <td>{{ product.Sodium }}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Dietary Fiber</strong></td>
-                        <td>{{ product.Fiber }}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Sugars</strong></td>
-                        <td>{{ product.Sugars }}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Protein</strong></td>
-                        <td>{{ product.Protein }}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Vitamin A</strong></td>
-                        <td>{{ product.Vitamina }}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Vitamin C</strong></td>
-                        <td>{{ product.Vitaminc }}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Iron</strong></td>
-                        <td>{{ product.Iron }}</td>
-                    </tr>
-                </table>
-            </div>
 
+            </div>
         <!--</perfect-scrollbar>-->
     </div>
+        <!-- NUTRITION COLUMN -->
+        <!-- NUTRITIONAL FACTS:
+                  Calories
+                  Totalfat
+                  Sat
+                  Trans
+                  Cholesterol
+                  TotalCarbohydrates
+                  Sodium
+                  DietaryFiber
+                  Sugars
+                  Protein
+                  Vitamina
+                  Vitaminc
+                  Iron
+              -->
+        <div class ="hidden-xs col-lg-3 col-md-3">
+            <table class="table-condensed" ng-show="product.Calories">
+                <tr>
+                    <td><strong>Calories</strong></td>
+                    <td>{{ product.Calories }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Total Fat</strong></td>
+                    <td>{{ product.Totalfat }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Saturated Fat</strong></td>
+                    <td>{{ product.Sat }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Trans Fat</strong></td>
+                    <td>{{ product.Trans }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Cholesterol</strong></td>
+                    <td>{{ product.Cholesterol }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Total Carbohydrates</strong></td>
+                    <td>{{ product.Carbs }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Sodium</strong></td>
+                    <td>{{ product.Sodium }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Dietary Fiber</strong></td>
+                    <td>{{ product.Fiber }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Sugars</strong></td>
+                    <td>{{ product.Sugars }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Protein</strong></td>
+                    <td>{{ product.Protein }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Vitamin A</strong></td>
+                    <td>{{ product.Vitamina }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Vitamin C</strong></td>
+                    <td>{{ product.Vitaminc }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Iron</strong></td>
+                    <td>{{ product.Iron }}</td>
+                </tr>
+            </table>
+        </div>
+
 
     <!-- PRODUCE LIST -->
-    <div class="col-sm-4">
+    <div class="col-lg-3 col-md-3 col-sm-4 ">
 
         <!-- FILTER SEARCH -->
         <table class="table-condensed">
