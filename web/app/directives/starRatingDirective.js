@@ -59,14 +59,16 @@
             };
 
             scope.setRating = function(index) {
-                scope.score = index + 1;
-                scope.stopHover();
-                console.log("Rating is now " + scope.score);
-                scope.onRate({ rating: scope.score });
+                if (!rated) {
+                    scope.score = index + 1;
+                    scope.stopHover();
+                    console.log("Rating is now " + scope.score);
+                    scope.onRate({rating: scope.score});
 
-                // refresh and then disable for future ratings
-                scope.updateStars();
-                rated = true;
+                    // refresh and then disable for future ratings
+                    scope.updateStars();
+                    rated = true;
+                }
             };
 
             scope.$watch('score', function(newValue, oldValue) {
