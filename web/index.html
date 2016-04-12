@@ -78,16 +78,16 @@
                             <a href="#/stores" class="visible-xs" data-toggle="collapse" data-target=".navbar-collapse">Stores</a>
                         </li>
                         <li>
-                            <a href="#/aboutUs"  class="hidden-xs">About Us</a>
-                            <a href="#/aboutUs" class="visible-xs" data-toggle="collapse" data-target=".navbar-collapse">About Us</a>
+                            <a href="#/about"  class="hidden-xs">About Us</a>
+                            <a href="#/about" class="visible-xs" data-toggle="collapse" data-target=".navbar-collapse">About Us</a>
                         </li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li ng-show="!currentUserId">
+                    <ul class="nav navbar-nav navbar-right" ng-cloak>
+                        <li ng-show="!isLoggedIn">
                             <a href="#/login" class="hidden-xs"><span class="glyphicon glyphicon-log-in"></span> Login</a>
                             <a href="#/login" class="visible-xs" data-toggle="collapse" data-target=".navbar-collapse"><span class="glyphicon glyphicon-log-in"></span>Login</a>
                         </li>
-                        <li ng-show="!!currentUserId">
+                        <li ng-show="!!isLoggedIn">
                             <a href="#/dashboard" class="hidden-xs">Dashboard</a>
                             <a href="#/dashboard" class="visible-xs" data-toggle="collapse" data-target=".navbar-collapse">Dashboard</a>
                         </li>

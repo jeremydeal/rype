@@ -3,14 +3,14 @@
     'use strict';
 
     app.controller('mainController',
-        ['$scope', '$rootScope',
-            function ($scope, $rootScope) {
-                // $loginService.checkLoginStatus()
-                //     .then(function successCallback(response) {
-                //         $rootScope.isLoggedIn = !!response.data;
-                //     }, function errorCallback(response) {
-                //         $rootScope.isLoggedIn = false;
-                //     });
-            }]);
+        ['$scope', 'loginService', '$rootScope',
+            function ($scope, loginService, $rootScope) {
 
+                // get an HTTP promise to check auth
+                loginService.checkLoginStatus()
+                    .then(function(response){
+                        $rootScope.isLoggedIn = !!response.data;
+                    });
+
+            }]);
 })();
