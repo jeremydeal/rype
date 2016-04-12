@@ -1,7 +1,7 @@
 <div class="container row">
 
     <!-- SELECTED PRODUCT -->
-    <div class=" col-lg-8 col-sm-8 col-xs-8">
+    <div class="col-lg-8 col-sm-8 col-xs-8">
         <!-- <perfect-scrollbar class="scrollable" suppress-scroll-x="true" wheel-propagation="true" wheel-speed="3" min-scrollbar-length="20"> -->
 
             <h2 ng-show="product.Variety">{{ product.Variety + ' (' + product.CommonName + ')' }}</h2>
@@ -44,8 +44,7 @@
                   Iron
               -->
             <div class ="hidden-sm hidden-xs col-lg-4 col-md-4" id="nutrition">
-                <button class="btn btn-primary"  type="button" data-toggle="collapse" data-target="#nutr_facts">View Nutrition Facts</button>
-                <div class="collapse" id="nutr_facts">
+                <h3>Nutrition Facts</h3>
                     <table class="table-condensed zebra" ng-show="product.Calories">
                         <tbody>
                         <tr>
@@ -102,7 +101,6 @@
                         </tr>
                         </tbody>
                     </table>
-                </div>
             </div>
 
         </div>
