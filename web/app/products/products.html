@@ -154,8 +154,7 @@
         </table>
 
         <!-- PRODUCE LIST -->
-        <div class="scrollable">
-          <perfect-scrollbar suppress-scroll-x="true" wheel-propagation="true" wheel-speed="3" min-scrollbar-length="20" style="height: 360px;">
+        <perfect-scrollbar class="scrollable" suppress-scroll-x="true" wheel-propagation="true" wheel-speed="3" min-scrollbar-length="20" style="height: 360px;">
             <table class="table">
                 <tr ng-repeat="p in products | filterProductsBySearch:search.query |
                                                 filterProductsByWhetherInSeason:search.inSeason |
@@ -178,8 +177,8 @@
                     </td>
                 </tr>
             </table>
-          </perfect-scrollbar>
-        </div>
+        </perfect-scrollbar>
+
     </div>
 
 </div>
