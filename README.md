@@ -1,6 +1,6 @@
 <h1><em>Rype</em> Application Readme</h1>
 
-<h3>Application Structure</h3>
+<h3>App Structure</h3>
 
 <em>Rype</em> embraces MVC architecture. The code is divided between:
 <ul>
