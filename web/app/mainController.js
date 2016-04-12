@@ -3,8 +3,8 @@
     'use strict';
 
     app.controller('mainController',
-        ['$scope', '$loginService', '$rootScope',
-            function ($scope, $loginService, $rootScope) {
+        ['$scope', '$rootScope',
+            function ($scope, $rootScope) {
                 // $loginService.checkLoginStatus()
                 //     .then(function successCallback(response) {
                 //         $rootScope.isLoggedIn = !!response.data;
