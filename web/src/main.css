@@ -43,14 +43,9 @@ li a:hover {
 
 
 /* SCROLLBAR */
-.perscroll {
-    position: relative;
-    height: 100%; /* Or whatever you want (eg. 400px) */
-}
-
 .scrollable {
     white-space: pre-line;
-    height: 560px;
+    height: 100%;
     overflow-y: hidden;
     position: relative;
     padding: 20px;
