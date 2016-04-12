@@ -41,6 +41,7 @@ li a:hover {
 }
 */
 
+
 /* SCROLLBAR */
 .scrollable {
     white-space: pre-line;
@@ -58,6 +59,12 @@ li a:hover {
 
 .element {
     .center-block();
+}
+
+/* PRODUCTS PAGE */
+.centerme {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* STORES MAP */
@@ -93,3 +100,7 @@ li a:hover {
     color: #3C3C3C;
 }
 
+/* NUTRITION FACTS */
+.zebra tbody tr:nth-child(odd) {
+    background-color: #ccc;
+}
