@@ -45,8 +45,8 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: 'app/store/store.html',
             controller: 'storeController'
         })
-        .when('/aboutUs', {
-            templateUrl: 'app/aboutUs/aboutUs.html',
+        .when('/about', {
+            templateUrl: 'app/about/about.html',
             controller: 'aboutUsController'
         })
         .otherwise({
