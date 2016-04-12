@@ -50,6 +50,11 @@ li a:hover {
     position: relative;
     padding: 20px;
 }
+.perscroll {
+    position: relative;
+    height: 100%; /* Or whatever you want (eg. 400px) */
+}
+
 /* HOMEPAGE TABLES */
 .center-block {
     display: block;
